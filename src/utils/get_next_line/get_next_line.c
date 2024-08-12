@@ -6,14 +6,14 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 19:09:23 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/07 21:38:09 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/12 13:33:05 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
 /* Write `n` bytes of 0 into the memory starting from `s`. */
-char	*ft_bzero(void *s, size_t n)
+static char	*ft_bzero(void *s, size_t n)
 {
 	size_t	i;
 
