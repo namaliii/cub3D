@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   exit_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/07 21:22:28 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/12 15:43:44 by tunsal           ###   ########.fr       */
+/*   Created: 2024/08/12 15:20:17 by tunsal            #+#    #+#             */
+/*   Updated: 2024/08/12 15:21:09 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int argc, char *argv[])
+void	exit_error()
 {
-	t_map		*map;
-
-
-	printf("this is main\n");
-	map = parse(argc, argv);
-	
+	exit(EXIT_FAILURE);
 }
