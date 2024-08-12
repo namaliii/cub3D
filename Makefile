@@ -31,30 +31,39 @@ NAME			= cub3D
 CC				= cc
 CFLAGS			= -Wextra -Wall -Werror -Ofast
 LIBS			= $(MLX) $(LIBFT) -ldl -lglfw -pthread -lm
-INC				= -I $(LIBMLX_PATH)/include -I $(LIBFT_PATH) -I $(INCLUDES_PATH)
+INC				= -I $(LIBMLX_PATH)/include/MLX42 -I $(LIBFT_PATH) -I $(INCLUDES_PATH)
 
 # Rules
 all:			$(NAME)
 
 $(NAME):		$(OBJS)
-				$(CC) $(OBJS) $(LIBS) $(INC) -o $(NAME)
+				@$(CC) $(OBJS) $(LIBS) $(INC) -o $(NAME)
+				@echo "cub3d created"
 
 %.o: %.c
-				$(CC) $(CFLAGS) $(INC) -c $< -o $@
+				@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 $(LIBFT):
-				make -C $(LIBFT_PATH) all
+				@printf "%-18s" "Building libft..."
+				@make -C $(LIBFT_PATH) all --silent
+				@echo " DONE"
 
 $(MLX):
-				cmake $(LIBMLX_PATH) -B $(LIBMLX_PATH)/build && make -C $(LIBMLX_PATH)/build -j4
+				@printf "%-18s" "Building MLX..."
+				@cmake -S $(LIBMLX_PATH) -B $(LIBMLX_PATH)/build --log-level=ERROR > /dev/null && make -C $(LIBMLX_PATH)/build -j4 > /dev/null
+				@echo " DONE"
 
 clean:
-				make -C $(LIBFT_PATH) clean
-				rm -rf $(OBJS)
-				rm -rf $(LIBMLX_PATH)/build
+				@printf "%-18s" "Cleaning..."
+				@make -C $(LIBFT_PATH) clean --silent
+				@rm -rf $(OBJS)
+				@rm -rf $(LIBMLX_PATH)/build
+				@echo " DONE"
 
 fclean: 		clean
-				make -C $(LIBFT_PATH) fclean
-				rm -rf $(NAME)
+				@printf "%-18s" "Full cleaning..."
+				@make -C $(LIBFT_PATH) fclean --silent
+				@rm -rf $(NAME)
+				@echo " DONE"
 
 re: 			clean all
