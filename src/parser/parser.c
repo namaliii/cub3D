@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:25 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/12 16:03:53 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/12 17:07:14 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ void	set_mock_map(t_map *map)
 		map->map[i] = (char *) safe_calloc(map->width, sizeof(char));
 		++i;
 	}
-	map->color_floor = (t_color) {255, 127, 0, 255};
-	map->color_ceiling = (t_color) {50, 10, 10, 255};
-	map->tex_NO_path = NULL;
-	map->tex_SO_path = NULL;
-	map->tex_WE_path = NULL;
-	map->tex_EA_path = NULL;
+	map->color_floor = (t_rgba) {255, 127, 0, 255};
+	map->color_ceiling = (t_rgba) {50, 10, 10, 255};
+	map->tex_no_path = NULL;
+	map->tex_so_path = NULL;
+	map->tex_we_path = NULL;
+	map->tex_ea_path = NULL;
 	
 	char m1[MOCK_MAP_HEIGHT][MOCK_MAP_WIDTH] = {
 		{'1', '1', '1', '1', '1', '1', '1', '1', '1', '1'},
@@ -57,12 +57,12 @@ void	init_map(t_map *map)
 	map->height = -1;
 	map->width = -1;
 	map->map = NULL;
-	map->color_floor = (t_color) {255, 127, 0, 255};
-	map->color_ceiling = (t_color) {50, 10, 10, 255};
-	map->tex_NO_path = NULL;
-	map->tex_SO_path = NULL;
-	map->tex_WE_path = NULL;
-	map->tex_EA_path = NULL;
+	map->color_floor = (t_rgba) {255, 127, 0, 255};
+	map->color_ceiling = (t_rgba) {50, 10, 10, 255};
+	map->tex_no_path = NULL;
+	map->tex_so_path = NULL;
+	map->tex_we_path = NULL;
+	map->tex_ea_path = NULL;
 }
 
 t_map	*parse(int argc, char *argv[])
