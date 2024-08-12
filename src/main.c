@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:28 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/12 17:07:32 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/12 18:15:32 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,15 @@ int	main(int argc, char *argv[])
 	map = parse(argc, argv);
 	init_player(&player, map);
 	init(&screen);
-	raycast(&screen, map, &player);
+	// movement hooks?
+	// mlx_scroll_hook();
+	// mlx_key_hook();
+	while (!player.game_over)
+	{
+		// clearscreen?
+		raycast(&screen, map, &player);
+		mlx_image_to_window(screen.window, screen.img, 0, 0);
+		// mlx_delete_image();
+		// mlx_new_image();
+	}
 }
