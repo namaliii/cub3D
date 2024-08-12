@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:25 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/12 17:07:14 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/12 20:57:27 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	set_mock_map(t_map *map)
 		{'1', '0', '0', '0', '0', '0', '0', '0', '0', '1'},
 		{'1', '1', '1', '1', '1', '1', '1', '1', '1', '1'}
 	};
-	
+
 	for (int y = 0; y < MOCK_MAP_HEIGHT; ++y) {
 		for (int x = 0; x < MOCK_MAP_WIDTH; ++x) {
 			map->map[y][x] = m1[y][x];
@@ -54,8 +54,8 @@ void	set_mock_map(t_map *map)
 
 void	init_map(t_map *map)
 {
-	map->height = -1;
-	map->width = -1;
+	map->height = 0;
+	map->width = 0;
 	map->map = NULL;
 	map->color_floor = (t_rgba) {255, 127, 0, 255};
 	map->color_ceiling = (t_rgba) {50, 10, 10, 255};
