@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:28 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/12 15:43:44 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/12 16:07:43 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ int	main(int argc, char *argv[])
 {
 	t_map		*map;
 
-
-	printf("this is main\n");
 	map = parse(argc, argv);
 	
 }

@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/12 15:40:59 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/12 16:01:13 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ typedef struct s_color
 
 typedef struct s_map
 {
-	char	**map;
 	int		width;
 	int		height;
+	char	**map;
 	t_color	color_floor;
 	t_color	color_ceiling;
 	char	*tex_NO_path;
