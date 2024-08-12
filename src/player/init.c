@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:04:17 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/12 18:26:08 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/12 20:59:56 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	init_player(t_player *player, t_map *map)
 	int first_free_x, first_free_y;
 	int found_flag = false;
 
-	for (first_free_y = 0; first_free_y < MOCK_MAP_WIDTH; ++first_free_y)
+	for (first_free_y = 0; first_free_y < map->height; ++first_free_y)
 	{
-		for (first_free_x = 0; first_free_x < MOCK_MAP_HEIGHT; ++first_free_x)
+		for (first_free_x = 0; first_free_x < map->width; ++first_free_x)
 		{
 			if (map->map[first_free_y][first_free_x] == '0')
 			{
