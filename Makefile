@@ -13,7 +13,9 @@ SRCS_DIR		= ./src/
 
 UTILS_DIR 		= $(SRCS_DIR)/utils/
 UTILS_SRCS		= $(UTILS_DIR)/get_next_line/get_next_line.c \
-					$(UTILS_DIR)/get_next_line/get_next_line_utils.c
+					$(UTILS_DIR)/get_next_line/get_next_line_utils.c \
+					$(UTILS_DIR)/safe_calloc.c \
+					$(UTILS_DIR)/exit_error.c
 
 PARSER_DIR		= $(SRCS_DIR)/parser
 PARSER_SRCS		= $(PARSER_DIR)/parser.c
