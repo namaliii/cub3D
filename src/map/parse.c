@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:25 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/12 20:57:27 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/12 21:18:54 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_map	*parse(int argc, char *argv[])
 
 	(void)argc;
 	(void)argv;
-	map = (t_map *) safe_calloc(1, sizeof(map));
+	map = (t_map *) safe_calloc(1, sizeof(t_map));
 	init_map(map);
 	set_mock_map(map);
 	return (map);
