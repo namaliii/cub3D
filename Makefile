@@ -11,16 +11,23 @@ MLX				= $(LIBMLX_PATH)/build/libmlx42.a
 # Sources
 SRCS_DIR		= ./src/
 
-UTILS_DIR 		= $(SRCS_DIR)/utils/
-UTILS_SRCS		= $(UTILS_DIR)/get_next_line/get_next_line.c \
-					$(UTILS_DIR)/get_next_line/get_next_line_utils.c \
-					$(UTILS_DIR)/safe_calloc.c \
-					$(UTILS_DIR)/exit_error.c
+GRAPHICS_DIR	= $(SRCS_DIR)/graphics
+GRAPHICS_SRCS	= $(GRAPHICS_DIR)/draw.c \
+					$(GRAPHICS_DIR)/raycast.c
 
 PARSER_DIR		= $(SRCS_DIR)/parser
 PARSER_SRCS		= $(PARSER_DIR)/parser.c
 
-SRCS_NO_MAIN	= $(PARSER_SRCS) $(UTILS_SRCS)
+PLAYER_DIR		= $(SRCS_DIR)/player
+PLAYER_SRCS		= $(PLAYER_DIR)/init.c
+
+UTILS_DIR 		= $(SRCS_DIR)/utils/
+UTILS_SRCS		= $(UTILS_DIR)/get_next_line/get_next_line.c \
+					$(UTILS_DIR)/get_next_line/get_next_line_utils.c \
+					$(UTILS_DIR)/exit_error.c \
+					$(UTILS_DIR)/safe_calloc.c
+
+SRCS_NO_MAIN	= $(GRAPHICS_SRCS) $(PARSER_SRCS) $(PLAYER_SRCS) $(UTILS_SRCS)
 SRCS			= src/main.c $(SRCS_NO_MAIN)
 
 # Includes
