@@ -6,13 +6,15 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:20:17 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/12 15:21:09 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/12 17:09:47 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	exit_error()
+void	exit_error(const char *msg)
 {
+	if (msg != NULL)
+		printf("%s\n", msg);
 	exit(EXIT_FAILURE);
 }
