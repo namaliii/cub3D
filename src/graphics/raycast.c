@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:38:28 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/12 18:22:41 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/12 20:36:41 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static float	find_dist(float angle, t_map *map, t_player *player)
 		dist += step_size;
 		testx = (int) (player->posx + sin(angle) * dist);
 		testy = (int) (player->posy + cos(angle) * dist);
-	} while (!is_out_of_bounds(map, testx, testy) || !is_wall(map, testx, testy));
+	} while (!is_out_of_bounds(map, testx, testy) && !is_wall(map, testx, testy));
 	return (dist);
 }
 
