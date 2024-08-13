@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:04:17 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/13 14:54:02 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/13 16:07:36 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,31 +22,33 @@
 // 	return (0.0);
 // }
 
-void	init_player(t_player *player, t_map *map)
+void	init_player(t_game *game)
 {
-	int first_free_x, first_free_y;
-	int found_flag = false;
+	// int first_free_x, first_free_y;
+	// int found_flag = false;
 
-	for (first_free_y = 0; first_free_y < map->height; ++first_free_y)
-	{
-		for (first_free_x = 0; first_free_x < map->width; ++first_free_x)
-		{
-			if (map->map[first_free_y][first_free_x] == '0')
-			{
-				player->posx = first_free_x + 0.5;
-				player->posy = first_free_y + 0.5;
-				found_flag = true;
-				break;
-			}
-		}
+	// for (first_free_y = 0; first_free_y < map->height; ++first_free_y)
+	// {
+	// 	for (first_free_x = 0; first_free_x < map->width; ++first_free_x)
+	// 	{
+	// 		if (map->map[first_free_y][first_free_x] == '0')
+	// 		{
+	// 			player->posx = first_free_x + 0.5;
+	// 			player->posy = first_free_y + 0.5;
+	// 			found_flag = true;
+	// 			break;
+	// 		}
+	// 	}
 
-		if (found_flag)
-			break;
-	}
+	// 	if (found_flag)
+	// 		break;
+	// }
 
-	if (!found_flag)
-		exit_error("Couldn't find a valid player spawn position.");
+	// if (!found_flag)
+	// 	exit_error("Couldn't find a valid player spawn position.");
 
-	player->angle = 0.0;
-	player->game_over = false;
+	game->px = 1.5;
+	game->py = 1.5;
+	game->p_angle = 0.0;
+	game->game_over = false;
 }
