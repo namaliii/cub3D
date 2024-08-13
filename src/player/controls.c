@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 15:43:24 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/13 17:44:22 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/13 19:52:01 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	handler_keyboard(mlx_key_data_t key, void *param)
 {
 	t_game	*game;
 
-	printf("handling keypress...\n");
 	game = (t_game *) param;
 	if (key.key == MLX_KEY_ESCAPE)
 	{
@@ -43,5 +42,6 @@ void	handler_keyboard(mlx_key_data_t key, void *param)
 		game->px -= sin(game->p_angle) * WALK_SPEED;
 		game->py -= cos(game->p_angle) * WALK_SPEED;
 	}
-	draw(game);
+	// draw(game);
+	draw2d(game);
 }
