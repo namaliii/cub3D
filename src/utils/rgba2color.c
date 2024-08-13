@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   rgba2color.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/07 21:22:25 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/08 18:09:35 by tunsal           ###   ########.fr       */
+/*   Created: 2024/08/12 18:16:41 by tunsal            #+#    #+#             */
+/*   Updated: 2024/08/12 18:18:07 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	parser(int argc, char *argv[])
+uint32_t	rgba2color(t_rgba rgba)
 {
-	(void)argc;
-	(void)argv;
-	printf("this is parser\n");
+	return (rgba.r << 24 | rgba.g << 16 | rgba.b << 8 | rgba.a);
 }
