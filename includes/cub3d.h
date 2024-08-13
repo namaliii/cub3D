@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/13 19:44:48 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/13 22:38:08 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include "get_next_line.h"
 # include "MLX42.h"
 
-# define SCREEN_WIDTH 640
-# define SCREEN_HEIGHT 480
+# define SCREEN_WIDTH 800
+# define SCREEN_HEIGHT 600
 
 # define MOCK_MAP_HEIGHT 10
 # define MOCK_MAP_WIDTH 10
@@ -29,7 +29,7 @@
 
 # define PI 3.141592
 # define FOV 60
-# define TURN_ANGLE 0.0335
+# define TURN_ANGLE 0.1
 # define WALK_SPEED 0.16
 
 typedef struct s_rgba
@@ -74,8 +74,8 @@ typedef struct s_game
 }	t_game;
 
 // Graphics
-void		draw(t_game *game);
-void		draw2d(t_game *game);
+void		raycast(t_game *game);
+void		draw_minimap(t_game *game);
 
 // Map
 bool		is_out_of_bounds(t_game *game, int x, int y);
