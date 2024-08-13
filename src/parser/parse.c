@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:25 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/13 16:04:38 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/13 16:40:02 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,5 @@ void	parse(int argc, char *argv[], t_game *game)
 	(void)argv;
 	init_map(game);
 	set_mock_map(game);
+	init_player(game);
 }

@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   player_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/12 15:04:17 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/13 16:07:36 by tunsal           ###   ########.fr       */
+/*   Created: 2024/08/13 16:33:32 by tunsal            #+#    #+#             */
+/*   Updated: 2024/08/13 16:37:22 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// static t_vec2d	player_get_spawn_coords(t_map *map)
+// static t_vec2d	player_get_spawn_coords(t_game *game)
 // {
 // 	return ((t_vec2d) {0.0, 0.0});
 // }
 
-// static float	player_get_spawn_angle(t_map *map)
+// static float	player_get_spawn_angle(t_game *game)
 // {
 // 	return (0.0);
 // }

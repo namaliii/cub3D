@@ -13,11 +13,12 @@ SRCS_DIR			= ./src/
 
 GRAPHICS_FILES		= draw.c
 
-MAP_FILES			= parse.c \
-						checks.c
+MAP_FILES			= checks.c
 
-PLAYER_FILES		= init.c \
-						controls.c
+PARSER_FILES		= parse.c \
+						player_init.c
+
+PLAYER_FILES		= controls.c
 
 UTILS_FILES			= get_next_line/get_next_line.c \
 						get_next_line/get_next_line_utils.c \
@@ -27,10 +28,11 @@ UTILS_FILES			= get_next_line/get_next_line.c \
 
 GRAPHICS_SRCS		= $(addprefix src/graphics/, $(GRAPHICS_FILES))
 MAP_SRCS			= $(addprefix src/map/, $(MAP_FILES))
+PARSER_SRCS			= $(addprefix src/parser/, $(PARSER_FILES))
 PLAYER_SRCS			= $(addprefix src/player/, $(PLAYER_FILES))
 UTILS_SRCS			= $(addprefix src/utils/, $(UTILS_FILES))
 
-SRCS_NO_MAIN		= $(GRAPHICS_SRCS) $(MAP_SRCS) $(PLAYER_SRCS) $(UTILS_SRCS)
+SRCS_NO_MAIN		= $(GRAPHICS_SRCS) $(MAP_SRCS) $(PARSER_SRCS) $(PLAYER_SRCS) $(UTILS_SRCS)
 SRCS				= src/main.c $(SRCS_NO_MAIN)
 
 # Includes
