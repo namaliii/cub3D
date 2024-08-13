@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/13 17:46:14 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/13 19:44:48 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@
 # define ERR_MSG_ALLOC "Error: Allocation failed."
 
 # define PI 3.141592
-# define TURN_ANGLE 0.0021
-# define WALK_SPEED 0.01
+# define FOV 60
+# define TURN_ANGLE 0.0335
+# define WALK_SPEED 0.16
 
 typedef struct s_rgba
 {
@@ -74,6 +75,7 @@ typedef struct s_game
 
 // Graphics
 void		draw(t_game *game);
+void		draw2d(t_game *game);
 
 // Map
 bool		is_out_of_bounds(t_game *game, int x, int y);
@@ -93,5 +95,6 @@ uint32_t	rgba2color(t_rgba rgba);
 void		exit_error(const char *msg);
 void		*safe_calloc(size_t elems_count, size_t elem_size);
 void		debug_print(t_game *game);
+void		print_map(t_game *game);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:38:28 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/13 17:46:24 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/13 20:11:38 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@ static float	find_dist(float angle, t_game *game)
 	int		testy;
 
 	step_size = 0.1;
-	dist = -step_size;
+	dist = 0.0;
 	do {
 		dist += step_size;
 		testx = (int) (game->px + sin(angle) * dist);
 		testy = (int) (game->py + cos(angle) * dist);
+		// printf("textx = %d - testy = %d\n", testx, testy);
 	} while (!is_out_of_bounds(game, testx, testy) && !is_wall(game, testx, testy));
 	return (dist);
 }
@@ -42,6 +43,7 @@ static void	draw_column(int x, t_game *game)
 	
 	// Find distance
 	dist = find_dist(angle, game);
+	printf("x = %d - angle = %f - dist = %f\n", x, angle, dist);
 
 	// Draw
 	ceiling_start_px = (game->scr_height / 2.0) - (double) game->scr_height / dist;
@@ -63,6 +65,17 @@ static void	draw_column(int x, t_game *game)
 			mlx_put_pixel(game->img, x, y, rgba2color(game->color_floor));
 		}
 		++y;
+	}
+
+	// Debugging pattern
+	if (x % 2 == 0) {
+		for (int y = 0; y < 20; ++y) {
+			mlx_put_pixel(game->img, x, y, rgba2color((t_rgba) {255, 0, 255, 255}));
+		}
+	} else {
+		for (int y = 10; y < 30; ++y) {
+			mlx_put_pixel(game->img, x, y, rgba2color((t_rgba) {255, 0, 255, 255}));
+		}
 	}
 }
 

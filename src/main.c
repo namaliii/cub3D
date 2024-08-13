@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:28 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/13 16:50:26 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/13 19:51:56 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static void	init(t_game *game)
 {
 	game->scr_width = SCREEN_WIDTH;
 	game->scr_height = SCREEN_HEIGHT;
+	game->fov = FOV;
 	game->window = mlx_init(game->scr_width, game->scr_height, "cub3d", false);
 	if (game->window == NULL)
 		exit_error(mlx_strerror(mlx_errno)); // TODO: mlx_close_window()
@@ -33,6 +34,7 @@ int	main(int argc, char *argv[])
 	mock_parse(argc, argv, &game);
 	init(&game);
 	mlx_key_hook(game.window, &handler_keyboard, &game);
-	draw(&game);
+	// draw(&game);
+	draw2d(&game);
 	mlx_loop(game.window);
 }
