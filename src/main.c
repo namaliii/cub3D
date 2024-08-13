@@ -6,44 +6,34 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:28 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/12 18:15:32 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/13 16:14:10 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	init(t_screen *screen)
+static void	init(t_game *game)
 {
-	screen->width = SCREEN_WIDTH;
-	screen->height = SCREEN_HEIGHT;
-	screen->window = mlx_init(screen->width, screen->height, "cub3d", false);
-	if (screen->window == NULL)
+	game->scr_width = SCREEN_WIDTH;
+	game->scr_height = SCREEN_HEIGHT;
+	game->window = mlx_init(game->scr_width, game->scr_height, "cub3d", false);
+	if (game->window == NULL)
 		exit_error(mlx_strerror(mlx_errno)); // TODO: mlx_close_window()
-	screen->img = mlx_new_image(screen->window, screen->width, screen->height);
-	if (screen->img == NULL)
+	game->img = mlx_new_image(game->window, game->scr_width, game->scr_height);
+	if (game->img == NULL)
 		exit_error(mlx_strerror(mlx_errno)); // TODO: mlx_close_window()
-	if (mlx_image_to_window(screen->window, screen->img, 0, 0) == -1)
+	if (mlx_image_to_window(game->window, game->img, 0, 0) == -1)
 		exit_error(mlx_strerror(mlx_errno)); // TODO: mlx_close_window()
+	init_player(game);
 }
 
 int	main(int argc, char *argv[])
 {
-	t_screen	screen;
-	t_player	player;
-	t_map		*map;
+	t_game	game;
 
-	map = parse(argc, argv);
-	init_player(&player, map);
-	init(&screen);
-	// movement hooks?
-	// mlx_scroll_hook();
-	// mlx_key_hook();
-	while (!player.game_over)
-	{
-		// clearscreen?
-		raycast(&screen, map, &player);
-		mlx_image_to_window(screen.window, screen.img, 0, 0);
-		// mlx_delete_image();
-		// mlx_new_image();
-	}
+	parse(argc, argv, &game);
+	init(&game);
+	mlx_key_hook(game.window, &handler_keyboard, &game);
+	draw(&game);
+	mlx_loop(game.window);
 }
