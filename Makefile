@@ -16,6 +16,7 @@ GRAPHICS_FILES		= draw.c
 MAP_FILES			= checks.c
 
 PARSER_FILES		= parse.c \
+						mock_parse.c \
 						player_init.c
 
 PLAYER_FILES		= controls.c
