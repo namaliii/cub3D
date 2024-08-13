@@ -11,7 +11,8 @@ MLX					= $(LIBMLX_PATH)/build/libmlx42.a
 # Sources
 SRCS_DIR			= ./src/
 
-GRAPHICS_FILES		= draw.c
+GRAPHICS_FILES		= draw.c \
+						draw2d.c
 
 MAP_FILES			= checks.c
 
