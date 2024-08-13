@@ -40,7 +40,7 @@ OBJS				= $(MLX) $(LIBFT) ${SRCS:.c=.o}
 NAME				= cub3D
 
 CC					= cc
-CFLAGS				= -Wextra -Wall -Werror -Ofast -g3
+CFLAGS				= -Wextra -Wall -Werror -g3
 LIBS				= $(MLX) $(LIBFT) -ldl -lglfw -pthread -lm
 INC					= -I $(LIBMLX_PATH)/include/MLX42 -I $(LIBFT_PATH) -I $(INCLUDES_PATH)
 
