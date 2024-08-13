@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast.c                                          :+:      :+:    :+:   */
+/*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:38:28 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/12 20:36:41 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/13 16:12:42 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static float	find_dist(float angle, t_map *map, t_player *player)
+static float	find_dist(float angle, t_game *game)
 {
 	float	dist;
 	float	step_size;
@@ -23,13 +23,13 @@ static float	find_dist(float angle, t_map *map, t_player *player)
 	dist = -step_size;
 	do {
 		dist += step_size;
-		testx = (int) (player->posx + sin(angle) * dist);
-		testy = (int) (player->posy + cos(angle) * dist);
-	} while (!is_out_of_bounds(map, testx, testy) && !is_wall(map, testx, testy));
+		testx = (int) (game->px + sin(angle) * dist);
+		testy = (int) (game->py + cos(angle) * dist);
+	} while (!is_out_of_bounds(game, testx, testy) && !is_wall(game, testx, testy));
 	return (dist);
 }
 
-static void	draw_column(int x, t_screen *screen, t_map *map, t_player *player)
+static void	draw_column(int x, t_game *game)
 {
 	float	angle;
 	float	dist;
@@ -38,42 +38,45 @@ static void	draw_column(int x, t_screen *screen, t_map *map, t_player *player)
 	int		y;
 
 	// Calculate ray angle
-	angle = (player->angle - screen->fov / 2) + ((double) x / screen->width) * screen->fov;
+	angle = (game->p_angle - game->fov / 2) + ((double) x / game->scr_width) * game->fov;
 	
 	// Find distance
-	dist = find_dist(angle, map, player);
+	dist = find_dist(angle, game);
 
 	// Draw
-	ceiling_start_px = (screen->height / 2.0) - (double) screen->height / dist;
-	floor_start_px = screen->height - ceiling_start_px;
+	ceiling_start_px = (game->scr_height / 2.0) - (double) game->scr_height / dist;
+	floor_start_px = game->scr_height - ceiling_start_px;
 
 	y = 0;
-	while (y < screen->height)
+	while (y < game->scr_height)
 	{
 		if (y < ceiling_start_px)
 		{
-			mlx_put_pixel(screen->img, x, y, rgba2color(map->color_ceiling));
+			mlx_put_pixel(game->img, x, y, rgba2color(game->color_ceiling));
 		}
 		else if (y >= ceiling_start_px && y < floor_start_px)
 		{
-			mlx_put_pixel(screen->img, x, y, rgba2color((t_rgba) {200, 200, 200, 255}));
+			mlx_put_pixel(game->img, x, y, rgba2color((t_rgba) {200, 200, 200, 255}));
 		}
 		else
 		{
-			mlx_put_pixel(screen->img, x, y, rgba2color(map->color_floor));
+			mlx_put_pixel(game->img, x, y, rgba2color(game->color_floor));
 		}
 		++y;
 	}
 }
 
-void	raycast(t_screen *screen, t_map *map, t_player *player)
+void	draw(t_game *game)
 {
 	int	x;
-
+	
+	mlx_delete_image(game->window, game->img);
+	game->img = mlx_new_image(game->window, game->scr_width, game->scr_height);
+	mlx_image_to_window(game->window, game->img, 0, 0);
 	x = 0;
-	while (x < screen->width)
+	while (x < game->scr_width)
 	{
-		draw_column(x, screen, map, player);
+		draw_column(x, game);
 		++x;
 	}
 }
