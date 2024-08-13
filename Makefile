@@ -11,12 +11,13 @@ MLX					= $(LIBMLX_PATH)/build/libmlx42.a
 # Sources
 SRCS_DIR			= ./src/
 
-GRAPHICS_FILES		= raycast.c
+GRAPHICS_FILES		= draw.c
 
 MAP_FILES			= parse.c \
 						checks.c
 
-PLAYER_FILES		= init.c
+PLAYER_FILES		= init.c \
+						controls.c
 
 UTILS_FILES			= get_next_line/get_next_line.c \
 						get_next_line/get_next_line_utils.c \
