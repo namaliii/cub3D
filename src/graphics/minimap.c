@@ -38,7 +38,14 @@ void	draw_minimap(t_game *game)
 	float scale_vertical   = (game->scr_height / 3) / game->map_height;
 
 	// Draw background
-	draw_rect(game, 0, 0, game->scr_width, game->scr_height, (t_rgba) {50, 50, 50, 255});
+	draw_rect(
+		game,
+		0,
+		0,
+		scale_horizontal * game->map_width,
+		scale_vertical * game->map_height,
+		(t_rgba) {50, 50, 50, 255}
+	);
 
 	// Draw map tiles
 	int tile_width  = 1 * scale_horizontal;
