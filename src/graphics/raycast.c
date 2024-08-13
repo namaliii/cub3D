@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:38:28 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/13 20:11:38 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/13 22:34:32 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static float	find_dist(float angle, t_game *game)
 	return (dist);
 }
 
-static void	draw_column(int x, t_game *game)
+static void	raycast_column(int x, t_game *game)
 {
 	float	angle;
 	float	dist;
@@ -43,7 +43,7 @@ static void	draw_column(int x, t_game *game)
 	
 	// Find distance
 	dist = find_dist(angle, game);
-	printf("x = %d - angle = %f - dist = %f\n", x, angle, dist);
+	//printf("x = %d - angle = %f - dist = %f\n", x, angle, dist);
 
 	// Draw
 	ceiling_start_px = (game->scr_height / 2.0) - (double) game->scr_height / dist;
@@ -79,7 +79,7 @@ static void	draw_column(int x, t_game *game)
 	}
 }
 
-void	draw(t_game *game)
+void	raycast(t_game *game)
 {
 	int	x;
 	
@@ -89,8 +89,8 @@ void	draw(t_game *game)
 	x = 0;
 	while (x < game->scr_width)
 	{
-		draw_column(x, game);
+		raycast_column(x, game);
 		++x;
 	}
-	debug_print(game);
+	//debug_print(game);
 }
