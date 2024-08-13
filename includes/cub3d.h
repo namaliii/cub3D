@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/13 16:23:31 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/13 17:17:40 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,13 @@ typedef struct s_game
 void		draw(t_game *game);
 
 // Map
-void		parse(int argc, char *argv[], t_game *game);
 bool		is_out_of_bounds(t_game *game, int x, int y);
 bool		is_wall(t_game *game, int x, int y);
+
+// Parser
+void		parse(int argc, char *argv[], t_game *game);
+void		mock_parse(int argc, char *argv[], t_game *game);
+void		init_map(t_game *game);
 
 // Player
 void		init_player(t_game *game);

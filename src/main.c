@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:28 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/13 16:39:56 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/13 16:50:26 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int argc, char *argv[])
 {
 	t_game	game;
 
-	parse(argc, argv, &game);
+	mock_parse(argc, argv, &game);
 	init(&game);
 	mlx_key_hook(game.window, &handler_keyboard, &game);
 	draw(&game);
