@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:38:28 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/13 16:12:42 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/13 17:46:24 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,5 @@ void	draw(t_game *game)
 		draw_column(x, game);
 		++x;
 	}
+	debug_print(game);
 }

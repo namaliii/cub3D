@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/13 17:17:40 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/13 17:46:14 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,6 @@ void		handler_keyboard(mlx_key_data_t key, void *param);
 uint32_t	rgba2color(t_rgba rgba);
 void		exit_error(const char *msg);
 void		*safe_calloc(size_t elems_count, size_t elem_size);
+void		debug_print(t_game *game);
 
 #endif
