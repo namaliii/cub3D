@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:04:17 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/12 20:59:56 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/13 14:54:02 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	init_player(t_player *player, t_map *map)
 		{
 			if (map->map[first_free_y][first_free_x] == '0')
 			{
-				player->posx = first_free_x;
-				player->posy = first_free_y;
+				player->posx = first_free_x + 0.5;
+				player->posy = first_free_y + 0.5;
 				found_flag = true;
 				break;
 			}
