@@ -25,7 +25,8 @@ UTILS_FILES			= get_next_line/get_next_line.c \
 						get_next_line/get_next_line_utils.c \
 						exit_error.c \
 						safe_calloc.c \
-						rgba2color.c
+						rgba2color.c \
+						debug_print.c
 
 GRAPHICS_SRCS		= $(addprefix src/graphics/, $(GRAPHICS_FILES))
 MAP_SRCS			= $(addprefix src/map/, $(MAP_FILES))
@@ -40,7 +41,8 @@ SRCS				= src/main.c $(SRCS_NO_MAIN)
 INCLUDES_PATH		= ./includes
 
 # Compilation
-OBJS				= $(MLX) $(LIBFT) ${SRCS:.c=.o}
+OBJS_DIR             = obj
+OBJS				= $(MLX) $(LIBFT) $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 NAME				= cub3D
 
 CC					= cc
@@ -55,7 +57,8 @@ $(NAME):			$(OBJS)
 					@$(CC) $(OBJS) $(LIBS) $(INC) -o $(NAME)
 					@echo "cub3d created"
 
-%.o: %.c
+$(OBJS_DIR)/%.o: %.c
+					@mkdir -p $(dir $@)
 					@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 $(LIBFT):
