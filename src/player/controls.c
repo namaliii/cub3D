@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 15:43:24 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/13 19:52:01 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/13 22:36:20 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ void	handler_keyboard(mlx_key_data_t key, void *param)
 		game->px -= sin(game->p_angle) * WALK_SPEED;
 		game->py -= cos(game->p_angle) * WALK_SPEED;
 	}
-	// draw(game);
-	draw2d(game);
+	raycast(game);
+	draw_minimap(game);
 }
