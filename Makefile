@@ -40,7 +40,8 @@ SRCS				= src/main.c $(SRCS_NO_MAIN)
 INCLUDES_PATH		= ./includes
 
 # Compilation
-OBJS				= $(MLX) $(LIBFT) ${SRCS:.c=.o}
+OBJS_DIR             = obj
+OBJS				= $(MLX) $(LIBFT) $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 NAME				= cub3D
 
 CC					= cc
@@ -55,7 +56,8 @@ $(NAME):			$(OBJS)
 					@$(CC) $(OBJS) $(LIBS) $(INC) -o $(NAME)
 					@echo "cub3d created"
 
-%.o: %.c
+$(OBJS_DIR)/%.o: %.c
+					@mkdir -p $(dir $@)
 					@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 $(LIBFT):
