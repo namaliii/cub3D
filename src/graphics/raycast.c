@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:38:28 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/14 19:01:24 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/14 19:38:05 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,19 @@ static void	raycast_column(int x, t_game *game)
 {
 	float	angle_rad;
 	float	dist;
-	int		ceiling_start_px;
+	int		ceiling_end_px;
 	int		floor_start_px;
 
 	angle_rad = (game->p_angle_rad + game->fov_rad / 2) - ((double) x / (double) game->scr_width) * game->fov_rad;
 	dist = find_dist(angle_rad, game) * cos(angle_rad - game->p_angle_rad);
 
-	ceiling_start_px = (game->scr_height / 2.0) - (double) game->scr_height / dist;
-	floor_start_px = game->scr_height - ceiling_start_px;
+	ceiling_end_px = (game->scr_height / 2.0) - (double) game->scr_height / dist;
+	floor_start_px = game->scr_height - ceiling_end_px;
 
-	//              x, y               , xlen  , ylen                             , color
-	draw_safe_rect(game, x, 0               , 1     , ceiling_start_px                 , game->color_ceiling);
-	draw_safe_rect(game, x, ceiling_start_px, 1     , floor_start_px - ceiling_start_px, (t_rgba) {200, 200, 200, 255});
-	draw_safe_rect(game, x, floor_start_px  , 1     , game->scr_height - floor_start_px, game->color_floor);
+	//              x, y               , xlen, ylen                             , color
+	draw_safe_rect(game, x, 0             , 1, ceiling_end_px                   , game->color_ceiling);
+	draw_safe_rect(game, x, ceiling_end_px, 1, floor_start_px - ceiling_end_px  , (t_rgba) {200, 200, 200, 255});
+	draw_safe_rect(game, x, floor_start_px, 1, game->scr_height - floor_start_px, game->color_floor);
 }
 
 void	raycast(t_game *game)
