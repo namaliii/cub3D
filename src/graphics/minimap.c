@@ -6,12 +6,14 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:44:59 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/14 19:14:15 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/14 20:00:00 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+// TODO: You can put scale_horiz and scale_vert in the game struct as minimap variables
+// TODO: You can create a minimap_line struct to pack length, thickness, color
 static void	draw_line_from_player(t_game *game, float scale_horiz, float scale_vert, float angle_offset, float length, int thickness, t_rgba color)
 {
 	for (float front_dist = length; front_dist > 0; front_dist -= .05) {
