@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:28 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/13 16:50:26 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/14 13:25:20 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,11 @@ int	main(int argc, char *argv[])
 {
 	t_game	game;
 
-	mock_parse(argc, argv, &game);
+	if (parse(argc, argv, &game) == 1)
+		return (1);
 	init(&game);
 	mlx_key_hook(game.window, &handler_keyboard, &game);
 	draw(&game);
 	mlx_loop(game.window);
+	return (0);
 }

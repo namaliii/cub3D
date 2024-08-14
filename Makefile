@@ -17,7 +17,8 @@ MAP_FILES			= checks.c
 
 PARSER_FILES		= parse.c \
 						mock_parse.c \
-						player_init.c
+						player_init.c \
+						parse_utils.c
 
 PLAYER_FILES		= controls.c
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/13 17:46:14 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/14 14:21:55 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdio.h>
 # include <math.h>
+# include <fcntl.h>
 # include "libft.h"
 # include "get_next_line.h"
 # include "MLX42.h"
@@ -80,9 +81,16 @@ bool		is_out_of_bounds(t_game *game, int x, int y);
 bool		is_wall(t_game *game, int x, int y);
 
 // Parser
-void		parse(int argc, char *argv[], t_game *game);
+//utils
+void		assign_color(char *line, t_rgba *color, char *prefix);
+int			ft_isspace(char c);
+int			file_opening(t_game *game, char *file_name);
+void		open_read_file(t_game *game, char *file_name);
+int			valid_extension(char *file_name);
+void		assign_textures(char **texture_path, char *line, char *prefix);
+int			parse(int argc, char **argv, t_game *game);
 void		mock_parse(int argc, char *argv[], t_game *game);
-void		init_map(t_game *game);
+void		init_map(t_game *game, char *file_name);
 
 // Player
 void		init_player(t_game *game);
