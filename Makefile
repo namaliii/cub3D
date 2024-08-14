@@ -12,7 +12,8 @@ MLX					= $(LIBMLX_PATH)/build/libmlx42.a
 SRCS_DIR			= ./src/
 
 GRAPHICS_FILES		= raycast.c \
-						minimap.c
+						minimap.c \
+						draw.c
 
 MAP_FILES			= checks.c
 
@@ -28,7 +29,8 @@ UTILS_FILES			= get_next_line/get_next_line.c \
 						safe_calloc.c \
 						rgba2color.c \
 						deg2rad.c \
-						debug_print.c
+						debug_print.c \
+						maxmin.c
 
 GRAPHICS_SRCS		= $(addprefix src/graphics/, $(GRAPHICS_FILES))
 MAP_SRCS			= $(addprefix src/map/, $(MAP_FILES))

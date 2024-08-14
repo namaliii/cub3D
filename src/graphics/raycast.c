@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:38:28 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/14 17:49:37 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/14 19:01:24 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static float	find_dist(float angle, t_game *game)
 		dist += step_size;
 		testx = (int) (game->px + sin(angle) * dist);
 		testy = (int) (game->py + cos(angle) * dist);
-		// printf("textx = %d - testy = %d\n", testx, testy);
 	} while (!is_out_of_bounds(game, testx, testy) && !is_wall(game, testx, testy));
 	return (dist);
 }
@@ -36,39 +35,17 @@ static void	raycast_column(int x, t_game *game)
 	float	dist;
 	int		ceiling_start_px;
 	int		floor_start_px;
-	int		y;
 
-	// Calculate ray angle
 	angle_rad = (game->p_angle_rad + game->fov_rad / 2) - ((double) x / (double) game->scr_width) * game->fov_rad;
-	
-	// Find distance
-	dist = find_dist(angle_rad, game);
-	//printf("x = %d - angle = %f - dist = %f\n", x, angle, dist);
+	dist = find_dist(angle_rad, game) * cos(angle_rad - game->p_angle_rad);
 
-	// Fix fisheye
-	dist = dist * cos(angle_rad - game->p_angle_rad);
-
-	// Draw
 	ceiling_start_px = (game->scr_height / 2.0) - (double) game->scr_height / dist;
 	floor_start_px = game->scr_height - ceiling_start_px;
 
-	y = 0;
-	while (y < game->scr_height)
-	{
-		if (y < ceiling_start_px)
-		{
-			mlx_put_pixel(game->img, x, y, rgba2color(game->color_ceiling));
-		}
-		else if (y >= ceiling_start_px && y < floor_start_px)
-		{
-			mlx_put_pixel(game->img, x, y, rgba2color((t_rgba) {200, 200, 200, 255}));
-		}
-		else
-		{
-			mlx_put_pixel(game->img, x, y, rgba2color(game->color_floor));
-		}
-		++y;
-	}
+	//              x, y               , xlen  , ylen                             , color
+	draw_safe_rect(game, x, 0               , 1     , ceiling_start_px                 , game->color_ceiling);
+	draw_safe_rect(game, x, ceiling_start_px, 1     , floor_start_px - ceiling_start_px, (t_rgba) {200, 200, 200, 255});
+	draw_safe_rect(game, x, floor_start_px  , 1     , game->scr_height - floor_start_px, game->color_floor);
 }
 
 void	raycast(t_game *game)
@@ -84,5 +61,4 @@ void	raycast(t_game *game)
 		raycast_column(x, game);
 		++x;
 	}
-	//debug_print(game);
 }

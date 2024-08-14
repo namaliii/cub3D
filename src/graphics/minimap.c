@@ -6,22 +6,11 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:44:59 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/14 16:23:03 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/14 17:55:43 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static void	draw_rect(t_game *game, int pos_x, int pos_y, int len_x, int len_y, t_rgba color)
-{
-	//printf("drawing rect: start scr(x=%d, y=%d) - end scr(x=%d, y=%d)\n", pos_x, pos_y, pos_x + len_x, pos_y + len_y);
-	
-	for (int x = pos_x; x < pos_x + len_x; ++x) {
-		for (int y = pos_y; y < pos_y + len_y; ++y) {
-			mlx_put_pixel(game->img, x, y, rgba2color(color));
-		}
-	}
-}
 
 static void	draw_line_from_player(t_game *game, float scale_horiz, float scale_vert, float angle_offset)
 {

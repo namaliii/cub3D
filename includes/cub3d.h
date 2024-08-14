@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/14 17:45:08 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/14 19:01:44 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ typedef struct s_game
 // Graphics
 void		raycast(t_game *game);
 void		draw_minimap(t_game *game);
+void		draw_rect(t_game *game, int pos_x, int pos_y, int len_x, int len_y, t_rgba color);
+void		draw_safe_rect(t_game *game, int pos_x, int pos_y, int len_x, int len_y, t_rgba color);
 
 // Map
 bool		is_out_of_bounds(t_game *game, int x, int y);
@@ -97,5 +99,7 @@ void		exit_error(const char *msg);
 void		*safe_calloc(size_t elems_count, size_t elem_size);
 void		debug_print(t_game *game);
 void		print_map(t_game *game);
+int			min_of(int a, int b);
+int			max_of(int a, int b);
 
 #endif
