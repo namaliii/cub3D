@@ -11,7 +11,8 @@ MLX					= $(LIBMLX_PATH)/build/libmlx42.a
 # Sources
 SRCS_DIR			= ./src/
 
-GRAPHICS_FILES		= raycast.c \
+GRAPHICS_FILES		= render_frame.c \
+						raycast.c \
 						minimap.c \
 						draw.c
 

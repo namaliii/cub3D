@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/14 19:01:44 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/14 19:40:51 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_game
 }	t_game;
 
 // Graphics
+void		render_frame(t_game *game);
 void		raycast(t_game *game);
 void		draw_minimap(t_game *game);
 void		draw_rect(t_game *game, int pos_x, int pos_y, int len_x, int len_y, t_rgba color);

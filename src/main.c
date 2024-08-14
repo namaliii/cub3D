@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:28 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/14 17:45:08 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/14 19:41:04 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	main(int argc, char *argv[])
 	mock_parse(argc, argv, &game);
 	init(&game);
 	mlx_key_hook(game.window, &handler_keyboard, &game);
-	raycast(&game);
-	draw_minimap(&game);
+	render_frame(&game);
 	mlx_loop(game.window);
 }

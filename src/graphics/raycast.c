@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:38:28 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/14 19:38:53 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/14 19:40:27 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,7 @@ static void	raycast_column(int x, t_game *game)
 void	raycast(t_game *game)
 {
 	int	x;
-	
-	mlx_delete_image(game->window, game->img);
-	game->img = mlx_new_image(game->window, game->scr_width, game->scr_height);
-	mlx_image_to_window(game->window, game->img, 0, 0);
+
 	x = 0;
 	while (x < game->scr_width)
 	{
