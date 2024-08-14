@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/14 17:40:44 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/14 17:45:08 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ typedef struct s_game
 	mlx_image_t	*img;
 	int			scr_width;
 	int			scr_height;
-	float		fov;
+	float		fov_rad;
 }	t_game;
 
 // Graphics

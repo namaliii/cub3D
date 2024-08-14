@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:38:28 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/14 17:35:27 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/14 17:45:08 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	raycast_column(int x, t_game *game)
 	int		y;
 
 	// Calculate ray angle
-	angle = (game->p_angle_rad + game->fov / 2) - ((double) x / (double) game->scr_width) * game->fov;
+	angle = (game->p_angle_rad + game->fov_rad / 2) - ((double) x / (double) game->scr_width) * game->fov_rad;
 	
 	// Find distance
 	dist = find_dist(angle, game);
