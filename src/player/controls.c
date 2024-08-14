@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 15:43:24 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/14 16:23:03 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/14 17:47:00 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ void	handler_keyboard(mlx_key_data_t key, void *param)
 	}
 	else if (key.key == MLX_KEY_RIGHT)
 	{
-		game->p_angle_rad += TURN_ANGLE;
+		game->p_angle_rad -= TURN_ANGLE;
 	}
 	else if (key.key == MLX_KEY_LEFT)
 	{
-		game->p_angle_rad -= TURN_ANGLE;
+		game->p_angle_rad += TURN_ANGLE;
 	}
 	else if (key.key == MLX_KEY_UP)
 	{
