@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:44:59 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/14 17:55:43 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/14 19:04:59 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	draw_line_from_player(t_game *game, float scale_horiz, float scale_v
 	for (float front_dist = 1; front_dist > 0; front_dist -= .05) {
 		float front_x = game->px + front_dist * sin(game->p_angle_rad + angle_offset);
 		float front_y = game->py + front_dist * cos(game->p_angle_rad + angle_offset);
-		draw_rect(game, front_x * scale_horiz, front_y * scale_vert, 2, 2, (t_rgba) {220, 50, 0, 255});
+		draw_safe_rect(game, front_x * scale_horiz, front_y * scale_vert, 2, 2, (t_rgba) {220, 50, 0, 255});
 	}
 }
 
@@ -27,7 +27,7 @@ void	draw_minimap(t_game *game)
 	float scale_vertical   = (game->scr_height / 3) / game->map_height;
 
 	// Draw background
-	draw_rect(
+	draw_safe_rect(
 		game,
 		0,
 		0,
@@ -42,7 +42,7 @@ void	draw_minimap(t_game *game)
 
 	for (int map_y = 0; map_y < game->map_height; ++map_y) {
 		for (int map_x = 0; map_x < game->map_width; ++map_x) {
-			draw_rect(
+			draw_safe_rect(
 				game,
 				map_x * tile_width,
 				map_y * tile_height,
@@ -53,7 +53,7 @@ void	draw_minimap(t_game *game)
 	}
 
 	// Draw player
-	draw_rect(game, game->px * scale_horizontal - 4, game->py * scale_vertical - 4, 10, 10, (t_rgba) {255, 127, 0, 255});
+	draw_safe_rect(game, game->px * scale_horizontal - 4, game->py * scale_vertical - 4, 10, 10, (t_rgba) {255, 127, 0, 255});
 
 	// Draw player direction
 	draw_line_from_player(game, scale_horizontal, scale_vertical, 0);
