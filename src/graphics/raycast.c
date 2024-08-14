@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:38:28 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/14 17:45:08 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/14 17:49:37 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,21 @@ static float	find_dist(float angle, t_game *game)
 
 static void	raycast_column(int x, t_game *game)
 {
-	float	angle;
+	float	angle_rad;
 	float	dist;
 	int		ceiling_start_px;
 	int		floor_start_px;
 	int		y;
 
 	// Calculate ray angle
-	angle = (game->p_angle_rad + game->fov_rad / 2) - ((double) x / (double) game->scr_width) * game->fov_rad;
+	angle_rad = (game->p_angle_rad + game->fov_rad / 2) - ((double) x / (double) game->scr_width) * game->fov_rad;
 	
 	// Find distance
-	dist = find_dist(angle, game);
+	dist = find_dist(angle_rad, game);
 	//printf("x = %d - angle = %f - dist = %f\n", x, angle, dist);
+
+	// Fix fisheye
+	dist = dist * cos(angle_rad - game->p_angle_rad);
 
 	// Draw
 	ceiling_start_px = (game->scr_height / 2.0) - (double) game->scr_height / dist;
@@ -65,17 +68,6 @@ static void	raycast_column(int x, t_game *game)
 			mlx_put_pixel(game->img, x, y, rgba2color(game->color_floor));
 		}
 		++y;
-	}
-
-	// Debugging pattern
-	if (x % 2 == 0) {
-		for (int y = 0; y < 20; ++y) {
-			mlx_put_pixel(game->img, x, y, rgba2color((t_rgba) {255, 0, 255, 255}));
-		}
-	} else {
-		for (int y = 10; y < 30; ++y) {
-			mlx_put_pixel(game->img, x, y, rgba2color((t_rgba) {255, 0, 255, 255}));
-		}
 	}
 }
 
