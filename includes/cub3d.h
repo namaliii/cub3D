@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/13 22:38:08 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/14 17:40:44 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct s_game
 	// Player
 	float	px;
 	float	py;
-	float	p_angle;
+	float	p_angle_rad;
 	bool	game_over;
 
 	// Screen
@@ -91,6 +91,7 @@ void		init_player(t_game *game);
 void		handler_keyboard(mlx_key_data_t key, void *param);
 
 // Utils
+float		deg2rad(float angle_degree);
 uint32_t	rgba2color(t_rgba rgba);
 void		exit_error(const char *msg);
 void		*safe_calloc(size_t elems_count, size_t elem_size);

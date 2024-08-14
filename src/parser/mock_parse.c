@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 16:46:35 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/13 19:50:01 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/14 16:23:03 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static void	mock_init_player(t_game *game)
 
 	game->px = 2.5;
 	game->py = 2.5;
-	game->p_angle = 0.0;
+	game->p_angle_rad = 0.0;
 	game->game_over = false;
 }
 
