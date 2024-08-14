@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   safe_calloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:27:22 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/12 17:08:35 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/14 15:36:50 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,3 +21,4 @@ void	*safe_calloc(size_t elems_count, size_t elem_size)
 		exit_error(ERR_MSG_ALLOC);
 	return (result);
 }
+// we could maybe use a perror instead

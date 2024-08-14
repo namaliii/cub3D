@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:25 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/14 14:23:02 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/08/14 16:18:38 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,55 @@ int	file_opening(t_game *game, char *file_name)
 	return (file);
 }
 
-void	assign_textures(char **texture_path, char *line, char *prefix)
+void	assign_textures(char **texture_path, char *line)
 {
 	int	i;
 	int	start;
 
-	if (ft_strncmp(line, prefix, 3) == 0)
+	i = 3;
+	start = i;
+	while (line[i] && !ft_isspace(line[i]))
+		i++;
+	*texture_path = safe_calloc(i - start + 1, sizeof(char));
+	ft_strlcpy(*texture_path, line + start, i - start + 1);
+}
+
+int	line_is_empty(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
 	{
-		i = 3;
-		start = i;
-		while (line[i] && !ft_isspace(line[i]))
-			i++;
-		*texture_path = safe_calloc(i - start + 1, sizeof(char));
-		ft_strlcpy(*texture_path, line + start, i - start + 1);
+		if (!ft_isspace(line[i]))
+			return (0);
+		i++;
 	}
+	return (1);
+}
+
+void	add_line_to_map(char ***map, int *map_height, char *line)
+{
+	char	**new_map;
+	int		i;
+
+	i = 0;
+	new_map = (char **)safe_calloc(*map_height + 1, sizeof(char *));
+	while (i < *map_height)
+	{
+		new_map[i] = (*map)[i];
+		i++;
+	}
+	new_map[*map_height] = ft_strdup(line);
+	if (!new_map[*map_height])
+	{
+		perror("Failed to duplicate line");
+		exit(EXIT_FAILURE);
+	}
+	if (*map != NULL)
+		free(*map);
+	*map = new_map;
+	(*map_height)++;
 }
 
 void	open_read_file(t_game *game, char *file_name)
@@ -66,19 +101,29 @@ void	open_read_file(t_game *game, char *file_name)
 	}
 	while (line)
 	{
-		assign_textures(&(game->tex_no_path), line, "NO ");
-		assign_textures(&(game->tex_so_path), line, "SO ");
-		assign_textures(&(game->tex_we_path), line, "WE ");
-		assign_textures(&(game->tex_ea_path), line, "EA ");
-		assign_color(line, &(game->color_floor), "F ");
-		assign_color(line, &(game->color_ceiling), "C ");
+		if (line_is_empty(line))
+			line = get_next_line(file);
+		else if (ft_strncmp(line, "NO ", 3) == 0)
+			assign_textures(&(game->tex_no_path), line);
+		else if (ft_strncmp(line, "SO ", 3) == 0)
+			assign_textures(&(game->tex_so_path), line);
+		else if (ft_strncmp(line, "WE ", 3) == 0)
+			assign_textures(&(game->tex_we_path), line);
+		else if (ft_strncmp(line, "EA ", 3) == 0)
+			assign_textures(&(game->tex_ea_path), line);
+		else if (ft_strncmp(line, "F ", 2) == 0)
+			assign_color(line, &(game->color_floor));
+		else if (ft_strncmp(line, "C ", 2) == 0)
+			assign_color(line, &(game->color_ceiling));
+		else
+			add_line_to_map(&(game->map), &(game->map_height), line);
 		free(line);
 		line = get_next_line(file);
 	}
 	close(file);
 }
 
-void	assign_color(char *line, t_rgba *color, char *prefix)
+void	assign_color(char *line, t_rgba *color)
 {
 	int		r;
 	int		g;
@@ -88,27 +133,24 @@ void	assign_color(char *line, t_rgba *color, char *prefix)
 	r = -1;
 	g = -1;
 	b = -1;
-	if (ft_strncmp(line, prefix, 2) == 0)
+	ptr = line + 2;
+	r = ft_atoi(ptr);
+	while (*ptr && *ptr != ',')
+		ptr++;
+	if (*ptr == ',')
+		ptr++;
+	g = ft_atoi(ptr);
+	while (*ptr && *ptr != ',')
+		ptr++;
+	if (*ptr == ',')
+		ptr++;
+	b = ft_atoi(ptr);
+	if (r >= 0 && r <= 255 && g >= 0 && g <= 255 && b >= 0 && b <= 255)
 	{
-		ptr = line + 2;
-		r = ft_atoi(ptr);
-		while (*ptr && *ptr != ',')
-			ptr++;
-		if (*ptr == ',')
-			ptr++;
-		g = ft_atoi(ptr);
-		while (*ptr && *ptr != ',')
-			ptr++;
-		if (*ptr == ',')
-			ptr++;
-		b = ft_atoi(ptr);
-		if (r >= 0 && r <= 255 && g >= 0 && g <= 255 && b >= 0 && b <= 255)
-		{
-			color->r = (unsigned int)r;
-			color->g = (unsigned int)g;
-			color->b = (unsigned int)b;
-			color->a = 255;
-		}
+		color->r = (unsigned int)r;
+		color->g = (unsigned int)g;
+		color->b = (unsigned int)b;
+		color->a = 255;
 	}
 }
 
@@ -125,6 +167,21 @@ void	init_map(t_game *game, char *file_name)
 	printf("EA path: %s\n", game->tex_ea_path);
 	printf("color ceiling: r:%d, g:%d, b:%d, a:%d\n", game->color_ceiling.r, game->color_ceiling.g, game->color_ceiling.b, game->color_ceiling.a);
 	printf("color floor: r:%d, g:%d, b:%d, a:%d\n", game->color_floor.r, game->color_floor.g, game->color_floor.b, game->color_floor.a);
+	if (game->map == NULL)
+	{
+		printf("Map is NULL\n");
+		return ;
+	}
+	for (int i = 0; i < game->map_height; i++)
+	{
+		if (game->map[i] != NULL)
+		{
+			printf("%s", game->map[i]);
+		}
+		else
+			printf("Line %d is NULL\n", i);
+	}
+	printf("%s", "\n");
 }
 
 int	valid_extension(char *file_name)
@@ -140,8 +197,6 @@ int	valid_extension(char *file_name)
 	}
 	return (0);
 }
-// instead of printf:
-// error_handling(game, game->map.array, "Map extension invalid");
 
 int	parse(int argc, char **argv, t_game *game)
 {

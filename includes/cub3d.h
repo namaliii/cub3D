@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/14 14:21:55 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/08/14 15:39:25 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,12 @@ bool		is_wall(t_game *game, int x, int y);
 
 // Parser
 //utils
-void		assign_color(char *line, t_rgba *color, char *prefix);
+void		assign_color(char *line, t_rgba *color);
 int			ft_isspace(char c);
 int			file_opening(t_game *game, char *file_name);
 void		open_read_file(t_game *game, char *file_name);
 int			valid_extension(char *file_name);
-void		assign_textures(char **texture_path, char *line, char *prefix);
+void		assign_textures(char **texture_path, char *line);
 int			parse(int argc, char **argv, t_game *game);
 void		mock_parse(int argc, char *argv[], t_game *game);
 void		init_map(t_game *game, char *file_name);
