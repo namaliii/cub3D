@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:25 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/14 16:18:38 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/08/14 18:38:27 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,35 +62,39 @@ int	line_is_empty(char *line)
 	return (1);
 }
 
-void	add_line_to_map(char ***map, int *map_height, char *line)
+void	add_line_to_map(t_game *game, char *line)
 {
 	char	**new_map;
 	int		i;
 
 	i = 0;
-	new_map = (char **)safe_calloc(*map_height + 1, sizeof(char *));
-	while (i < *map_height)
+	if (line_is_empty(line) == 1)
+		error_handling(game, game->map, "Empty lines in map\n");
+	new_map = (char **)safe_calloc(game->map_height + 1, sizeof(char *));
+	while (i < game->map_height)
 	{
-		new_map[i] = (*map)[i];
+		new_map[i] = (game->map)[i];
 		i++;
 	}
-	new_map[*map_height] = ft_strdup(line);
-	if (!new_map[*map_height])
+	new_map[game->map_height] = ft_strdup(line);
+	if (!new_map[game->map_height])
 	{
 		perror("Failed to duplicate line");
 		exit(EXIT_FAILURE);
 	}
-	if (*map != NULL)
-		free(*map);
-	*map = new_map;
-	(*map_height)++;
+	if (game->map != NULL)
+		free(game->map);
+	game->map = new_map;
+	game->map_height++;
 }
 
 void	open_read_file(t_game *game, char *file_name)
 {
 	char	*line;
 	int		file;
+	int		map_flag;
 
+	map_flag = 0;
 	file = file_opening(game, file_name);
 	line = get_next_line(file);
 	if (!line)
@@ -101,7 +105,7 @@ void	open_read_file(t_game *game, char *file_name)
 	}
 	while (line)
 	{
-		if (line_is_empty(line))
+		if (line_is_empty(line) && map_flag == 0)
 			line = get_next_line(file);
 		else if (ft_strncmp(line, "NO ", 3) == 0)
 			assign_textures(&(game->tex_no_path), line);
@@ -116,7 +120,10 @@ void	open_read_file(t_game *game, char *file_name)
 		else if (ft_strncmp(line, "C ", 2) == 0)
 			assign_color(line, &(game->color_ceiling));
 		else
-			add_line_to_map(&(game->map), &(game->map_height), line);
+		{
+			map_flag = 1;
+			add_line_to_map(game, line);
+		}
 		free(line);
 		line = get_next_line(file);
 	}
@@ -182,6 +189,7 @@ void	init_map(t_game *game, char *file_name)
 			printf("Line %d is NULL\n", i);
 	}
 	printf("%s", "\n");
+	printf("Map height: %d\n", game->map_height);
 }
 
 int	valid_extension(char *file_name)
