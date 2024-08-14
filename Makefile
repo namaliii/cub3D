@@ -27,6 +27,7 @@ UTILS_FILES			= get_next_line/get_next_line.c \
 						exit_error.c \
 						safe_calloc.c \
 						rgba2color.c \
+						deg2rad.c \
 						debug_print.c
 
 GRAPHICS_SRCS		= $(addprefix src/graphics/, $(GRAPHICS_FILES))
