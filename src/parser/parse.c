@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:25 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/15 18:00:26 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/08/15 19:13:48 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,11 @@ int	parse(int argc, char **argv, t_game *game)
 	}
 	if (valid_extension(argv[1]) == 1)
 		return (1);
-	init_map(game, argv[1]);
-	// parse_map
+	game->map_height = 0;
+	game->map = NULL;
+	open_read_file(game, argv[1]);
+	game->map_width = get_map_width(game);
+	valid_characters(game);
 	init_player(game);
 	print_debug(game);
 	return (0);
