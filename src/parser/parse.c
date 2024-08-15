@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:25 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/14 19:07:35 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/08/15 17:02:43 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	add_line_to_map(t_game *game, char *line)
 
 	i = 0;
 	if (line_is_empty(line) == 1)
-		error_handling(game, game->map, "Empty lines in map\n");
+		error_handling(game, game->map, "Empty line in map!\n");
 	new_map = (char **)safe_calloc(game->map_height + 1, sizeof(char *));
 	while (i < game->map_height)
 	{
@@ -86,6 +86,27 @@ void	add_line_to_map(t_game *game, char *line)
 		free(game->map);
 	game->map = new_map;
 	game->map_height++;
+}
+
+int	get_map_width(t_game *game)
+{
+	int	max_width;
+	int	current_width;
+	int	i;
+
+	i = 0;
+	max_width = 0;
+	while (i < game->map_height)
+	{
+		if (game->map[i] != NULL)
+		{
+			current_width = ft_strlen(game->map[i]);
+			if (current_width > max_width)
+				max_width = current_width;
+		}
+		i++;
+	}
+	return (max_width - 1);
 }
 
 void	open_read_file(t_game *game, char *file_name)
@@ -106,8 +127,11 @@ void	open_read_file(t_game *game, char *file_name)
 	while (line)
 	{
 		if (line_is_empty(line) && map_flag == 0)
+		{
+			free(line);
 			line = get_next_line(file);
-		else if (ft_strncmp(line, "NO ", 3) == 0)
+		}
+		if (ft_strncmp(line, "NO ", 3) == 0)
 			assign_textures(&(game->tex_no_path), line);
 		else if (ft_strncmp(line, "SO ", 3) == 0)
 			assign_textures(&(game->tex_so_path), line);
@@ -163,10 +187,12 @@ void	assign_color(char *line, t_rgba *color)
 
 void	init_map(t_game *game, char *file_name)
 {
+	// game->color_ceiling = (t_rgba){-1, -1, -1, -1};
+	// game->color_floor = (t_rgba){-1, -1, -1, -1};
 	game->map_height = 0;
-	game->map_width = 0;
 	game->map = NULL;
 	open_read_file(game, file_name);
+	game->map_width = get_map_width(game);
 	//debug
 	printf("NO path: %s\n", game->tex_no_path);
 	printf("SO path: %s\n", game->tex_so_path);
@@ -190,6 +216,7 @@ void	init_map(t_game *game, char *file_name)
 	}
 	printf("%s", "\n");
 	printf("Map height: %d\n", game->map_height);
+	printf("Map width: %d\n", game->map_width);
 }
 
 int	valid_extension(char *file_name)
