@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 17:37:35 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/13 16:11:49 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/15 17:55:42 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ bool	is_out_of_bounds(t_game *game, int x, int y)
 bool	is_wall(t_game *game, int x, int y)
 {
 	const char	*solid_elements = "1";
-	int		lim;
-	int		i;
+	int			lim;
+	int			i;
 
 	lim = ft_strlen(solid_elements);
 	i = 0;

@@ -19,7 +19,9 @@ PARSER_FILES		= parse.c \
 						mock_parse.c \
 						player_init.c \
 						parse_utils.c \
-						cleaning.c
+						cleaning.c \
+						file_operations.c \
+						map.c
 
 PLAYER_FILES		= controls.c
 
