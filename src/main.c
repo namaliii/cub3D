@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:28 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/14 19:08:00 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/08/16 15:24:33 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main(int argc, char *argv[])
 {
 	t_game	game;
 
+	ft_bzero(&game, sizeof(t_game));
 	if (parse(argc, argv, &game) == 1)
 		return (1);
 	init(&game);

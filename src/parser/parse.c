@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:25 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/15 19:13:48 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/08/16 14:36:46 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,12 @@ void	print_debug(t_game *game)
 	{
 		if (game->map[i] != NULL)
 		{
-			printf("%s", game->map[i]);
+			printf("string dla i %d: %s", i, game->map[i]);
 		}
 		else
 			printf("Line %d is NULL\n", i);
+		printf("%s", "\n");
 	}
-	printf("%s", "\n");
 	printf("Map height: %d\n", game->map_height);
 	printf("Map width: %d\n", game->map_width);
 }

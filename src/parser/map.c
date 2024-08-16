@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:56:33 by anamieta          #+#    #+#             */
-/*   Updated: 2024/08/15 19:15:39 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/08/16 15:26:21 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,21 +63,21 @@ int	get_map_width(t_game *game)
 
 void	valid_characters(t_game *game)
 {
+	char	*valid_chars;
 	int		i;
 	int		j;
 
+	valid_chars = "NSEW01 ";
 	i = 0;
 	j = 0;
-	while (game->map[i])
+	while (i < game->map_height && game->map[i])
 	{
 		j = 0;
 		while (game->map[i][j])
 		{
-			printf("Second while loop i: %d, j: %d\n", i , j);
-			if (game->map[i][j] != 'N' && game->map[i][j] != 'S' && game->map[i][j] != 'E'
-				&& game->map[i][j] != 'W' && game->map[i][j] != '0'
-				&& game->map[i][j] != '1' && game->map[i][j] != ' ')
-				error_handling(game, game->map, "Map contains invalid characters!");
+			if (!ft_strchr(valid_chars, game->map[i][j]))
+				error_handling(game, game->map,
+					"Map contains invalid characters!");
 			j++;
 		}
 		i++;
