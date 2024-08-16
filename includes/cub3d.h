@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/16 14:11:21 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/16 14:56:44 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@
 # define FOV 60
 # define TURN_ANGLE 0.1
 # define WALK_SPEED 0.16
+
+# define SOLID_ELEMENTS "1D"
+# define DOOR_CLOSED_CHAR 'D'
+# define DOOR_OPENED_CHAR 'd'
 
 typedef struct s_rgba
 {
@@ -95,6 +99,7 @@ void		init_map(t_game *game);
 // Player
 void		init_player(t_game *game);
 void		handle_movement(t_game *game);
+void		keyboard_hook(mlx_key_data_t key, void *param);
 
 // Utils
 float		deg2rad(float angle_degree);

@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 17:37:35 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/13 16:11:49 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/16 14:37:51 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ bool	is_out_of_bounds(t_game *game, int x, int y)
 // Return whether character at (x, y) of map should stop a ray or not
 bool	is_wall(t_game *game, int x, int y)
 {
-	const char	*solid_elements = "1";
+	const char	*solid_elements = SOLID_ELEMENTS;
 	int		lim;
 	int		i;
 

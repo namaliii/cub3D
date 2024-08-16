@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:44:59 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/14 20:00:00 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/16 15:02:43 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,36 +33,42 @@ static void	draw_line_from_player(t_game *game, float scale_horiz, float scale_v
 	}
 }
 
+static void	draw_map_tiles(t_game *game, int tile_width, int tile_height)
+{
+	t_rgba	tile_color;
+	int		map_x;
+	int		map_y;
+	
+	map_y = 0;
+	while (map_y < game->map_height)
+	{
+		map_x = 0;
+		while (map_x < game->map_width)
+		{
+			if (game->map[map_y][map_x] == DOOR_CLOSED_CHAR)
+				tile_color = (t_rgba) {20, 20, 175, 255};
+			else if (game->map[map_y][map_x] == DOOR_OPENED_CHAR)
+				tile_color = (t_rgba) {20, 20, 100, 255};
+			else if (is_wall(game, map_x, map_y))
+				tile_color = (t_rgba) {175, 175, 175, 255};
+			else
+				tile_color = (t_rgba) {0, 0, 0, 255};
+			draw_safe_rect(game, map_x * tile_width, map_y * tile_height, \
+tile_width - 1, tile_height - 1, tile_color);
+			++map_x;
+		}
+		++map_y;
+	}
+}
+
 void	draw_minimap(t_game *game)
 {
 	float scale_horizontal = (game->scr_width  / 3) / game->map_width;
 	float scale_vertical   = (game->scr_height / 3) / game->map_height;
 
-	// Draw background
-	draw_safe_rect(
-		game,
-		0,
-		0,
-		scale_horizontal * game->map_width,
-		scale_vertical * game->map_height,
-		(t_rgba) {50, 50, 50, 255}
-	);
-
-	// Draw map tiles
-	int tile_width  = 1 * scale_horizontal;
-	int tile_height = 1 * scale_vertical;
-
-	for (int map_y = 0; map_y < game->map_height; ++map_y) {
-		for (int map_x = 0; map_x < game->map_width; ++map_x) {
-			draw_safe_rect(
-				game,
-				map_x * tile_width,
-				map_y * tile_height,
-				tile_width - 1,
-				tile_height - 1, game->map[map_y][map_x] == '0'? (t_rgba) {0, 0, 0, 255} : (t_rgba) {175, 175, 175, 255}
-			);
-		}
-	}
+	draw_safe_rect(game, 0, 0, scale_horizontal * game->map_width, \
+scale_vertical * game->map_height, (t_rgba) {50, 50, 50, 255});
+	draw_map_tiles(game, 1 * scale_horizontal, 1 * scale_vertical);
 
 	// Draw player
 	if (game->px < game->map_width && game->py < game->map_height)
@@ -71,13 +77,7 @@ void	draw_minimap(t_game *game)
 	// Draw player direction
 	draw_line_from_player(game, scale_horizontal, scale_vertical, 0, 1, 2, (t_rgba) {225, 50, 50, 255});
 
+	// Draw FOV rays
 	draw_line_from_player(game, scale_horizontal, scale_vertical, -game->fov_rad / 2, 6, 1, (t_rgba) {50, 50, 125, 255});
 	draw_line_from_player(game, scale_horizontal, scale_vertical, +game->fov_rad / 2, 6, 1, (t_rgba) {50, 50, 125, 255});
-
-
-	// Draw player rays
-	// float raycast_angle_step = game->fov / game->scr_width;
-	// for (float angle_offset = -game->fov / 2; angle_offset <= +game->fov / 2; angle_offset += raycast_angle_step) {
-		// draw_line_from_player(game, scale_horizontal, scale_vertical, angle_offset);
-	// }
 }
