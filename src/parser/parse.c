@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:25 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/16 16:32:25 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/08/16 19:21:40 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ int	parse(int argc, char **argv, t_game *game)
 	open_read_file(game, argv[1]);
 	game->map_width = get_map_width(game);
 	valid_characters(game);
+	surrounded_by_walls(game);
+	valid_path(game);
 	init_player(game);
 	print_debug(game);
 	return (0);
@@ -80,7 +82,7 @@ void	print_debug(t_game *game)
 	{
 		if (game->map[i] != NULL)
 		{
-			printf("string dla i %d: %s", i, game->map[i]);
+			printf("i %d: %s", i, game->map[i]);
 		}
 		else
 			printf("Line %d is NULL\n", i);

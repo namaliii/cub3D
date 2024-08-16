@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:56:33 by anamieta          #+#    #+#             */
-/*   Updated: 2024/08/16 16:47:08 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/08/16 19:27:37 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,27 +59,4 @@ int	get_map_width(t_game *game)
 		i++;
 	}
 	return (max_width - 1);
-}
-
-void	valid_characters(t_game *game)
-{
-	char	*valid_chars;
-	int		i;
-	int		j;
-
-	valid_chars = "NSEW01 ";
-	i = 0;
-	j = 0;
-	while (i < game->map_height && game->map[i])
-	{
-		j = 0;
-		while (game->map[i][j])
-		{
-			if (!ft_strchr(valid_chars, game->map[i][j]))
-				error_handling(game, game->map,
-					"Map contains invalid characters!");
-			j++;
-		}
-		i++;
-	}
 }
