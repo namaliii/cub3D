@@ -1,42 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug_print.c                                      :+:      :+:    :+:   */
+/*   render_frame.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/13 17:34:55 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/14 16:23:03 by tunsal           ###   ########.fr       */
+/*   Created: 2024/08/14 19:39:58 by tunsal            #+#    #+#             */
+/*   Updated: 2024/08/14 19:42:57 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	print_player(t_game *game)
+void	render_frame(t_game *game)
 {
-	printf("px = %f py = %f pa = %f\n", game->px, game->py, game->p_angle_rad);
-}
-
-void	print_map(t_game *game)
-{
-	int	y;
-	int	x;
-
-	y = 0;
-	while (y < game->map_height)
-	{
-		x = 0;
-		while (x < game->map_width)
-		{
-			printf("%c", game->map[y][x]);
-			++x;
-		}
-		printf("\n");
-		++y;
-	}
-}
-
-void	debug_print(t_game *game)
-{
-	print_player(game);
+	mlx_delete_image(game->window, game->img);
+	game->img = mlx_new_image(game->window, game->scr_width, game->scr_height);
+	mlx_image_to_window(game->window, game->img, 0, 0);
+	raycast(game);
+	draw_minimap(game);
 }

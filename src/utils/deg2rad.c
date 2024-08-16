@@ -1,42 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug_print.c                                      :+:      :+:    :+:   */
+/*   deg2rad.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/13 17:34:55 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/14 16:23:03 by tunsal           ###   ########.fr       */
+/*   Created: 2024/08/14 17:39:09 by tunsal            #+#    #+#             */
+/*   Updated: 2024/08/14 17:40:32 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	print_player(t_game *game)
+float	deg2rad(float angle_degree)
 {
-	printf("px = %f py = %f pa = %f\n", game->px, game->py, game->p_angle_rad);
-}
-
-void	print_map(t_game *game)
-{
-	int	y;
-	int	x;
-
-	y = 0;
-	while (y < game->map_height)
-	{
-		x = 0;
-		while (x < game->map_width)
-		{
-			printf("%c", game->map[y][x]);
-			++x;
-		}
-		printf("\n");
-		++y;
-	}
-}
-
-void	debug_print(t_game *game)
-{
-	print_player(game);
+	return (angle_degree * (PI / (float) 180));
 }
