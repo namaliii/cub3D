@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:38:28 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/14 19:40:27 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/16 14:13:34 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static float	find_dist(float angle, t_game *game)
 	int		testx;
 	int		testy;
 
-	step_size = 0.1;
+	step_size = 0.025;
 	dist = 0.0;
 	do {
 		dist += step_size;

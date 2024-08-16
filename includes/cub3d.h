@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/14 19:40:51 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/16 14:11:21 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,9 @@ typedef struct s_game
 	float		fov_rad;
 }	t_game;
 
+// Main
+void		game_loop(void *param);
+
 // Graphics
 void		render_frame(t_game *game);
 void		raycast(t_game *game);
@@ -91,7 +94,7 @@ void		init_map(t_game *game);
 
 // Player
 void		init_player(t_game *game);
-void		handler_keyboard(mlx_key_data_t key, void *param);
+void		handle_movement(t_game *game);
 
 // Utils
 float		deg2rad(float angle_degree);
