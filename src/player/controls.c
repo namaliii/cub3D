@@ -6,48 +6,11 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 15:43:24 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/16 17:22:44 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/16 19:13:28 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static void	normalize_vector(t_vec2d *v)
-{
-	const float	magnitude = sqrtf(v->x * v->x + v->y * v->y);
-	const float	inv_sqrt = 1.0 / magnitude;
-
-	if (magnitude > 0)
-	{
-		v->x = v->x * inv_sqrt;
-		v->y = v->y * inv_sqrt;
-	}
-}
-
-static void	handle_door(t_game *game)
-{
-	const t_vec2d	direction_offsets[DIRECTION_OFFSET_COUNT] = \
-{{1,0}, {0, 1}, {1, 1}, {-1, 0}, {-1, 1}, {-1, -1}, {0, -1}, {1, -1}};
-	int				check_x;
-	int				check_y;
-	int				i;
-	
-	i = 0;
-	while (i < DIRECTION_OFFSET_COUNT)
-	{
-		check_x = game->px + direction_offsets[i].x;
-		check_y = game->py + direction_offsets[i].y;
-		if (check_x >= 0 && check_x < game->map_width
-			&& check_y >= 0 && check_y < game->map_height)
-		{
-			if (game->map[check_y][check_x] == DOOR_OPENED_CHAR)
-				game->map[check_y][check_x] = DOOR_CLOSED_CHAR;
-			else if (game->map[check_y][check_x] == DOOR_CLOSED_CHAR)
-				game->map[check_y][check_x] = DOOR_OPENED_CHAR;
-		}
-		++i;
-	}
-}
 
 static void	handle_movement_keys(t_game *game, t_vec2d *pos_change)
 {
@@ -92,9 +55,34 @@ void	handle_movement(t_game *game)
 		|| mlx_is_key_down(game->window, MLX_KEY_LEFT))
 		game->p_angle_rad += TURN_ANGLE;
 	handle_movement_keys(game, &pos_change);
-	normalize_vector(&pos_change);
+	normalize_vec2d(&pos_change);
 	game->px += pos_change.x * WALK_SPEED;
 	game->py += pos_change.y * WALK_SPEED;
+}
+
+static void	handle_door(t_game *game)
+{
+	const t_vec2d	direction_offsets[DIRECTION_OFFSET_COUNT] = \
+{{1,0}, {0, 1}, {1, 1}, {-1, 0}, {-1, 1}, {-1, -1}, {0, -1}, {1, -1}};
+	int				check_x;
+	int				check_y;
+	int				i;
+	
+	i = 0;
+	while (i < DIRECTION_OFFSET_COUNT)
+	{
+		check_x = game->px + direction_offsets[i].x;
+		check_y = game->py + direction_offsets[i].y;
+		if (check_x >= 0 && check_x < game->map_width
+			&& check_y >= 0 && check_y < game->map_height)
+		{
+			if (game->map[check_y][check_x] == DOOR_OPENED_CHAR)
+				game->map[check_y][check_x] = DOOR_CLOSED_CHAR;
+			else if (game->map[check_y][check_x] == DOOR_CLOSED_CHAR)
+				game->map[check_y][check_x] = DOOR_OPENED_CHAR;
+		}
+		++i;
+	}
 }
 
 void	keyboard_hook(mlx_key_data_t key, void *param)

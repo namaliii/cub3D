@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/16 17:27:00 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/16 19:14:29 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,12 +103,16 @@ void		handle_movement(t_game *game);
 void		keyboard_hook(mlx_key_data_t key, void *param);
 
 // Utils
-float		deg2rad(float angle_degree);
-uint32_t	rgba2color(t_rgba rgba);
 void		exit_error(const char *msg);
 void		*safe_calloc(size_t elems_count, size_t elem_size);
+// Conversions
+float		deg2rad(float angle_degree);
+uint32_t	rgba2color(t_rgba rgba);
+// Debug
 void		debug_print(t_game *game);
 void		print_map(t_game *game);
+// Math
+void		normalize_vec2d(t_vec2d *v);
 int			min2(int a, int b);
 int			max2(int a, int b);
 
