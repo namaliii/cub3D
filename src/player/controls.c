@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 15:43:24 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/16 15:01:44 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/16 15:10:15 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ static void	handle_quit(t_game *game)
 
 static void	handle_door(t_game *game)
 {
-	const t_vec2d	direction_offsets[] = \
+	const t_vec2d	direction_offsets[DIRECTION_OFFSET_COUNT] = \
 {{1,0}, {0, 1}, {1, 1}, {-1, 0}, {-1, 1}, {-1, -1}, {0, -1}, {1, -1}};
 	int				check_x;
 	int				check_y;
 	int				i;
 	
 	i = 0;
-	while (i < 8)
+	while (i < DIRECTION_OFFSET_COUNT)
 	{
 		check_x = game->px + direction_offsets[i].x;
 		check_y = game->py + direction_offsets[i].y;
