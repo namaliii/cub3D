@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/15 18:24:33 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/08/16 16:31:31 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ void		open_read_file(t_game *game, char *file_name);
 void		add_line_to_map(t_game *game, char *line);
 int			get_map_width(t_game *game);
 void		valid_characters(t_game *game);
+/* player */
+void		player_check(t_game *game);
 /* utils */
 int			ft_isspace(char c);
 int			valid_extension(char *file_name);
@@ -107,6 +109,7 @@ void		init_player(t_game *game);
 void		handler_keyboard(mlx_key_data_t key, void *param);
 
 // Utils
+float		deg2rad(float angle_degree);
 uint32_t	rgba2color(t_rgba rgba);
 void		exit_error(const char *msg);
 void		*safe_calloc(size_t elems_count, size_t elem_size);
