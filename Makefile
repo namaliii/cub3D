@@ -31,7 +31,7 @@ UTILS_FILES			= get_next_line/get_next_line.c \
 						rgba2color.c \
 						deg2rad.c \
 						debug_print.c \
-						maxmin.c
+						cub3d_math.c
 
 GRAPHICS_SRCS		= $(addprefix src/graphics/, $(GRAPHICS_FILES))
 MAP_SRCS			= $(addprefix src/map/, $(MAP_FILES))
