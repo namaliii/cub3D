@@ -6,18 +6,22 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 15:43:24 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/16 15:10:15 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/16 17:22:44 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	handle_quit(t_game *game)
+static void	normalize_vector(t_vec2d *v)
 {
-	mlx_delete_image(game->window, game->img);
-	mlx_close_window(game->window);
-	mlx_terminate(game->window);
-	exit(EXIT_SUCCESS);
+	const float	magnitude = sqrtf(v->x * v->x + v->y * v->y);
+	const float	inv_sqrt = 1.0 / magnitude;
+
+	if (magnitude > 0)
+	{
+		v->x = v->x * inv_sqrt;
+		v->y = v->y * inv_sqrt;
+	}
 }
 
 static void	handle_door(t_game *game)
@@ -49,23 +53,23 @@ static void	handle_movement_keys(t_game *game, t_vec2d *pos_change)
 {
 	if (mlx_is_key_down(game->window, MLX_KEY_W))
 	{
-		pos_change->x += sin(game->p_angle_rad) * WALK_SPEED;
-		pos_change->y += cos(game->p_angle_rad) * WALK_SPEED;	
+		pos_change->x += sin(game->p_angle_rad);
+		pos_change->y += cos(game->p_angle_rad);
 	}
 	if (mlx_is_key_down(game->window, MLX_KEY_S))
 	{
-		pos_change->x -= sin(game->p_angle_rad) * WALK_SPEED;
-		pos_change->y -= cos(game->p_angle_rad) * WALK_SPEED;
+		pos_change->x -= sin(game->p_angle_rad);
+		pos_change->y -= cos(game->p_angle_rad);
 	}
 	if (mlx_is_key_down(game->window, MLX_KEY_A))
 	{
-		pos_change->x += sin(game->p_angle_rad + deg2rad(90.0)) * WALK_SPEED;
-		pos_change->y += cos(game->p_angle_rad + deg2rad(90.0)) * WALK_SPEED;
+		pos_change->x += sin(game->p_angle_rad + deg2rad(90.0));
+		pos_change->y += cos(game->p_angle_rad + deg2rad(90.0));
 	}
 	if (mlx_is_key_down(game->window, MLX_KEY_D))
 	{
-		pos_change->x += sin(game->p_angle_rad - deg2rad(90.0)) * WALK_SPEED;
-		pos_change->y += cos(game->p_angle_rad - deg2rad(90.0)) * WALK_SPEED;
+		pos_change->x += sin(game->p_angle_rad - deg2rad(90.0));
+		pos_change->y += cos(game->p_angle_rad - deg2rad(90.0));
 	}
 }
 
@@ -75,7 +79,12 @@ void	handle_movement(t_game *game)
 
 	pos_change = (t_vec2d) {0, 0};
 	if (mlx_is_key_down(game->window, MLX_KEY_ESCAPE))
-		handle_quit(game);
+	{
+		mlx_delete_image(game->window, game->img);
+		mlx_close_window(game->window);
+		mlx_terminate(game->window);
+		exit(EXIT_SUCCESS);
+	}
 	if (mlx_is_key_down(game->window, MLX_KEY_E)
 		|| mlx_is_key_down(game->window, MLX_KEY_RIGHT))
 		game->p_angle_rad -= TURN_ANGLE;
@@ -83,8 +92,9 @@ void	handle_movement(t_game *game)
 		|| mlx_is_key_down(game->window, MLX_KEY_LEFT))
 		game->p_angle_rad += TURN_ANGLE;
 	handle_movement_keys(game, &pos_change);
-	game->px += pos_change.x;
-	game->py += pos_change.y;
+	normalize_vector(&pos_change);
+	game->px += pos_change.x * WALK_SPEED;
+	game->py += pos_change.y * WALK_SPEED;
 }
 
 void	keyboard_hook(mlx_key_data_t key, void *param)
@@ -93,7 +103,5 @@ void	keyboard_hook(mlx_key_data_t key, void *param)
 
 	game = (t_game *) param;
 	if (key.key == MLX_KEY_SPACE && key.action == MLX_PRESS)
-	{
 		handle_door(game);
-	}
 }

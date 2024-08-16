@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:55:35 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/14 19:00:02 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/16 17:27:00 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ void	draw_safe_rect(t_game *game, int pos_x, int pos_y, int len_x, int len_y, t_
 	int xlim;
 	int ylim;
 
-	xlim = min_of(pos_x + len_x, game->scr_width);
-	ylim = min_of(pos_y + len_y, game->scr_height);
-	x = max_of(pos_x, 0);
+	xlim = min2(pos_x + len_x, game->scr_width);
+	ylim = min2(pos_y + len_y, game->scr_height);
+	x = max2(pos_x, 0);
 	while (x < xlim)
 	{
-		y = max_of(pos_y, 0);
+		y = max2(pos_y, 0);
 		while (y < ylim)
 		{
 			mlx_put_pixel(game->img, x, y, rgba2color(color));
