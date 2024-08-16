@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 15:43:24 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/16 17:14:56 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/16 17:22:44 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,12 @@
 static void	normalize_vector(t_vec2d *v)
 {
 	const float	magnitude = sqrtf(v->x * v->x + v->y * v->y);
+	const float	inv_sqrt = 1.0 / magnitude;
 
-	if (magnitude != 0.0)
+	if (magnitude > 0)
 	{
-		v->x = v->x / magnitude;
-		v->y = v->y / magnitude;
+		v->x = v->x * inv_sqrt;
+		v->y = v->y * inv_sqrt;
 	}
 }
 
