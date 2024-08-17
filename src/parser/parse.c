@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:25 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/16 19:21:40 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/08/17 18:46:43 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,7 @@ void	print_debug(t_game *game)
 	for (int i = 0; i < game->map_height; i++)
 	{
 		if (game->map[i] != NULL)
-		{
-			printf("i %d: %s", i, game->map[i]);
-		}
+			printf("%d: %s", i, game->map[i]);
 		else
 			printf("Line %d is NULL\n", i);
 		printf("%s", "\n");

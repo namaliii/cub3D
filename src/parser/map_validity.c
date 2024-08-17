@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 17:31:17 by anamieta          #+#    #+#             */
-/*   Updated: 2024/08/16 19:40:52 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/08/17 16:31:15 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,12 @@ void	first_last_column(t_game *game)
 		i++;
 	}
 	i = 0;
-	while (game->map[i])
+	while (i < game->map_height && game->map[i])
 	{
 		j = ft_strlen(game->map[i]);
 		while (!game->map[i][j] || (j > 0 && ft_isspace(game->map[i][j])))
 			j--;
-		if (j >= 0 && game->map[i][j] != '1')
+		if (j >= 0 && game->map[i][j] != '1' && game->map[i][j] != '\0')
 			error_handling(game, game->map,
 				"Map is not surrounded by the walls!");
 		i++;

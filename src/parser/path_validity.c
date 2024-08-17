@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:30:16 by anamieta          #+#    #+#             */
-/*   Updated: 2024/08/16 19:37:08 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/08/17 18:43:52 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,75 +37,50 @@ char	**copy_map(char **original, int height)
 	return (copy);
 }
 
-void	fill(char **array, int width, int height, int x, int y)
+void	fill(char **array, int height, int x, int y)
 {
 	if (x < 0 || y < 0 || y >= height || x >= (int)ft_strlen(array[y])
 		|| array[y][x] == 'Q' || ft_isspace(array[y][x]))
 		return ;
+
 	array[y][x] = 'Q';
-	fill(array, width, height, x + 1, y);
-	fill(array, width, height, x - 1, y);
-	fill(array, width, height, x, y + 1);
-	fill(array, width, height, x, y - 1);
+	fill(array, height, x + 1, y);
+	fill(array, height, x - 1, y);
+	fill(array, height, x, y + 1);
+	fill(array, height, x, y - 1);
 }
 
-void	flood_fill(char **array, int height)
+void	flood_fill(char **map_copy, int height)
 {
-	int	width;
-	int	y;
-	int	x;
-
-	y = 0;
-	while (y < height)
-	{
-		if (array[y] != NULL)
-		{
-			width = ft_strlen(array[y]);
-			x = 0;
-			while (x < width)
-			{
-				if (!ft_isspace(array[y][x]) && array[y][x] != 'Q')
-					fill(array, width, height, x, y);
-				x++;
-			}
-		}
-		y++;
-	}
-}
-
-void	valid_path(t_game *game)
-{
-	char	**map_copy;
 	int		i;
 	int		j;
 
-	map_copy = copy_map(game->map, game->map_height);
-	if (!map_copy)
-	{
-		printf("Failed to copy map.\n");
-		return ;
-	}
-	flood_fill(map_copy, game->map_height);
-	// just printing
-	printf("Map after floodfill:\n");
 	i = 0;
-	while (i < game->map_height)
+	while (i < height && map_copy[i])
 	{
-		if (map_copy != NULL)
-		{
-			printf("i %d: %s\n", i, map_copy[i]);
-		}
-		else
-			printf("Line %d is NULL\n", i);
+		j = 0;
+		while (ft_isspace(map_copy[i][j]) && j < (int)ft_strlen(map_copy[i]))
+			j++;
+		if (!ft_isspace(map_copy[i][j]))
+			break ;
 		i++;
 	}
+	fill(map_copy, height, j, i);
+}
+
+void	check_the_path(t_game *game, char **map_copy, int height)
+{
+	int	width;
+	int	i;
+	int	j;
+
 	i = 0;
-	while (i < game->map_height)
+	while (i < height)
 	{
 		if (map_copy != NULL)
 		{
 			j = 0;
-			int width = ft_strlen(map_copy[i]) - 1;
+			width = ft_strlen(map_copy[i]) - 1;
 			while (j < width)
 			{
 				if (map_copy[i][j] != 'Q' && !ft_isspace(map_copy[i][j]))
@@ -115,5 +90,19 @@ void	valid_path(t_game *game)
 		}
 		i++;
 	}
+}
+
+void	valid_path(t_game *game)
+{
+	char	**map_copy;
+
+	map_copy = copy_map(game->map, game->map_height);
+	if (!map_copy)
+	{
+		printf("Failed to copy map for path validity check.\n");
+		return ;
+	}
+	flood_fill(map_copy, game->map_height);
+	check_the_path(game, map_copy, game->map_height);
 	free_2d_array(map_copy, game->map_height);
 }
