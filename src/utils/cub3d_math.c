@@ -1,42 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug_print.c                                      :+:      :+:    :+:   */
+/*   cub3d_math.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/13 17:34:55 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/14 16:23:03 by tunsal           ###   ########.fr       */
+/*   Created: 2024/08/16 16:37:38 by tunsal            #+#    #+#             */
+/*   Updated: 2024/08/16 19:14:26 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	print_player(t_game *game)
+void	normalize_vec2d(t_vec2d *v)
 {
-	printf("px = %f py = %f pa = %f\n", game->px, game->py, game->p_angle_rad);
-}
+	const float	magnitude = sqrtf(v->x * v->x + v->y * v->y);
+	const float	inv_sqrt = 1.0 / magnitude;
 
-void	print_map(t_game *game)
-{
-	int	y;
-	int	x;
-
-	y = 0;
-	while (y < game->map_height)
+	if (magnitude > 0)
 	{
-		x = 0;
-		while (x < game->map_width)
-		{
-			printf("%c", game->map[y][x]);
-			++x;
-		}
-		printf("\n");
-		++y;
+		v->x = v->x * inv_sqrt;
+		v->y = v->y * inv_sqrt;
 	}
 }
 
-void	debug_print(t_game *game)
+int	min2(int a, int b)
 {
-	print_player(game);
+	if (a < b)
+		return (a);
+	return (b);
+}
+
+int	max2(int a, int b)
+{
+	if (a > b)
+		return (a);
+	return (b);
 }

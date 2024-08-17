@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 16:33:32 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/16 16:39:26 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/08/17 19:09:42 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ void	player_assign(t_game *game, int *player, int i, int j)
 		game->px = (float)j + 0.5;
 		game->py = (float)i + 0.5;
 		if (game->map[i][j] == 'N')
-			game->p_angle = deg2rad(180);
+			game->p_angle_rad = deg2rad(180);
 		else if (game->map[i][j] == 'W')
-			game->p_angle = deg2rad(90);
+			game->p_angle_rad = deg2rad(90);
 		else if (game->map[i][j] == 'S')
-			game->p_angle = deg2rad(0);
+			game->p_angle_rad = deg2rad(0);
 		else if (game->map[i][j] == 'E')
-			game->p_angle = deg2rad(270);
+			game->p_angle_rad = deg2rad(270);
 		(*player)++;
 	}
 }
@@ -64,3 +64,26 @@ void	init_player(t_game *game)
 	player_check(game);
 	game->game_over = false;
 }
+
+	// int first_free_x, first_free_y;
+	// int found_flag = false;
+
+	// for (first_free_y = 0; first_free_y < map->height; ++first_free_y)
+	// {
+	// 	for (first_free_x = 0; first_free_x < map->width; ++first_free_x)
+	// 	{
+	// 		if (map->map[first_free_y][first_free_x] == '0')
+	// 		{
+	// 			player->posx = first_free_x + 0.5;
+	// 			player->posy = first_free_y + 0.5;
+	// 			found_flag = true;
+	// 			break;
+	// 		}
+	// 	}
+
+	// 	if (found_flag)
+	// 		break;
+	// }
+
+	// if (!found_flag)
+	// 	exit_error("Couldn't find a valid player spawn position.");

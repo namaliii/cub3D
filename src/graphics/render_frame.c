@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   deg2rad.c                                          :+:      :+:    :+:   */
+/*   render_frame.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/14 17:39:09 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/17 19:10:56 by anamieta         ###   ########.fr       */
+/*   Created: 2024/08/14 19:39:58 by tunsal            #+#    #+#             */
+/*   Updated: 2024/08/14 19:42:57 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-float	deg2rad(float angle_degree)
+void	render_frame(t_game *game)
 {
-	return (angle_degree * (PI / (float) 180));
+	mlx_delete_image(game->window, game->img);
+	game->img = mlx_new_image(game->window, game->scr_width, game->scr_height);
+	mlx_image_to_window(game->window, game->img, 0, 0);
+	raycast(game);
+	draw_minimap(game);
 }

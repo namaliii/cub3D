@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 16:46:35 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/13 16:59:16 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/16 14:21:35 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	mock_parse_map(t_game *game)
 		{'1', '0', '0', '0', '0', '0', '0', '0', '0', '1'},
 		{'1', '0', '0', '0', '0', '0', '0', '0', '0', '1'},
 		{'1', '0', '0', '0', '0', '0', '1', '0', '0', '1'},
-		{'1', '0', '0', '0', '0', '0', '1', '0', '0', '1'},
+		{'1', '0', '0', '0', '0', '0', '1', '1', 'D', '1'},
 		{'1', '0', '0', '0', '0', '0', '1', '0', '0', '1'},
 		{'1', '0', '0', '0', '0', '0', '0', '0', '0', '1'},
 		{'1', '1', '1', '1', '1', '1', '1', '1', '1', '1'}
@@ -54,32 +54,32 @@ static void	mock_parse_map(t_game *game)
 
 static void	mock_init_player(t_game *game)
 {
-	// int first_free_x, first_free_y;
-	// int found_flag = false;
+	int first_free_x, first_free_y;
+	int found_flag = false;
 
-	// for (first_free_y = 0; first_free_y < map->height; ++first_free_y)
-	// {
-	// 	for (first_free_x = 0; first_free_x < map->width; ++first_free_x)
-	// 	{
-	// 		if (map->map[first_free_y][first_free_x] == '0')
-	// 		{
-	// 			player->posx = first_free_x + 0.5;
-	// 			player->posy = first_free_y + 0.5;
-	// 			found_flag = true;
-	// 			break;
-	// 		}
-	// 	}
+	for (first_free_y = 0; first_free_y < game->map_height; ++first_free_y)
+	{
+		for (first_free_x = 0; first_free_x < game->map_width; ++first_free_x)
+		{
+			if (game->map[first_free_y][first_free_x] == '0')
+			{
+				game->px = first_free_x + 0.5;
+				game->py = first_free_y + 0.5;
+				found_flag = true;
+				break;
+			}
+		}
 
-	// 	if (found_flag)
-	// 		break;
-	// }
+		if (found_flag)
+			break;
+	}
 
-	// if (!found_flag)
-	// 	exit_error("Couldn't find a valid player spawn position.");
+	if (!found_flag)
+		exit_error("Couldn't find a valid player spawn position.");
 
-	game->px = 1.5;
-	game->py = 1.5;
-	game->p_angle = 0.0;
+	game->px = 2.5;
+	game->py = 2.5;
+	game->p_angle_rad = deg2rad(0.0);
 	game->game_over = false;
 }
 
