@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:25 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/17 18:46:43 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/08/17 19:10:28 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,5 @@ void	print_debug(t_game *game)
 	}
 	printf("Map height: %d\n", game->map_height);
 	printf("Map width: %d\n", game->map_width);
-	printf("Player px: %f, py: %f, p_angle: %f\n", game->px, game->py, game->p_angle);
+	printf("Player px: %f, py: %f, p_angle: %f\n", game->px, game->py, game->p_angle_rad);
 }
