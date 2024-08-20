@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/17 19:01:02 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/08/20 15:13:22 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,24 +54,19 @@ typedef struct s_vec2d
 
 typedef struct s_game
 {
-	// Map
-	int		map_width;
-	int		map_height;
-	char	**map;
-	t_rgba	color_floor;
-	t_rgba	color_ceiling;
-	char	*tex_no_path;
-	char	*tex_so_path;
-	char	*tex_we_path;
-	char	*tex_ea_path;
-
-	// Player
-	float	px;
-	float	py;
-	float	p_angle_rad;
-	bool	game_over;
-
-	// Screen
+	int			map_width;
+	int			map_height;
+	char		**map;
+	t_rgba		color_floor;
+	t_rgba		color_ceiling;
+	char		*tex_no_path;
+	char		*tex_so_path;
+	char		*tex_we_path;
+	char		*tex_ea_path;
+	float		px;
+	float		py;
+	float		p_angle_rad;
+	bool		game_over;
 	mlx_t		*window;
 	mlx_image_t	*img;
 	int			scr_width;
@@ -97,27 +92,16 @@ bool		is_wall(t_game *game, int x, int y);
 void		assign_color(char *line, t_rgba *color);
 void		assign_textures(char **texture_path, char *line);
 int			parse(int argc, char **argv, t_game *game);
-void		print_debug(t_game *game);
-/* cleaning */
-void		error_handling(t_game *game, char **array, char *str);
-void		free_2d_array(char **array, int height);
-/* file operations */
 int			line_is_empty(char *line);
 int			file_opening(t_game *game, char *file_name);
 void		process_line(t_game *game, char *line, int *map_flag);
 void		open_read_file(t_game *game, char *file_name);
-/* map */
 void		add_line_to_map(t_game *game, char *line);
 int			get_map_width(t_game *game);
 void		valid_characters(t_game *game);
 void		surrounded_by_walls(t_game *game);
 void		valid_path(t_game *game);
-/* player */
 void		player_check(t_game *game);
-/* utils */
-int			ft_isspace(char c);
-int			valid_extension(char *file_name);
-/* mock */
 void		mock_parse(int argc, char *argv[], t_game *game);
 
 // Player
@@ -128,12 +112,20 @@ void		keyboard_hook(mlx_key_data_t key, void *param);
 // Utils
 void		exit_error(const char *msg);
 void		*safe_calloc(size_t elems_count, size_t elem_size);
+void		error_handling(t_game *game, char **array, char *str);
+void		free_2d_array(char **array, int height);
+int			ft_isspace(char c);
+int			valid_extension(char *file_name);
+
 // Conversions
 float		deg2rad(float angle_degree);
 uint32_t	rgba2color(t_rgba rgba);
+
 // Debug
 void		debug_print(t_game *game);
 void		print_map(t_game *game);
+void		debug_parse(t_game *game);
+
 // Math
 void		normalize_vec2d(t_vec2d *v);
 int			min2(int a, int b);

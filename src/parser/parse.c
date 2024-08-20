@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:25 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/17 19:10:28 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/08/20 15:24:03 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,32 +61,6 @@ int	parse(int argc, char **argv, t_game *game)
 	surrounded_by_walls(game);
 	valid_path(game);
 	init_player(game);
-	print_debug(game);
+	debug_parse(game);
 	return (0);
-}
-
-void	print_debug(t_game *game)
-{
-	printf("NO path: %s\n", game->tex_no_path);
-	printf("SO path: %s\n", game->tex_so_path);
-	printf("WE path: %s\n", game->tex_we_path);
-	printf("EA path: %s\n", game->tex_ea_path);
-	printf("color ceiling: r:%d, g:%d, b:%d, a:%d\n", game->color_ceiling.r, game->color_ceiling.g, game->color_ceiling.b, game->color_ceiling.a);
-	printf("color floor: r:%d, g:%d, b:%d, a:%d\n", game->color_floor.r, game->color_floor.g, game->color_floor.b, game->color_floor.a);
-	if (game->map == NULL)
-	{
-		printf("Map is NULL\n");
-		return ;
-	}
-	for (int i = 0; i < game->map_height; i++)
-	{
-		if (game->map[i] != NULL)
-			printf("%d: %s", i, game->map[i]);
-		else
-			printf("Line %d is NULL\n", i);
-		printf("%s", "\n");
-	}
-	printf("Map height: %d\n", game->map_height);
-	printf("Map width: %d\n", game->map_width);
-	printf("Player px: %f, py: %f, p_angle: %f\n", game->px, game->py, game->p_angle_rad);
 }

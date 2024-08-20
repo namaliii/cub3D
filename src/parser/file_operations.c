@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:54:22 by anamieta          #+#    #+#             */
-/*   Updated: 2024/08/15 17:57:33 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/08/20 13:33:44 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,7 @@ int	file_opening(t_game *game, char *file_name)
 
 	file = open(file_name, O_RDONLY);
 	if (file < 0)
-	{
-		if (game->window)
-		{
-			mlx_terminate(game->window);
-			mlx_close_window(game->window);
-		}
-		printf("%s\n", "Failed to open the file");
-		exit(EXIT_FAILURE);
-	}
+		error_handling(game, game->map, "Failed to open the file");
 	return (file);
 }
 

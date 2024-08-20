@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug_print.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 17:34:55 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/14 16:23:03 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/20 13:29:14 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,31 @@ void	print_map(t_game *game)
 void	debug_print(t_game *game)
 {
 	print_player(game);
+}
+
+
+void	debug_parse(t_game *game)
+{
+	printf("NO path: %s\n", game->tex_no_path);
+	printf("SO path: %s\n", game->tex_so_path);
+	printf("WE path: %s\n", game->tex_we_path);
+	printf("EA path: %s\n", game->tex_ea_path);
+	printf("color ceiling: r:%d, g:%d, b:%d, a:%d\n", game->color_ceiling.r, game->color_ceiling.g, game->color_ceiling.b, game->color_ceiling.a);
+	printf("color floor: r:%d, g:%d, b:%d, a:%d\n", game->color_floor.r, game->color_floor.g, game->color_floor.b, game->color_floor.a);
+	if (game->map == NULL)
+	{
+		printf("Map is NULL\n");
+		return ;
+	}
+	for (int i = 0; i < game->map_height; i++)
+	{
+		if (game->map[i] != NULL)
+			printf("%d: %s", i, game->map[i]);
+		else
+			printf("Line %d is NULL\n", i);
+		printf("%s", "\n");
+	}
+	printf("Map height: %d\n", game->map_height);
+	printf("Map width: %d\n", game->map_width);
+	printf("Player px: %f, py: %f, p_angle: %f\n", game->px, game->py, game->p_angle_rad);
 }

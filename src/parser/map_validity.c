@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 17:31:17 by anamieta          #+#    #+#             */
-/*   Updated: 2024/08/17 16:31:15 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/08/20 13:36:05 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,18 +57,20 @@ void	top_bottom_check(t_game *game, int *i)
 void	interior_check(t_game *game, int *i)
 {
 	unsigned long	j;
+	unsigned long	width;
 
+	width = ft_strlen(game->map[*i]);
 	if (game->map[*i])
 	{
 		j = 0;
-		while (j < ft_strlen(game->map[*i]))
+		while (j < width)
 		{
 			if (ft_strchr("NSEW0", game->map[*i][j]))
 			{
 				if (ft_isspace(game->map[*i - 1][j])
 					|| ft_isspace(game->map[*i + 1][j])
 					|| (j > 0 && ft_isspace(game->map[*i][j - 1]))
-					|| (j < (ft_strlen(game->map[*i]) - 1)
+					|| (j < width - 1
 					&& ft_isspace(game->map[*i][j + 1])))
 				{
 					error_handling(game, game->map,
