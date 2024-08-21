@@ -6,24 +6,22 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:30:16 by anamieta          #+#    #+#             */
-/*   Updated: 2024/08/17 18:43:52 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/08/21 19:40:36 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-char	**copy_map(char **original, int height)
+char	**copy_map(char **original, int height, int width)
 {
 	char	**copy;
-	int		len;
 	int		i;
 
 	copy = (char **)safe_calloc(height + 1, sizeof(char *));
 	i = 0;
 	while (i < height)
 	{
-		len = ft_strlen(original[i]);
-		copy[i] = (char *)ft_calloc(len + 1, sizeof(char));
+		copy[i] = (char *)ft_calloc(width + 1, sizeof(char));
 		if (!copy[i])
 		{
 			while (--i >= 0)
@@ -31,26 +29,26 @@ char	**copy_map(char **original, int height)
 			free(copy);
 			return (NULL);
 		}
-		ft_strlcpy(copy[i], original[i], len + 1);
+		ft_strlcpy(copy[i], original[i], width + 1);
 		i++;
 	}
 	return (copy);
 }
 
-void	fill(char **array, int height, int x, int y)
+void	fill(char **array, int height, int width, int x, int y)
 {
-	if (x < 0 || y < 0 || y >= height || x >= (int)ft_strlen(array[y])
+	if (x < 0 || y < 0 || y >= height || x >= width
 		|| array[y][x] == 'Q' || ft_isspace(array[y][x]))
 		return ;
 
 	array[y][x] = 'Q';
-	fill(array, height, x + 1, y);
-	fill(array, height, x - 1, y);
-	fill(array, height, x, y + 1);
-	fill(array, height, x, y - 1);
+	fill(array, height, width, x + 1, y);
+	fill(array, height, width, x - 1, y);
+	fill(array, height, width, x, y + 1);
+	fill(array, height, width, x, y - 1);
 }
 
-void	flood_fill(char **map_copy, int height)
+void	flood_fill(char **map_copy, int height, int width)
 {
 	int		i;
 	int		j;
@@ -59,29 +57,29 @@ void	flood_fill(char **map_copy, int height)
 	while (i < height && map_copy[i])
 	{
 		j = 0;
-		while (ft_isspace(map_copy[i][j]) && j < (int)ft_strlen(map_copy[i]))
+		while (ft_isspace(map_copy[i][j]) && j < width)
 			j++;
 		if (!ft_isspace(map_copy[i][j]))
 			break ;
 		i++;
 	}
-	fill(map_copy, height, j, i);
+	fill(map_copy, height, width, j, i);
 }
 
 void	check_the_path(t_game *game, char **map_copy, int height)
 {
-	int	width;
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < height)
+	(void)height;
+	while (i < game->map_height)
 	{
-		if (map_copy != NULL)
+		if (map_copy[i] != NULL)
 		{
+			printf("%s|\n", map_copy[i]);
 			j = 0;
-			width = ft_strlen(map_copy[i]) - 1;
-			while (j < width)
+			while (j < game->map_width)
 			{
 				if (map_copy[i][j] != 'Q' && !ft_isspace(map_copy[i][j]))
 					error_handling(game, game->map, "Map has to be one piece");
@@ -96,13 +94,13 @@ void	valid_path(t_game *game)
 {
 	char	**map_copy;
 
-	map_copy = copy_map(game->map, game->map_height);
+	map_copy = copy_map(game->map, game->map_height, game->map_width);
 	if (!map_copy)
 	{
 		printf("Failed to copy map for path validity check.\n");
 		return ;
 	}
-	flood_fill(map_copy, game->map_height);
+	flood_fill(map_copy, game->map_height, game->map_width);
 	check_the_path(game, map_copy, game->map_height);
 	free_2d_array(map_copy, game->map_height);
 }

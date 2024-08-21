@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:25 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/20 15:24:03 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/08/21 20:46:16 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,9 @@ int	parse(int argc, char **argv, t_game *game)
 	game->map = NULL;
 	open_read_file(game, argv[1]);
 	game->map_width = get_map_width(game);
+	add_padding(game);
+	if (game->map_width > SCREEN_WIDTH || game->map_height > SCREEN_HEIGHT)
+		error_handling(game, game->map, "Map bigger then the screen!");
 	valid_characters(game);
 	surrounded_by_walls(game);
 	valid_path(game);
