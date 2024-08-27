@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/27 17:50:35 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/08/27 18:23:38 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ bool		is_out_of_bounds(t_game *game, int x, int y);
 bool		is_wall(t_game *game, int x, int y);
 
 // Parser
-void		assign_color(char *line, t_rgba *color);
+void		assign_color(t_game *game, char *line, t_rgba *color);
 void		assign_textures(t_game *game, mlx_texture_t **tex_img, char *line);
 int			parse(int argc, char **argv, t_game *game);
 int			line_is_empty(char *line);
@@ -121,6 +121,7 @@ void		error_handling(t_game *game, char **array, char *str);
 void		free_2d_array(char **array, int height);
 int			ft_isspace(char c);
 int			valid_extension(char *file_name);
+int			ft_isnumber(char *str);
 
 // Conversions
 float		deg2rad(float angle_degree);

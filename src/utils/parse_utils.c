@@ -6,11 +6,25 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 19:24:11 by anamieta          #+#    #+#             */
-/*   Updated: 2024/08/16 18:15:26 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/08/27 18:25:04 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	ft_isnumber(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] < '0' && str[i] > '9')
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 int	ft_isspace(char c)
 {

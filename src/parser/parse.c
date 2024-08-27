@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:25 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/27 17:48:25 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/08/27 18:39:24 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,45 @@ void	assign_textures(t_game *game, mlx_texture_t **tex_img, char *line)
 	free(texture_path);
 }
 
-void	assign_color(char *line, t_rgba *color)
+void	invalid_chars_check(t_game *game, char *ptr)
 {
-	char	*ptr;
+	int	i;
+
+	i = 0;
+	while (ptr[i])
+	{
+		if (!ft_isdigit(ptr[i]) && !ft_isspace(ptr[i]) && ptr[i] != ',')
+			error_handling(game, game->map, "Invalid characters in colors");
+		i++;
+	}
+}
+
+void	assign_color(t_game *game, char *line, t_rgba *color)
+{
+	char			*ptr;
+	unsigned int	r;
+	unsigned int	g;
+	unsigned int	b;
 
 	ptr = line + 2;
-	color->r = (unsigned int)ft_atoi(ptr);
+	invalid_chars_check(game, ptr);
+	r = (unsigned int)ft_atoi(ptr);
 	while (*ptr && *ptr != ',')
 		ptr++;
 	if (*ptr == ',')
 		ptr++;
-	color->g = (unsigned int)ft_atoi(ptr);
+	g = (unsigned int)ft_atoi(ptr);
 	while (*ptr && *ptr != ',')
 		ptr++;
 	if (*ptr == ',')
 		ptr++;
-	color->b = (unsigned int)ft_atoi(ptr);
+	b = (unsigned int)ft_atoi(ptr);
+	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
+		error_handling(game, game->map,
+			"Colors are beyond the proper scope, please adjust to 0 - 255");
+	color->r = r;
+	color->g = g;
+	color->b = b;
 	color->a = 255;
 }
 
