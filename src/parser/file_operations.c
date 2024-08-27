@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:54:22 by anamieta          #+#    #+#             */
-/*   Updated: 2024/08/20 13:33:44 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/08/27 17:52:48 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ int	line_is_empty(char *line)
 void	process_line(t_game *game, char *line, int *map_flag)
 {
 	if (ft_strncmp(line, "NO ", 3) == 0)
-		assign_textures(&(game->tex_no_path), line);
+		assign_textures(game, &(game->tex_no), line);
 	else if (ft_strncmp(line, "SO ", 3) == 0)
-		assign_textures(&(game->tex_so_path), line);
+		assign_textures(game, &(game->tex_so), line);
 	else if (ft_strncmp(line, "WE ", 3) == 0)
-		assign_textures(&(game->tex_we_path), line);
+		assign_textures(game, &(game->tex_we), line);
 	else if (ft_strncmp(line, "EA ", 3) == 0)
-		assign_textures(&(game->tex_ea_path), line);
+		assign_textures(game, &(game->tex_ea), line);
 	else if (ft_strncmp(line, "F ", 2) == 0)
 		assign_color(line, &(game->color_floor));
 	else if (ft_strncmp(line, "C ", 2) == 0)

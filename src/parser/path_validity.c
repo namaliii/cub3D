@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:30:16 by anamieta          #+#    #+#             */
-/*   Updated: 2024/08/21 19:40:36 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/08/27 17:45:52 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void	check_the_path(t_game *game, char **map_copy, int height)
 	{
 		if (map_copy[i] != NULL)
 		{
-			printf("%s|\n", map_copy[i]);
 			j = 0;
 			while (j < game->map_width)
 			{

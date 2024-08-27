@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 17:34:55 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/20 13:29:14 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/08/27 17:53:46 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ void	debug_print(t_game *game)
 
 void	debug_parse(t_game *game)
 {
-	printf("NO path: %s\n", game->tex_no_path);
-	printf("SO path: %s\n", game->tex_so_path);
-	printf("WE path: %s\n", game->tex_we_path);
-	printf("EA path: %s\n", game->tex_ea_path);
+	printf("NO path: %s\n", (char *)game->tex_no);
+	printf("SO path: %s\n", (char *)game->tex_so);
+	printf("WE path: %s\n", (char *)game->tex_we);
+	printf("EA path: %s\n", (char *)game->tex_ea);
 	printf("color ceiling: r:%d, g:%d, b:%d, a:%d\n", game->color_ceiling.r, game->color_ceiling.g, game->color_ceiling.b, game->color_ceiling.a);
 	printf("color floor: r:%d, g:%d, b:%d, a:%d\n", game->color_floor.r, game->color_floor.g, game->color_floor.b, game->color_floor.a);
 	if (game->map == NULL)

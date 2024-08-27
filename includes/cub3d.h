@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/20 15:13:22 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/08/27 17:50:35 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 
 # define SCREEN_WIDTH 800
 # define SCREEN_HEIGHT 600
+
+# define MAX_MAP_WIDTH 270
+# define MAX_MAP_HEIGHT 270
 
 # define MOCK_MAP_HEIGHT 10
 # define MOCK_MAP_WIDTH 10
@@ -59,10 +62,10 @@ typedef struct s_game
 	char		**map;
 	t_rgba		color_floor;
 	t_rgba		color_ceiling;
-	char		*tex_no_path;
-	char		*tex_so_path;
-	char		*tex_we_path;
-	char		*tex_ea_path;
+	mlx_texture_t	*tex_no;
+	mlx_texture_t	*tex_so;
+	mlx_texture_t	*tex_we;
+	mlx_texture_t	*tex_ea;
 	float		px;
 	float		py;
 	float		p_angle_rad;
@@ -90,13 +93,15 @@ bool		is_wall(t_game *game, int x, int y);
 
 // Parser
 void		assign_color(char *line, t_rgba *color);
-void		assign_textures(char **texture_path, char *line);
+void		assign_textures(t_game *game, mlx_texture_t **tex_img, char *line);
 int			parse(int argc, char **argv, t_game *game);
 int			line_is_empty(char *line);
 int			file_opening(t_game *game, char *file_name);
 void		process_line(t_game *game, char *line, int *map_flag);
 void		open_read_file(t_game *game, char *file_name);
 void		add_line_to_map(t_game *game, char *line);
+mlx_texture_t	*load_image(char *path, t_game *game);
+void		add_padding(t_game *game);
 int			get_map_width(t_game *game);
 void		valid_characters(t_game *game);
 void		surrounded_by_walls(t_game *game);

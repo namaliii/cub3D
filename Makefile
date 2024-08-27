@@ -24,7 +24,8 @@ PARSER_FILES		= parse.c \
 						file_operations.c \
 						parse_map.c \
 						map_validity.c \
-						path_validity.c
+						path_validity.c \
+						load_textures.c
 
 PLAYER_FILES		= controls.c
 
@@ -123,7 +124,8 @@ re:		 			clean all
 # 						file_operations.c \
 # 						parse_map.c \
 # 						map_validity.c \
-# 						path_validity.c
+# 						path_validity.c \
+						load_textures.c
 
 # PLAYER_FILES		= controls.c
 
