@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 17:31:17 by anamieta          #+#    #+#             */
-/*   Updated: 2024/08/20 13:36:05 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/08/28 20:17:15 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	valid_characters(t_game *game)
 	int		i;
 	int		j;
 
-	valid_chars = "NSEW01 ";
+	valid_chars = "NSEW01Dd ";
 	i = 0;
 	j = 0;
 	while (i < game->map_height && game->map[i])
@@ -65,7 +65,7 @@ void	interior_check(t_game *game, int *i)
 		j = 0;
 		while (j < width)
 		{
-			if (ft_strchr("NSEW0", game->map[*i][j]))
+			if (ft_strchr("NSEW0Dd", game->map[*i][j]))
 			{
 				if (ft_isspace(game->map[*i - 1][j])
 					|| ft_isspace(game->map[*i + 1][j])
