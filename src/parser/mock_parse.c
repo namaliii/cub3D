@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mock_parse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 16:46:35 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/16 14:21:35 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/08/27 17:51:50 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	mock_parse_map(t_game *game)
 	int	i;
 
 	game->map_height = MOCK_MAP_HEIGHT;
-	game->map = (char **) safe_calloc(game->map_height, sizeof(char *));	
+	game->map = (char **) safe_calloc(game->map_height, sizeof(char *));
 	game->map_width = MOCK_MAP_WIDTH;
 	i = 0;
 	while (i < MOCK_MAP_HEIGHT)
@@ -27,11 +27,11 @@ static void	mock_parse_map(t_game *game)
 	}
 	game->color_floor = (t_rgba) {255, 127, 0, 255};
 	game->color_ceiling = (t_rgba) {50, 10, 10, 255};
-	game->tex_no_path = NULL;
-	game->tex_so_path = NULL;
-	game->tex_we_path = NULL;
-	game->tex_ea_path = NULL;
-	
+	game->tex_no = NULL;
+	game->tex_so = NULL;
+	game->tex_we = NULL;
+	game->tex_ea = NULL;
+
 	char m1[MOCK_MAP_HEIGHT][MOCK_MAP_WIDTH] = {
 		{'1', '1', '1', '1', '1', '1', '1', '1', '1', '1'},
 		{'1', '0', '0', '0', '0', '0', '0', '0', '0', '1'},
@@ -90,10 +90,10 @@ static void	mock_init_map(t_game *game)
 	game->map = NULL;
 	game->color_floor = (t_rgba) {255, 127, 0, 255};
 	game->color_ceiling = (t_rgba) {50, 10, 10, 255};
-	game->tex_no_path = NULL;
-	game->tex_so_path = NULL;
-	game->tex_we_path = NULL;
-	game->tex_ea_path = NULL;
+	game->tex_no = NULL;
+	game->tex_so = NULL;
+	game->tex_we = NULL;
+	game->tex_ea = NULL;
 }
 
 void	mock_parse(int argc, char *argv[], t_game *game)

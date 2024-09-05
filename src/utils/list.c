@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   deg2rad.c                                          :+:      :+:    :+:   */
+/*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/14 17:39:09 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/17 19:10:56 by anamieta         ###   ########.fr       */
+/*   Created: 2024/08/13 19:00:42 by anamieta          #+#    #+#             */
+/*   Updated: 2024/08/20 13:17:16 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-float	deg2rad(float angle_degree)
+void	free_2d_array(char **array, int size)
 {
-	return (angle_degree * (PI / (float) 180));
+	int	i;
+
+	if (!array)
+		return ;
+	i = 0;
+	while (i < size && array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
 }
