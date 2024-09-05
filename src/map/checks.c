@@ -20,7 +20,7 @@ bool	is_out_of_bounds(t_game *game, int x, int y)
 // Return whether character at (x, y) of map should stop a ray or not
 bool	is_wall(t_game *game, int x, int y)
 {
-	const char	*solid_elements = "1";
+	const char	*solid_elements = SOLID_ELEMENTS;
 	int		lim;
 	int		i;
 
