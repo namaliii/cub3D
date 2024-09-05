@@ -14,7 +14,8 @@ SRCS_DIR			= ./src/
 GRAPHICS_FILES		= render_frame.c \
 						raycast.c \
 						minimap.c \
-						draw.c
+						draw.c \
+						put_texture.c
 
 MAP_FILES			= checks.c
 

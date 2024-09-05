@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/27 18:23:38 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/05 20:39:49 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,12 @@ void			game_loop(void *param);
 void			render_frame(t_game *game);
 void			raycast(t_game *game);
 void			draw_minimap(t_game *game);
-void			draw_rect(t_game *game, int pos_x, int pos_y, 
+void			draw_rect(t_game *game, int pos_x, int pos_y,
 					int len_x, int len_y, t_rgba color);
-void			draw_safe_rect(t_game *game, int pos_x, int pos_y, 
+void			draw_safe_rect(t_game *game, int pos_x, int pos_y,
 					int len_x, int len_y, t_rgba color);
+void			put_texture_pixel(t_game *game,
+					int wall_start_px, int wall_end_px);
 
 // Map
 bool			is_out_of_bounds(t_game *game, int x, int y);

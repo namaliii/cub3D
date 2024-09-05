@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:38:28 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/16 14:13:34 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/05 20:47:29 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@ static void	raycast_column(int x, t_game *game)
 	//                   x, y             , xlen, ylen                             , color
 	draw_safe_rect(game, x, 0             , 1   , ceiling_end_px                   , game->color_ceiling);
 	draw_safe_rect(game, x, ceiling_end_px, 1   , floor_start_px - ceiling_end_px  , (t_rgba) {200, 200, 200, 255});
+	printf("ceiling end px: %d\n", ceiling_end_px);
+	printf("floor start px: %d\n", floor_start_px);
+	printf("floor - ceiling: %d\n", floor_start_px - ceiling_end_px);
+	// put_texture_pixel(game, ceiling_end_px, floor_start_px - ceiling_end_px);
 	draw_safe_rect(game, x, floor_start_px, 1   , game->scr_height - floor_start_px, game->color_floor);
 }
 
