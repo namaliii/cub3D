@@ -21,6 +21,8 @@
 #  define BUFFER_SIZE 1024
 # endif
 
+# define GNL_OPEN_MAX 512
+
 char	*get_next_line(int fd);
 
 size_t	ft_strlen(const char *s);

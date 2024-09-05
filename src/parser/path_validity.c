@@ -81,7 +81,7 @@ void	check_the_path(t_game *game, char **map_copy, int height)
 			while (j < game->map_width)
 			{
 				if (map_copy[i][j] != 'Q' && !ft_isspace(map_copy[i][j]))
-					error_handling(game, game->map, "Map has to be one piece");
+					exit_error_parser(game, game->map, "Map has to be one piece");
 				j++;
 			}
 		}

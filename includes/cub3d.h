@@ -57,84 +57,88 @@ typedef struct s_vec2d
 
 typedef struct s_game
 {
-	int			map_width;
-	int			map_height;
-	char		**map;
-	t_rgba		color_floor;
-	t_rgba		color_ceiling;
+	int				map_width;
+	int				map_height;
+	char			**map;
+	t_rgba			color_floor;
+	t_rgba			color_ceiling;
 	mlx_texture_t	*tex_no;
 	mlx_texture_t	*tex_so;
 	mlx_texture_t	*tex_we;
 	mlx_texture_t	*tex_ea;
-	float		px;
-	float		py;
-	float		p_angle_rad;
-	bool		game_over;
-	mlx_t		*window;
-	mlx_image_t	*img;
-	int			scr_width;
-	int			scr_height;
-	float		fov_rad;
+	float			px;
+	float			py;
+	float			p_angle_rad;
+	bool			game_over;
+	mlx_t			*window;
+	mlx_image_t		*img;
+	int				scr_width;
+	int				scr_height;
+	float			fov_rad;
 }	t_game;
 
 // Main
-void		game_loop(void *param);
+void			game_loop(void *param);
 
 // Graphics
-void		render_frame(t_game *game);
-void		raycast(t_game *game);
-void		draw_minimap(t_game *game);
-void		draw_rect(t_game *game, int pos_x, int pos_y, int len_x, int len_y, t_rgba color);
-void		draw_safe_rect(t_game *game, int pos_x, int pos_y, int len_x, int len_y, t_rgba color);
+void			render_frame(t_game *game);
+void			raycast(t_game *game);
+void			draw_minimap(t_game *game);
+void			draw_rect(t_game *game, int pos_x, int pos_y, 
+					int len_x, int len_y, t_rgba color);
+void			draw_safe_rect(t_game *game, int pos_x, int pos_y, 
+					int len_x, int len_y, t_rgba color);
 
 // Map
-bool		is_out_of_bounds(t_game *game, int x, int y);
-bool		is_wall(t_game *game, int x, int y);
+bool			is_out_of_bounds(t_game *game, int x, int y);
+bool			is_wall(t_game *game, int x, int y);
 
 // Parser
-void		assign_color(t_game *game, char *line, t_rgba *color);
-void		assign_textures(t_game *game, mlx_texture_t **tex_img, char *line);
-int			parse(int argc, char **argv, t_game *game);
-int			line_is_empty(char *line);
-int			file_opening(t_game *game, char *file_name);
-void		process_line(t_game *game, char *line, int *map_flag);
-void		open_read_file(t_game *game, char *file_name);
-void		add_line_to_map(t_game *game, char *line);
+void			assign_color(t_game *game, char *line, t_rgba *color);
+void			assign_textures(
+					t_game *game, mlx_texture_t **tex_img, char *line);
+int				parse(int argc, char **argv, t_game *game);
+int				line_is_empty(char *line);
+int				file_opening(t_game *game, char *file_name);
+void			process_line(t_game *game, char *line, int *map_flag);
+void			open_read_file(t_game *game, char *file_name);
+void			add_line_to_map(t_game *game, char *line);
 mlx_texture_t	*load_image(char *path, t_game *game);
-void		add_padding(t_game *game);
-int			get_map_width(t_game *game);
-void		valid_characters(t_game *game);
-void		surrounded_by_walls(t_game *game);
-void		valid_path(t_game *game);
-void		player_check(t_game *game);
-void		mock_parse(int argc, char *argv[], t_game *game);
+void			add_padding(t_game *game);
+int				get_map_width(t_game *game);
+void			valid_characters(t_game *game);
+void			surrounded_by_walls(t_game *game);
+void			valid_path(t_game *game);
+void			player_check(t_game *game);
+void			mock_parse(int argc, char *argv[], t_game *game);
 
 // Player
-void		init_player(t_game *game);
-void		handle_movement(t_game *game);
-void		keyboard_hook(mlx_key_data_t key, void *param);
+void			init_player(t_game *game);
+void			handle_movement(t_game *game);
+void			keyboard_hook(mlx_key_data_t key, void *param);
 
 // Utils
-void		exit_error(const char *msg);
-void		*safe_calloc(size_t elems_count, size_t elem_size);
-void		error_handling(t_game *game, char **array, char *str);
-void		free_2d_array(char **array, int height);
-int			ft_isspace(char c);
-int			valid_extension(char *file_name);
-int			ft_isnumber(char *str);
+void			exit_error(const char *msg);
+void			exit_error_mlx(t_game *game, const char *msg);
+void			exit_error_parser(t_game *game, char **map, const char *msg);
+void			*safe_calloc(size_t elems_count, size_t elem_size);
+void			free_2d_array(char **array, int height);
+int				ft_isspace(char c);
+int				valid_extension(char *file_name);
+int				ft_isnumber(char *str);
 
 // Conversions
-float		deg2rad(float angle_degree);
-uint32_t	rgba2color(t_rgba rgba);
+float			deg2rad(float angle_degree);
+uint32_t		rgba2color(t_rgba rgba);
 
 // Debug
-void		debug_print(t_game *game);
-void		print_map(t_game *game);
-void		debug_parse(t_game *game);
+void			debug_print(t_game *game);
+void			print_map(t_game *game);
+void			debug_parse(t_game *game);
 
 // Math
-void		normalize_vec2d(t_vec2d *v);
-int			min2(int a, int b);
-int			max2(int a, int b);
+void			normalize_vec2d(t_vec2d *v);
+int				min2(int a, int b);
+int				max2(int a, int b);
 
 #endif

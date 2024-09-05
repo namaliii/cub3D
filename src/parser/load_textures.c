@@ -19,7 +19,7 @@ mlx_texture_t	*load_image(char *path, t_game *game)
 	texture = mlx_load_png(path);
 	if (!texture)
 	{
-		error_handling(game, game->map, "Texture loading error");
+		exit_error_parser(game, game->map, "Texture loading error");
 		return (NULL);
 	}
 	return (texture);

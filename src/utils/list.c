@@ -12,29 +12,17 @@
 
 #include "cub3d.h"
 
-void	free_2d_array(char **array, int height)
+void	free_2d_array(char **array, int size)
 {
 	int	i;
 
 	if (!array)
 		return ;
 	i = 0;
-	while (i < height && array[i])
+	while (i < size && array[i])
 	{
 		free(array[i]);
 		i++;
 	}
 	free(array);
-}
-
-void	error_handling(t_game *game, char **array, char *str)
-{
-	if (game->window)
-	{
-		mlx_close_window(game->window);
-		mlx_terminate(game->window);
-	}
-	printf("%s\n", str);
-	free_2d_array(array, game->map_height);
-	exit(EXIT_FAILURE);
 }

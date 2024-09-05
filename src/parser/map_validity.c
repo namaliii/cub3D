@@ -27,7 +27,7 @@ void	valid_characters(t_game *game)
 		while (game->map[i][j])
 		{
 			if (!ft_strchr(valid_chars, game->map[i][j]))
-				error_handling(game, game->map,
+				exit_error_parser(game, game->map,
 					"Map contains invalid characters!");
 			j++;
 		}
@@ -47,7 +47,7 @@ void	top_bottom_check(t_game *game, int *i)
 		while (j < curr_line_width)
 		{
 			if (game->map[*i][j] != '1' && !ft_isspace(game->map[*i][j]))
-				error_handling(game, game->map,
+				exit_error_parser(game, game->map,
 					"Map is not surrounded by the walls!");
 			j++;
 		}
@@ -73,7 +73,7 @@ void	interior_check(t_game *game, int *i)
 					|| (j < width - 1
 					&& ft_isspace(game->map[*i][j + 1])))
 				{
-					error_handling(game, game->map,
+					exit_error_parser(game, game->map,
 						"Map is not surrounded by the walls!");
 				}
 			}
@@ -94,7 +94,7 @@ void	first_last_column(t_game *game)
 		while (ft_isspace(game->map[i][j]))
 			j++;
 		if (game->map[i][j] != '1')
-			error_handling(game, game->map,
+			exit_error_parser(game, game->map,
 				"Map is not surrounded by the walls!");
 		i++;
 	}
@@ -105,7 +105,7 @@ void	first_last_column(t_game *game)
 		while (!game->map[i][j] || (j > 0 && ft_isspace(game->map[i][j])))
 			j--;
 		if (j >= 0 && game->map[i][j] != '1' && game->map[i][j] != '\0')
-			error_handling(game, game->map,
+			exit_error_parser(game, game->map,
 				"Map is not surrounded by the walls!");
 		i++;
 	}

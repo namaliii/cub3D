@@ -19,7 +19,7 @@ void	add_line_to_map(t_game *game, char *line)
 
 	i = 0;
 	if (line_is_empty(line) == 1)
-		error_handling(game, game->map, "Empty line in map!");
+		exit_error_parser(game, game->map, "Empty line in map!");
 	if (ft_strlen(line) > 0 && line[ft_strlen(line) - 1] == '\n')
 		line[ft_strlen(line) - 1] = '\0';
 	new_map = (char **)safe_calloc(game->map_height + 1, sizeof(char *));

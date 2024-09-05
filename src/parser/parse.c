@@ -36,7 +36,7 @@ void	invalid_chars_check(t_game *game, char *ptr)
 	while (ptr[i])
 	{
 		if (!ft_isdigit(ptr[i]) && !ft_isspace(ptr[i]) && ptr[i] != ',')
-			error_handling(game, game->map, "Invalid characters in colors");
+			exit_error_parser(game, game->map, "Invalid characters in colors");
 		i++;
 	}
 }
@@ -61,8 +61,8 @@ void	assign_color(t_game *game, char *line, t_rgba *color)
 	if (*ptr == ',')
 		ptr++;
 	b = (unsigned int)ft_atoi(ptr);
-	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
-		error_handling(game, game->map,
+	if (r > 255|| g > 255|| b > 255)
+		exit_error_parser(game, game->map,
 			"Colors are beyond the proper scope, please adjust to 0 - 255");
 	color->r = r;
 	color->g = g;
@@ -72,6 +72,7 @@ void	assign_color(t_game *game, char *line, t_rgba *color)
 
 int	parse(int argc, char **argv, t_game *game)
 {
+	ft_bzero(game, sizeof(t_game));
 	if (argc != 2)
 	{
 		printf("%s", "Wrong number of arguments!\n");
@@ -85,7 +86,7 @@ int	parse(int argc, char **argv, t_game *game)
 	game->map_width = get_map_width(game);
 	add_padding(game);
 	if (game->map_width > MAX_MAP_WIDTH || game->map_height > MAX_MAP_HEIGHT)
-		error_handling(game, game->map,
+		exit_error_parser(game, game->map,
 			"Size of the map causes stack overflow! Create a smaller map.");
 	valid_characters(game);
 	surrounded_by_walls(game);

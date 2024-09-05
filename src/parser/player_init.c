@@ -49,14 +49,14 @@ void	player_check(t_game *game)
 		{
 			player_assign(game, &player, i, j);
 			if (player > 1)
-				error_handling(game, game->map,
+				exit_error_parser(game, game->map,
 					"There's more than one player chars");
 			j++;
 		}
 		i++;
 	}
 	if (player == 0)
-		error_handling(game, game->map, "There's no player char");
+		exit_error_parser(game, game->map, "There's no player char");
 }
 
 void	init_player(t_game *game)

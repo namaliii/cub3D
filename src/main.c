@@ -41,7 +41,6 @@ int	main(int argc, char *argv[])
 	t_game	game;
 
 	// mock_parse(argc, argv, &game);
-	ft_bzero(&game, sizeof(t_game));
 	if (parse(argc, argv, &game) == 1)
 		return (1);
 	init(&game);

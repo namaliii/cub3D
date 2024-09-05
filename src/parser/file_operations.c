@@ -18,7 +18,7 @@ int	file_opening(t_game *game, char *file_name)
 
 	file = open(file_name, O_RDONLY);
 	if (file < 0)
-		error_handling(game, game->map, "Failed to open the file");
+		exit_error_parser(game, game->map, "Failed to open the file");
 	return (file);
 }
 

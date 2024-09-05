@@ -75,9 +75,7 @@ static char	*extract_line(char *line, char *stash)
 {
 	char	*before_nl_section;
 	char	*nl_char;
-	int		err_flag;
 
-	err_flag = 0;
 	nl_char = ft_strchr(stash, '\n');
 	if (nl_char)
 	{
@@ -96,11 +94,11 @@ static char	*extract_line(char *line, char *stash)
 
 char	*get_next_line(int fd)
 {
-	static char	stash[OPEN_MAX][BUFFER_SIZE + 1];
+	static char	stash[GNL_OPEN_MAX][BUFFER_SIZE + 1];
 	char		*line;
 	int			read_count;
 
-	if (fd < 0 || fd > OPEN_MAX)
+	if (fd < 0 || fd > GNL_OPEN_MAX)
 		return (NULL);
 	if (BUFFER_SIZE < 1 || read(fd, stash[fd], 0) < 0)
 		return (ft_bzero(stash[fd], BUFFER_SIZE + 1), NULL);
