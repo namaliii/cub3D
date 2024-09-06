@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:38:28 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/06 17:45:29 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/06 19:08:04 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ static void	raycast_column(int x, t_game *game)
 	draw_safe_rect(game, x, 0             , 1   , ceiling_end_px                   , game->color_ceiling);
 	// draw_safe_rect(game, x, ceiling_end_px, 1   , floor_start_px - ceiling_end_px  , (t_rgba) {200, 200, 200, 255});
 	draw_textured_wall(game, x, ceiling_end_px, floor_start_px);
-	// put_texture_pixel(game, ceiling_end_px, floor_start_px - ceiling_end_px);
 	draw_safe_rect(game, x, floor_start_px, 1   , game->scr_height - floor_start_px, game->color_floor);
 }
 
