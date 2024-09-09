@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:54:22 by anamieta          #+#    #+#             */
-/*   Updated: 2024/08/27 18:02:14 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/09 19:58:33 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,31 +57,41 @@ void	process_line(t_game *game, char *line, int *map_flag)
 	}
 }
 
+void	check_and_process(t_game *game, char **line, int *file)
+{
+	static int	map_flag = 0;
+	static bool	empty_line = false;
+
+	if (line_is_empty(*line))
+	{
+		if (map_flag == 1)
+			empty_line = true;
+	}
+	else
+	{
+		if (empty_line && map_flag == 1)
+			exit_error_parser(game, game->map, "Empty line in map!");
+		process_line(game, *line, &map_flag);
+		empty_line = false;
+	}
+	free(*line);
+	*line = get_next_line(*file);
+}
+
 void	open_read_file(t_game *game, char *file_name)
 {
 	char	*line;
 	int		file;
-	int		map_flag;
 
-	map_flag = 0;
 	file = file_opening(game, file_name);
 	line = get_next_line(file);
 	if (!line)
 	{
-		printf("%s", "The file is empty!\n");
+		printf("The file is empty!\n");
 		close(file);
 		return ;
 	}
 	while (line)
-	{
-		if (line_is_empty(line) && map_flag == 0)
-		{
-			free(line);
-			line = get_next_line(file);
-		}
-		process_line(game, line, &map_flag);
-		free(line);
-		line = get_next_line(file);
-	}
+		check_and_process(game, &line, &file);
 	close(file);
 }

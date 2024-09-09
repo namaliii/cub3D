@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/06 17:35:15 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/09 20:39:42 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define ERR_MSG_ALLOC "Error: Allocation failed."
 
 # define PI 3.141592
-# define FOV 60
+# define FOV 90
 # define TURN_ANGLE 0.075
 # define WALK_SPEED 0.1
 
@@ -40,6 +40,12 @@
 # define DOOR_CLOSED_CHAR 'D'
 # define DOOR_OPENED_CHAR 'd'
 # define DIRECTION_OFFSET_COUNT 8
+
+typedef struct s_int_float
+{
+	int		side;
+	float	dist;
+} t_int_float;
 
 typedef struct s_rgba
 {
@@ -90,7 +96,7 @@ void			draw_safe_rect(t_game *game, int pos_x, int pos_y,
 					int len_x, int len_y, t_rgba color);
 // void			put_texture_pixel(t_game *game,
 // 					int wall_start_px, int wall_end_px);
-void 			draw_textured_wall(t_game *game, int x, int wall_start_px, int wall_end_px);
+void 			draw_textured_wall(t_game *game, int x, int wall_start_px, int wall_end_px, float ray_angle, t_int_float both);
 
 // Map
 bool			is_out_of_bounds(t_game *game, int x, int y);
