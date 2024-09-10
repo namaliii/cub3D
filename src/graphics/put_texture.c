@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 20:17:10 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/09 20:49:15 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/10 22:03:30 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,30 @@ void	draw_textured_wall(t_game *game, int x, int wall_start_px, int wall_end_px,
 {
 	float wall_hit_x = calculate_wall_hit_x(ray_angle, game->px, game->py, both);
 	int texture_x_offset = calculate_texture_x_offset(wall_hit_x, game);
-	mlx_texture_t *texture = game->tex_no;
+	mlx_texture_t *texture = NULL;
+	// printf("side: %d\n", both.side);
+	// printf("vector x: %f\n", both.vector.x);
+	// printf("vector y: %f\n", both.vector.y);
+    if (both.side == 0)  // Horizontal wall hit (aligned with Y-axis)
+    {
+        if (sin(ray_angle) > 0)  // Ray direction on X-axis
+            texture = game->tex_ea; // East wall
+        else
+            texture = game->tex_we; // West wall
+    }
+    else  // Vertical wall hit (aligned with X-axis)
+    {
+        if (cos(ray_angle) > 0)  // Ray direction on Y-axis
+            texture = game->tex_so; // South wall
+        else
+            texture = game->tex_no; // North wall
+    }
 	int texture_width = texture->width;
 	int texture_height = texture->height;
 	int wall_height = wall_end_px - wall_start_px;
 	double step = (double)texture_height / wall_height;
 	int y = wall_start_px;
+	// printf("Player ray angle: %f\n", game->p_angle_rad);
 	while (y < wall_end_px)
 	{
 		int texture_y = (int)((y - wall_start_px) * step);

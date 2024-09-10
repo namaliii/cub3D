@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:38:28 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/09 20:49:13 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/10 22:00:50 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,13 @@ static t_int_float	find_dist(float angle, t_game *game)
 	int			testx;
 	int			testy;
 	int			prevx;
+	int			prevy;
 
 	step_size = 0.025;
 	res.dist = 0.0;
 	res.side = -1;
 	prevx = game->px;
+	prevy = game->py;
 	do {
 		res.dist += step_size;
 		testx = (int) (game->px + sin(angle) * res.dist);
@@ -36,7 +38,10 @@ static t_int_float	find_dist(float angle, t_game *game)
 				res.side = 1;
 			break ;
 		}
+		res.vector.x = testx - prevx;
+		res.vector.y = testy - prevy;
 		prevx = testx;
+		prevy = testy;
 	} while (!is_out_of_bounds(game, testx, testy));
 	return (res);
 }

@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/09 20:39:42 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/10 21:58:33 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,17 @@
 # define DOOR_OPENED_CHAR 'd'
 # define DIRECTION_OFFSET_COUNT 8
 
+typedef struct s_vec2d
+{
+	float	x;
+	float	y;
+}	t_vec2d;
+
 typedef struct s_int_float
 {
 	int		side;
 	float	dist;
+	t_vec2d	vector;
 } t_int_float;
 
 typedef struct s_rgba
@@ -54,12 +61,6 @@ typedef struct s_rgba
 	unsigned int	b;
 	unsigned int	a;
 }	t_rgba;
-
-typedef struct s_vec2d
-{
-	float	x;
-	float	y;
-}	t_vec2d;
 
 typedef struct s_game
 {
