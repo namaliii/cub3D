@@ -6,11 +6,23 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:38:28 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/11 19:51:50 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/12 15:46:50 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	hit_info_init(t_ray_hit *hit_info)
+{
+	if (hit_info != NULL)
+	{
+		hit_info->side = -1;
+		hit_info->dist = 0.0;
+		hit_info->wall_start_px = 0;
+		hit_info->wall_end_px = 0;
+		hit_info->wall_height = 0;
+	}
+}
 
 static t_ray_hit	*find_dist(float angle, t_game *game)
 {
@@ -22,15 +34,7 @@ static t_ray_hit	*find_dist(float angle, t_game *game)
 	int			prevy;
 
 	hit_info = malloc(sizeof(t_ray_hit));
-	if (hit_info != NULL)
-	{
-		hit_info->side = -1;
-		hit_info->dist = 0.0;
-		hit_info->wall_start_px = 0;
-		hit_info->wall_end_px = 0;
-		hit_info->wall_height = 0;
-		hit_info->ray_angle = 0.0;
-	}
+	hit_info_init(hit_info);
 	step_size = 0.025;
 	prevx = game->px;
 	prevy = game->py;
@@ -54,7 +58,7 @@ static t_ray_hit	*find_dist(float angle, t_game *game)
 
 static void	raycast_column(int x, t_game *game)
 {
-	t_ray_hit 	*hit_info;
+	t_ray_hit	*hit_info;
 	float		angle_rad;
 	float		dist;
 	int			ceiling_end_px;
@@ -68,7 +72,6 @@ static void	raycast_column(int x, t_game *game)
 	hit_info->wall_start_px = ceiling_end_px;
 	hit_info->wall_end_px = floor_start_px;
 	hit_info->wall_height = floor_start_px - ceiling_end_px;
-	hit_info->ray_angle = angle_rad;
 	//                   x, y             , xlen, ylen                             , color
 	draw_safe_rect(game, x, 0             , 1   , ceiling_end_px                   , game->color_ceiling);
 	// draw_safe_rect(game, x, ceiling_end_px, 1   , floor_start_px - ceiling_end_px  , (t_rgba) {200, 200, 200, 255});

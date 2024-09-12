@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/11 19:51:16 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/12 15:42:26 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ typedef struct s_ray_hit
 	int		wall_start_px;
 	int		wall_end_px;
 	int		wall_height;
-	float	ray_angle;
 }	t_ray_hit;
 
 typedef struct s_rgba
@@ -98,7 +97,8 @@ void			draw_rect(t_game *game, int pos_x, int pos_y,
 					int len_x, int len_y, t_rgba color);
 void			draw_safe_rect(t_game *game, int pos_x, int pos_y,
 					int len_x, int len_y, t_rgba color);
-void 			draw_textured_wall(t_game *game, int x, float ray_angle, t_ray_hit *hit_info);
+void			draw_textured_wall(t_game *game, int x, float ray_angle,
+					t_ray_hit *hit_info);
 
 // Map
 bool			is_out_of_bounds(t_game *game, int x, int y);

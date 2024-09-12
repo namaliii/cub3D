@@ -1,10 +1,10 @@
-NO ./img/dali1.png
-SO ./img/vangogh.png
-WE ./img/clock.png
-EA ./img/irises.png
+NO ./img/squares/dali3.png
+SO ./img/squares/vangogh.png
+WE ./img/squares/rooftops.png
+EA ./img/squares/irises.png
 
-F 220,100,0
-C 225,30,0
+F 145,214,185
+C 19,93,135
 
 111
 1N1

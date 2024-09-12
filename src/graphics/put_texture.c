@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 20:17:10 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/11 20:09:49 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/12 15:39:47 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,31 +47,27 @@ mlx_texture_t	*return_texture(t_game *game,
 	return (texture);
 }
 
-int	get_texture_color(mlx_texture_t *texture,
-	t_ray_hit *hit_info, int wall_hit_x, int y)
+int	get_texture_color(mlx_texture_t *tex, t_ray_hit *hit_info,
+	float wall_hit_x, int y)
 {
-	int		texture_x_offset;
+	int		tex_x_offset;
 	double	step;
-	int		texture_y;
+	int		tex_y;
 	int		color;
 
-	texture_x_offset = (int)(wall_hit_x * texture->width) % texture->width;
-	step = (double)texture->height / hit_info->wall_height;
-	texture_y = (int)((y - hit_info->wall_start_px) * step);
-	texture_y = min2(max2(texture_y, 0), texture->height - 1);
-	color = (texture->pixels
-		[(texture_y * texture->width + texture_x_offset) * 4] << 24)
-		| (texture->pixels
-		[(texture_y * texture->width + texture_x_offset) * 4 + 1] << 16)
-		| (texture->pixels
-		[(texture_y * texture->width + texture_x_offset) * 4 + 2] << 8)
-		| (texture->pixels
-		[(texture_y * texture->width + texture_x_offset) * 4 + 3]);
+	tex_x_offset = (int)(wall_hit_x * tex->width) % tex->width;
+	step = (double)tex->height / hit_info->wall_height;
+	tex_y = (int)((y - hit_info->wall_start_px) * step);
+	tex_y = min2(max2(tex_y, 0), tex->height - 1);
+	color = (tex->pixels[(tex_y * tex->width + tex_x_offset) * 4] << 24)
+		| (tex->pixels[(tex_y * tex->width + tex_x_offset) * 4 + 1] << 16)
+		| (tex->pixels[(tex_y * tex->width + tex_x_offset) * 4 + 2] << 8)
+		| (tex->pixels[(tex_y * tex->width + tex_x_offset) * 4 + 3]);
 	return (color);
 }
 
-void	draw_textured_wall(t_game *game, int x,
-	float ray_angle, t_ray_hit *hit_info)
+void	draw_textured_wall(t_game *game, int x, float ray_angle,
+	t_ray_hit *hit_info)
 {
 	mlx_texture_t	*texture;
 	int				y;
@@ -89,35 +85,3 @@ void	draw_textured_wall(t_game *game, int x,
 		y++;
 	}
 }
-
-// void	draw_textured_wall(t_game *game, int x, float ray_angle,
-// 	t_ray_hit *hit_info)
-// {
-// 	float			wall_hit_x;
-// 	mlx_texture_t	*texture;
-// 	int				texture_x_offset;
-// 	int				wall_height;
-// 	double			step;
-// 	int				y;
-// 	int 			texture_y;
-// 	int 			color;
-
-// 	wall_hit_x = calculate_wall_hit_x(ray_angle, game->px, game->py, hit_info);
-// 	texture = return_texture(game, ray_angle, hit_info);
-// 	texture_x_offset = (int)(wall_hit_x * texture->width) % texture->width;
-// 	wall_height = hit_info->wall_end_px - hit_info->wall_start_px;
-// 	step = (double)texture->height / wall_height;
-// 	y = hit_info->wall_start_px;
-// 	while (y < hit_info->wall_end_px)
-// 	{
-// 		texture_y = (int)((y - hit_info->wall_start_px) * step);
-// 		texture_y = min2(max2(texture_y, 0), texture->height - 1);
-// 		color = (texture->pixels[(texture_y * texture->width + texture_x_offset) * 4] << 24)
-// 			| (texture->pixels[(texture_y * texture->width + texture_x_offset) * 4 + 1] << 16)
-// 			| (texture->pixels[(texture_y * texture->width + texture_x_offset) * 4 + 2] << 8)
-// 			| (texture->pixels[(texture_y * texture->width + texture_x_offset) * 4 + 3]);
-// 		if (x < game->scr_width && y < game->scr_height && x >= 0 && y >= 0)
-// 			mlx_put_pixel(game->img, x, y, color);
-// 		y++;
-// 	}
-// }
