@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/12 15:42:26 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/12 20:49:05 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@
 # define DOOR_CLOSED_CHAR 'D'
 # define DOOR_OPENED_CHAR 'd'
 # define DIRECTION_OFFSET_COUNT 8
+
+# define MOUSE_SENSITIVITY 0.005
 
 typedef struct s_ray_hit
 {
@@ -127,6 +129,7 @@ void			mock_parse(int argc, char *argv[], t_game *game);
 void			init_player(t_game *game);
 void			handle_movement(t_game *game);
 void			keyboard_hook(mlx_key_data_t key, void *param);
+void			mouse_move_hook(double xpos, double ypos, void *param);
 
 // Utils
 void			exit_error(const char *msg);
