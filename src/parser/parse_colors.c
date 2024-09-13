@@ -6,13 +6,13 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:25:58 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 14:50:37 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 15:16:51 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	is_valid_channel_str(char *s)
+static int	is_valid_channel_str(char *s)
 {
 	size_t	i;
 	char	*trimmed;
@@ -52,7 +52,7 @@ static int	check_and_set_color_channel(char *val, unsigned int *channel)
 
 // Return `line` with its newline character discarded at the end
 // Return NULL if allocation fails
-char	*discard_if_newline(char *line)
+static char	*discard_if_newline(char *line)
 {
 	char	*line_without_newline;
 	int		line_len;
