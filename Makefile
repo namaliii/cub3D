@@ -20,7 +20,6 @@ GRAPHICS_FILES		= render_frame.c \
 MAP_FILES			= checks.c
 
 PARSER_FILES		= parse.c \
-						mock_parse.c \
 						player_init.c \
 						file_operations.c \
 						parse_map.c \
