@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:25:58 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 12:26:15 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 12:34:09 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,15 @@ char	*discard_newline(char *line)
 	int		line_len;
 
 	line_len = ft_strlen(line);
-	if (line[line_len - 1] != '\n')
+	if (line[line_len - 1] == '\n')
 	{
-		; // error?, it's not ending with \n, something wrong?
+		line_without_newline = ft_substr(line, 0, line_len - 1);
 	}
-	line_without_newline = ft_substr(line, 0, line_len - 1);
+	else
+	{
+		line_without_newline = ft_substr(line, 0, line_len);
+		; // free(line_without_newline), error?, it's not ending with \n, something wrong?
+	}
 	return (line_without_newline);
 }
 
@@ -65,4 +69,5 @@ void	parse_rgb(t_game *game, char *line, t_rgba *color)
 	check_and_set_color_channel(game, color_strs[1], &color->g);
 	check_and_set_color_channel(game, color_strs[2], &color->b);
 	color->a = 255;
+	print_string_arr(color_strs);
 }
