@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validity.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 17:31:17 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/09 17:49:05 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/13 10:37:53 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ void	valid_characters(t_game *game)
 		while (game->map[i][j])
 		{
 			if (!ft_strchr(valid_chars, game->map[i][j]))
-				exit_error_parser(game, game->map,
-					"Map contains invalid characters!");
+				exit_error_parser(game, game->map, ERR_MSG_MAP_INVALID_CHARS);
 			j++;
 		}
 		i++;
@@ -47,8 +46,7 @@ void	top_bottom_check(t_game *game, int *i)
 		while (j < curr_line_width)
 		{
 			if (game->map[*i][j] != '1' && !ft_isspace(game->map[*i][j]))
-				exit_error_parser(game, game->map,
-					"Map is not surrounded by the walls!");
+				exit_error_parser(game, game->map, ERR_MSG_MAP_NOT_ENCLOSED);
 			j++;
 		}
 	}
@@ -74,7 +72,7 @@ void	interior_check(t_game *game, int *i)
 					&& ft_isspace(game->map[*i][j + 1])))
 				{
 					exit_error_parser(game, game->map,
-						"Map is not surrounded by the walls!");
+						ERR_MSG_MAP_NOT_ENCLOSED);
 				}
 			}
 			j++;
@@ -94,8 +92,7 @@ void	first_last_column(t_game *game)
 		while (ft_isspace(game->map[i][j]))
 			j++;
 		if (game->map[i][j] != '1')
-			exit_error_parser(game, game->map,
-				"Map is invalid!");
+			exit_error_parser(game, game->map, ERR_MSG_MAP_INVALID);
 		i++;
 	}
 	i = 0;
@@ -105,8 +102,7 @@ void	first_last_column(t_game *game)
 		while (!game->map[i][j] || (j > 0 && ft_isspace(game->map[i][j])))
 			j--;
 		if (j >= 0 && game->map[i][j] != '1' && game->map[i][j] != '\0')
-			exit_error_parser(game, game->map,
-				"Map is not surrounded by the walls!");
+			exit_error_parser(game, game->map, ERR_MSG_MAP_NOT_ENCLOSED);
 		i++;
 	}
 }

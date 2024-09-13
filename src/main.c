@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:28 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 14:18:42 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/13 15:02:13 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	main(int argc, char *argv[])
 	t_game	game;
 
 	if (parse(argc, argv, &game) == 1)
-		return (1);
+		return (EXIT_FAILURE);
 	init(&game);
 	mlx_set_cursor_mode(game.window, MLX_MOUSE_HIDDEN);
 	mlx_cursor_hook(game.window, &mouse_move_hook, &game);

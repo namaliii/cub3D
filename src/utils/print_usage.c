@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   load_textures.c                                    :+:      :+:    :+:   */
+/*   print_usage.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/22 14:37:49 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/13 15:46:51 by tunsal           ###   ########.fr       */
+/*   Created: 2024/09/13 10:47:23 by tunsal            #+#    #+#             */
+/*   Updated: 2024/09/13 10:51:07 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-mlx_texture_t	*load_image(char *path, t_game *game)
+void	print_usage(int argc, char **argv)
 {
-	mlx_texture_t	*texture;
-
-	texture = mlx_load_png(path);
-	if (!texture)
-	{
-		exit_error_parser(game, game->map, ERR_MSG_LOADING_TEXTURE);
-		return (NULL);
-	}
-	return (texture);
+	if (argc >= 1)
+		printf("usage: %s <map file>\n", argv[0]);
 }

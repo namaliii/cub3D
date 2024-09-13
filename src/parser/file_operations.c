@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:54:22 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/13 09:26:19 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 14:58:24 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	file_opening(t_game *game, char *file_name)
 
 	file = open(file_name, O_RDONLY);
 	if (file < 0)
-		exit_error_parser(game, game->map, "Failed to open the file");
+		exit_error_parser(game, game->map, ERR_MSG_FAILED_OPENING_FILE);
 	return (file);
 }
 
@@ -47,9 +47,9 @@ void	process_line(t_game *game, char *line, int *map_flag)
 	else if (ft_strncmp(line, "EA ", 3) == 0)
 		assign_textures(game, &(game->tex_ea), line);
 	else if (ft_strncmp(line, "F ", 2) == 0)
-		assign_color(game, line, &(game->color_floor));
+		parse_rgb(game, line, &(game->color_floor));
 	else if (ft_strncmp(line, "C ", 2) == 0)
-		assign_color(game, line, &(game->color_ceiling));
+		parse_rgb(game, line, &(game->color_ceiling));
 	else
 	{
 		*map_flag = 1;
@@ -70,7 +70,7 @@ void	check_and_process(t_game *game, char **line, int *file)
 	else
 	{
 		if (empty_line && map_flag == 1)
-			exit_error_parser(game, game->map, "Empty line in map!");
+			exit_error_parser(game, game->map, ERR_MSG_MAP_EMPTY_LINE);
 		process_line(game, *line, &map_flag);
 		empty_line = false;
 	}
@@ -87,7 +87,7 @@ void	open_read_file(t_game *game, char *file_name)
 	line = get_next_line(file);
 	if (!line)
 	{
-		printf("The file is empty!\n");
+		printf("%s\n", ERR_MSG_FILE_EMPTY);
 		close(file);
 		return ;
 	}

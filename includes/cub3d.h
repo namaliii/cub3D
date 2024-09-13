@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 14:19:34 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/13 15:02:03 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "libft.h"
 # include "get_next_line.h"
 # include "MLX42.h"
+# include "cub3d_err_msg.h"
 
 # define SCREEN_WIDTH 800
 # define SCREEN_HEIGHT 600
@@ -28,8 +29,6 @@
 
 # define MOCK_MAP_HEIGHT 10
 # define MOCK_MAP_WIDTH 10
-
-# define ERR_MSG_ALLOC "Error: Allocation failed."
 
 # define PI 3.141592
 # define FOV 60
@@ -128,7 +127,7 @@ bool			is_out_of_bounds(t_game *game, int x, int y);
 bool			is_wall(t_game *game, int x, int y);
 
 // Parser
-void			assign_color(t_game *game, char *line, t_rgba *color);
+void			parse_rgb(t_game *game, char *line, t_rgba *color);
 void			assign_textures(
 					t_game *game, mlx_texture_t **tex_img, char *line);
 int				parse(int argc, char **argv, t_game *game);
@@ -144,7 +143,6 @@ void			valid_characters(t_game *game);
 void			surrounded_by_walls(t_game *game);
 void			valid_path(t_game *game);
 void			player_check(t_game *game);
-void			mock_parse(int argc, char *argv[], t_game *game);
 
 // Player
 void			init_player(t_game *game);
@@ -158,9 +156,14 @@ void			exit_error_mlx(t_game *game, const char *msg);
 void			exit_error_parser(t_game *game, char **map, const char *msg);
 void			*safe_calloc(size_t elems_count, size_t elem_size);
 void			free_2d_array(char **array, int height);
+int				find_splits_length(char **splits);
 int				ft_isspace(char c);
 int				valid_extension(char *file_name);
 int				ft_isnumber(char *str);
+void			print_usage(int argc, char **argv);
+void			print_string_arr(char **str_arr);
+char			**ft_split_e(char const *str, char separator);
+int				str_is_numeric(char *s);
 
 // Conversions
 float			deg2rad(float angle_degree);
