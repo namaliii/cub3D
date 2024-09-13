@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 15:02:03 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 20:02:15 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,7 @@ void			init_player(t_game *game);
 void			handle_movement(t_game *game);
 void			keyboard_hook(mlx_key_data_t key, void *param);
 void			mouse_move_hook(double xpos, double ypos, void *param);
+int				is_walkable(t_game *game, t_vec2d *pos_change);
 
 // Utils
 void			exit_error(const char *msg);
@@ -175,7 +176,8 @@ void			print_map(t_game *game);
 void			debug_parse(t_game *game);
 
 // Math
-void			normalize_vec2d(t_vec2d *v);
+void			vec2d_normalize(t_vec2d *v);
+void			vec2d_multiply_by_scalar(t_vec2d *v, float scalar);
 int				min2(int a, int b);
 int				max2(int a, int b);
 

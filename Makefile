@@ -29,7 +29,8 @@ PARSER_FILES		= parse.c \
 						load_textures.c \
 						parse_colors.c
 
-PLAYER_FILES		= controls.c
+PLAYER_FILES		= controls.c \
+						collision.c
 
 UTILS_FILES			= get_next_line/get_next_line.c \
 						get_next_line/get_next_line_utils.c \

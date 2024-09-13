@@ -1,45 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_math.c                                       :+:      :+:    :+:   */
+/*   collision.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/16 16:37:38 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 20:02:07 by tunsal           ###   ########.fr       */
+/*   Created: 2024/09/13 19:48:50 by tunsal            #+#    #+#             */
+/*   Updated: 2024/09/13 20:02:45 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	vec2d_normalize(t_vec2d *v)
+// offset: -55, 0, 55
+int	does_ray_collide(int offset)
 {
-	const float	magnitude = sqrtf(v->x * v->x + v->y * v->y);
-	const float	inv_sqrt = 1.0 / magnitude;
-
-	if (magnitude > 0)
-	{
-		v->x = v->x * inv_sqrt;
-		v->y = v->y * inv_sqrt;
-	}
+	(void)offset;
+	return 1;
 }
 
-void	vec2d_multiply_by_scalar(t_vec2d *v, float scalar)
+// `pos_change` added to the player position will be the new location,
+// check if it is suitable to move there.
+int	is_walkable(t_game *game, t_vec2d *pos_change)
 {
-	v->x *= scalar;
-	v->y *= scalar;
-}
+	(void)game;
+	(void)pos_change;
+	// d = WALK_SPEED
+	// alpha = 55
 
-int	min2(int a, int b)
-{
-	if (a < b)
-		return (a);
-	return (b);
-}
 
-int	max2(int a, int b)
-{
-	if (a > b)
-		return (a);
-	return (b);
+
+	// straight
+
+	// left
+
+	// right
+	return 1;
 }
