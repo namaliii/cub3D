@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:37:38 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 20:22:50 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 21:02:31 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,18 @@ t_vec2d	*vec2d_mult_by_scalar(t_vec2d *v, float scalar)
 	v->x *= scalar;
 	v->y *= scalar;
 	return (v);
+}
+
+// Rotate vector `v` counter clockwise direction by `angle`
+void	vec2d_rot_ccw(t_vec2d *v, float angle)
+{
+	float	new_x;
+	float	new_y;
+
+	new_x = v->x * cos(angle) - v->y * sin(angle);
+	new_y = v->x * sin(angle) - v->y * cos(angle);
+	v->x = new_x;
+	v->y = new_y;
 }
 
 int	min2(int a, int b)

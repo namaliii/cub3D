@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 20:45:29 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 21:02:42 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,7 @@ void			debug_parse(t_game *game);
 // Math
 void			vec2d_normalize(t_vec2d *v);
 t_vec2d			*vec2d_mult_by_scalar(t_vec2d *v, float scalar);
+void			vec2d_rot_ccw(t_vec2d *v, float angle);
 int				min2(int a, int b);
 int				max2(int a, int b);
 
