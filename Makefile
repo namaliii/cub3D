@@ -15,7 +15,8 @@ GRAPHICS_FILES		= render_frame.c \
 						raycast.c \
 						minimap.c \
 						draw.c \
-						put_texture.c
+						put_texture.c \
+						dda.c
 
 MAP_FILES			= checks.c
 
