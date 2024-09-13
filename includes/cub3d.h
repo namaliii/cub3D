@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/12 15:42:26 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/13 09:26:50 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define ERR_MSG_ALLOC "Error: Allocation failed."
 
 # define PI 3.141592
-# define FOV 90
+# define FOV 60
 # define TURN_ANGLE 0.075
 # define WALK_SPEED 0.1
 
