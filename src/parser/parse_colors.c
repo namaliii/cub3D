@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:25:58 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 15:19:02 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 15:20:28 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ t_game *game, char *msg, char **color_strs, char *line)
 // Parses a comma separated rgb triplet read from `line` into `color`
 // `line` must only consist digits, commas, and newline character
 //
-// Begins by skipping "F " part in them map file
+// Begins by `line += 2;` which skips "F " part in the map file
 void	parse_rgb(t_game *game, char *line, t_rgba *color)
 {
 	char	**color_strs;
