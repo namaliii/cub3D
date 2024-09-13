@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:25:58 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 15:16:51 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 15:19:02 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,10 @@ static char	*discard_if_newline(char *line)
 	return (line_without_newline);
 }
 
-// frees line
-// frees color_strs if they exist
-// calls the general exit error function
+// Handles the errors occured in this file
+// - Frees `line`
+// - Frees `color_strs` if they exist
+// - Calls the general exit error function
 static void	error_handler(\
 t_game *game, char *msg, char **color_strs, char *line)
 {
