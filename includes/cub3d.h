@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 21:02:42 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 21:54:26 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define FOV 60
 # define TURN_ANGLE 0.075
 # define WALK_SPEED 0.1
+# define COLLISION_DIST 10
 
 # define SOLID_ELEMENTS "1D"
 # define DOOR_CLOSED_CHAR 'D'
