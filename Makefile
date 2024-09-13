@@ -41,8 +41,7 @@ UTILS_FILES			= get_next_line/get_next_line.c \
 						list.c \
 						parse_utils.c \
 						print_usage.c \
-						ft_split_e.c \
-						str_is_numeric.c
+						ft_split_e.c
 
 GRAPHICS_SRCS		= $(addprefix src/graphics/, $(GRAPHICS_FILES))
 MAP_SRCS			= $(addprefix src/map/, $(MAP_FILES))

@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 12:31:27 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 13:34:00 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define MOCK_MAP_WIDTH 10
 
 # define PI 3.141592
-# define FOV 90
+# define FOV 60
 # define TURN_ANGLE 0.075
 # define WALK_SPEED 0.1
 

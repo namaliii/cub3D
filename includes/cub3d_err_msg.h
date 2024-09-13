@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 10:38:59 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 12:23:28 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 13:26:46 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 // Parsing colors
 # define ERR_MSG_INVALID_COLORS \
 	"Error\nColors are beyond the proper scope, please adjust to 0 - 255"
-# define ERR_MSG_COLOR_INVALID_NUM_CHANNELS \
+# define ERR_MSG_COLOR_INVALID_NUM_CHNLS \
 	"Error\nColors have invalid number of channels"
 # define ERR_MSG_INVALID_CHAR_IN_COLOR "Error\nInvalid character in color"
 
