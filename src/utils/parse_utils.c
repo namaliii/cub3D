@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 19:24:11 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/13 11:03:46 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 19:04:27 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_isspace(char c)
 	return (0);
 }
 
-int	valid_extension(char *file_name)
+int	is_valid_extension(char *file_name)
 {
 	int		length;
 
@@ -41,13 +41,13 @@ int	valid_extension(char *file_name)
 	if (length < 4)
 	{
 		printf("%s\n", ERR_MSG_MAP_EXT_INVALID);
-		return (1);
+		return (0);
 	}
 	if (file_name[length - 4] != '.' || file_name[length - 3] != 'c'
 		|| file_name[length - 2] != 'u' || file_name[length - 1] != 'b')
 	{
 		printf("%s\n", ERR_MSG_MAP_EXT_INVALID);
-		return (1);
+		return (0);
 	}
-	return (0);
+	return (1);
 }

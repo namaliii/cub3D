@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:28 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 15:02:13 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 19:02:28 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@ void	game_loop(void *param)
 
 static void	init(t_game *game)
 {
+	int	i;
+
+	i = 0;
+	while (i < 6)
+	{
+		game->identifiers[i] = false;
+		i++;
+	}
 	game->scr_width = SCREEN_WIDTH;
 	game->scr_height = SCREEN_HEIGHT;
 	game->fov_rad = deg2rad(FOV);

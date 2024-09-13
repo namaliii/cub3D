@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_err_msg.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 10:38:59 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 13:26:46 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 19:38:32 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@
 # define ERR_MSG_FAILED_TO_DUP_LINE "Error\nFailed to duplicate line"
 # define ERR_MSG_FAILED_OPENING_FILE "Error\nFailed to open the file"
 # define ERR_MSG_FILE_EMPTY "Error\nThe file is empty!"
+
+// Parsing identifiers
+# define ERR_MSG_MISSING_IDENTIFIERS \
+	"Error\nOne or more identifiers are missing"
+# define ERR_MSG_MULTIPLE_IDENTIFIERS \
+	"Error\nSome identifiers are defined multiple times"
 
 // Parsing colors
 # define ERR_MSG_INVALID_COLORS \
@@ -40,7 +46,8 @@
 # define ERR_MSG_MAP_EXT_INVALID "Error\nMap extension invalid"
 
 // Parsing player
-# define ERR_MSG_INVALID_NUM_OF_PLAYERS "Error\nThere's more than one player chars"
+# define ERR_MSG_INVALID_NUM_OF_PLAYERS \
+	"Error\nThere's more than one player chars"
 # define ERR_MSG_NO_PLAYERS "Error\nThere's no player char"
 
 // Parsing texture

@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 17:03:17 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/13 19:39:23 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef struct s_game
 	int				scr_width;
 	int				scr_height;
 	float			fov_rad;
+	bool			identifiers[6];
 }	t_game;
 
 typedef struct s_dda_vars
@@ -131,10 +132,8 @@ void			parse_rgb(t_game *game, char *line, t_rgba *color);
 void			assign_textures(
 					t_game *game, mlx_texture_t **tex_img, char *line);
 int				parse(int argc, char **argv, t_game *game);
-int				line_is_empty(char *line);
-int				file_opening(t_game *game, char *file_name);
 void			process_line(t_game *game, char *line, int *map_flag);
-void			open_read_file(t_game *game, char *file_name);
+void			parse_file(t_game *game, int map_fd);
 void			add_line_to_map(t_game *game, char *line);
 mlx_texture_t	*load_image(char *path, t_game *game, char *line);
 void			add_padding(t_game *game);
@@ -142,7 +141,6 @@ int				get_map_width(t_game *game);
 void			valid_characters(t_game *game);
 void			surrounded_by_walls(t_game *game);
 void			valid_path(t_game *game);
-void			player_check(t_game *game);
 
 // Player
 void			init_player(t_game *game);
@@ -158,12 +156,11 @@ void			*safe_calloc(size_t elems_count, size_t elem_size);
 void			free_2d_array(char **array, int height);
 int				find_splits_length(char **splits);
 int				ft_isspace(char c);
-int				valid_extension(char *file_name);
+int				is_valid_extension(char *file_name);
 int				ft_isnumber(char *str);
 void			print_usage(int argc, char **argv);
 void			print_string_arr(char **str_arr);
 char			**ft_split_e(char const *str, char separator);
-int				str_is_numeric(char *s);
 
 // Conversions
 float			deg2rad(float angle_degree);
