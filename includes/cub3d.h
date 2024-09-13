@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 11:42:45 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 12:31:27 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ int				ft_isspace(char c);
 int				valid_extension(char *file_name);
 int				ft_isnumber(char *str);
 void			print_usage(int argc, char **argv);
+void			print_string_arr(char **str_arr);
 char			**ft_split_e(char const *str, char separator);
 int				str_is_numeric(char *s);
 
