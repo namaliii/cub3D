@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   controls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 15:43:24 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 14:18:58 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/13 16:28:15 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,6 @@ void	mouse_move_hook(double x, double y, void *param)
 	(void)y;
 	game = (t_game *)param;
 	center_x = game->scr_width / 2.0;
-	game->p_angle_rad += (x - center_x) * MOUSE_SENSITIVITY;
+	game->p_angle_rad -= (x - center_x) * MOUSE_SENSITIVITY;
 	mlx_set_mouse_pos(game->window, center_x, game->scr_height / 2);
 }
