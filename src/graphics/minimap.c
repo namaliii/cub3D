@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:44:59 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 15:54:47 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 16:13:00 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ static void	draw_line_from_player(t_game *game, float scale_horiz, float scale_v
 		front_x = game->px + front_dist * sin(game->p_angle_rad + angle_offset);
 		front_y = game->py + front_dist * cos(game->p_angle_rad + angle_offset);
 		if (front_x >= game->map_width || front_y >= game->map_height)
+		{
+			front_dist -= 0.05;
 			continue ;
+		}
 		draw_safe_rect(game, front_x * scale_horiz - thickness / 2, front_y * scale_vert - thickness / 2, thickness, thickness, color);
 		front_dist -= 0.05;
 	}
