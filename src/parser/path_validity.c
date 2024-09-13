@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_validity.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:30:16 by anamieta          #+#    #+#             */
-/*   Updated: 2024/08/27 17:45:52 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/13 10:30:09 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	check_the_path(t_game *game, char **map_copy, int height)
 			while (j < game->map_width)
 			{
 				if (map_copy[i][j] != 'Q' && !ft_isspace(map_copy[i][j]))
-					exit_error_parser(game, game->map, "Map has to be one piece");
+					exit_error_parser(game, game->map, ERR_MSG_MAP_NOT_ONE_PIECE);
 				j++;
 			}
 		}
@@ -96,7 +96,7 @@ void	valid_path(t_game *game)
 	map_copy = copy_map(game->map, game->map_height, game->map_width);
 	if (!map_copy)
 	{
-		printf("Failed to copy map for path validity check.\n");
+		printf("%s\n", ERR_MSG_MAP_VAL_CHCK_COPY_FAIL);
 		return ;
 	}
 	flood_fill(map_copy, game->map_height, game->map_width);

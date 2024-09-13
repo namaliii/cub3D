@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/12 15:42:26 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/13 10:42:23 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "libft.h"
 # include "get_next_line.h"
 # include "MLX42.h"
+# include "cub3d_err_msg.h"
 
 # define SCREEN_WIDTH 800
 # define SCREEN_HEIGHT 600
@@ -28,8 +29,6 @@
 
 # define MOCK_MAP_HEIGHT 10
 # define MOCK_MAP_WIDTH 10
-
-# define ERR_MSG_ALLOC "Error: Allocation failed."
 
 # define PI 3.141592
 # define FOV 90
@@ -121,7 +120,6 @@ void			valid_characters(t_game *game);
 void			surrounded_by_walls(t_game *game);
 void			valid_path(t_game *game);
 void			player_check(t_game *game);
-void			mock_parse(int argc, char *argv[], t_game *game);
 
 // Player
 void			init_player(t_game *game);

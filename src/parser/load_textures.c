@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 14:37:49 by anamieta          #+#    #+#             */
-/*   Updated: 2024/08/27 17:47:56 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/13 10:38:22 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ mlx_texture_t	*load_image(char *path, t_game *game)
 	texture = mlx_load_png(path);
 	if (!texture)
 	{
-		exit_error_parser(game, game->map, "Texture loading error");
+		exit_error_parser(game, game->map, ERR_MSG_LOADING_TEXTURE);
 		return (NULL);
 	}
 	return (texture);

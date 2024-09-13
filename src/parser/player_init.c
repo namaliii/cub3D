@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 16:33:32 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/17 19:09:42 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/13 10:43:26 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ void	player_check(t_game *game)
 			player_assign(game, &player, i, j);
 			if (player > 1)
 				exit_error_parser(game, game->map,
-					"There's more than one player chars");
+					ERR_MSG_INVALID_NUM_OF_PLAYERS);
 			j++;
 		}
 		i++;
 	}
 	if (player == 0)
-		exit_error_parser(game, game->map, "There's no player char");
+		exit_error_parser(game, game->map, ERR_MSG_NO_PLAYERS);
 }
 
 void	init_player(t_game *game)
@@ -64,26 +64,3 @@ void	init_player(t_game *game)
 	player_check(game);
 	game->game_over = false;
 }
-
-	// int first_free_x, first_free_y;
-	// int found_flag = false;
-
-	// for (first_free_y = 0; first_free_y < map->height; ++first_free_y)
-	// {
-	// 	for (first_free_x = 0; first_free_x < map->width; ++first_free_x)
-	// 	{
-	// 		if (map->map[first_free_y][first_free_x] == '0')
-	// 		{
-	// 			player->posx = first_free_x + 0.5;
-	// 			player->posy = first_free_y + 0.5;
-	// 			found_flag = true;
-	// 			break;
-	// 		}
-	// 	}
-
-	// 	if (found_flag)
-	// 		break;
-	// }
-
-	// if (!found_flag)
-	// 	exit_error("Couldn't find a valid player spawn position.");

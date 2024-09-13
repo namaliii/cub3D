@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:56:33 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/09 20:01:42 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/13 10:28:26 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	add_line_to_map(t_game *game, char *line)
 	new_map[game->map_height] = ft_strdup(line);
 	if (!new_map[game->map_height])
 	{
-		perror("Failed to duplicate line");
+		perror(ERR_MSG_FAILED_TO_DUP_LINE);
 		exit(EXIT_FAILURE);
 	}
 	if (game->map != NULL)

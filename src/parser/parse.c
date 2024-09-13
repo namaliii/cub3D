@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:25 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/11 17:57:57 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/13 10:27:35 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	invalid_chars_check(t_game *game, char *ptr)
 	while (ptr[i])
 	{
 		if (!ft_isdigit(ptr[i]) && !ft_isspace(ptr[i]) && ptr[i] != ',')
-			exit_error_parser(game, game->map, "Invalid characters in colors");
+			exit_error_parser(game, game->map, ERR_MSG_INVALID_CHAR_IN_COLOR);
 		i++;
 	}
 }
@@ -62,8 +62,7 @@ void	assign_color(t_game *game, char *line, t_rgba *color)
 		ptr++;
 	b = (unsigned int)ft_atoi(ptr);
 	if (r > 255|| g > 255|| b > 255)
-		exit_error_parser(game, game->map,
-			"Colors are beyond the proper scope, please adjust to 0 - 255");
+		exit_error_parser(game, game->map, ERR_MSG_INVALID_COLORS);
 	color->r = r;
 	color->g = g;
 	color->b = b;
@@ -75,19 +74,18 @@ int	parse(int argc, char **argv, t_game *game)
 	ft_bzero(game, sizeof(t_game));
 	if (argc != 2)
 	{
-		printf("%s", "Wrong number of arguments!\n");
-		return (1);
+		printf("%s\n", ERR_MSG_INVALID_ARGC);
+		return (EXIT_FAILURE);
 	}
 	if (valid_extension(argv[1]) == 1)
-		return (1);
+		return (EXIT_FAILURE);
 	game->map_height = 0;
 	game->map = NULL;
 	open_read_file(game, argv[1]);
 	game->map_width = get_map_width(game);
 	add_padding(game);
 	if (game->map_width > MAX_MAP_WIDTH || game->map_height > MAX_MAP_HEIGHT)
-		exit_error_parser(game, game->map,
-			"Size of the map causes stack overflow! Create a smaller map.");
+		exit_error_parser(game, game->map, ERR_MSG_INVALID_MAP_SIZE);
 	valid_characters(game);
 	surrounded_by_walls(game);
 	valid_path(game);
