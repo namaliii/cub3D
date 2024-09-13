@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:54:22 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/13 10:23:45 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 10:53:47 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	file_opening(t_game *game, char *file_name)
 
 	file = open(file_name, O_RDONLY);
 	if (file < 0)
-		exit_error_parser(game, game->map, "Failed to open the file");
+		exit_error_parser(game, game->map, ERR_MSG_FAILED_OPENING_FILE);
 	return (file);
 }
 
@@ -70,7 +70,7 @@ void	check_and_process(t_game *game, char **line, int *file)
 	else
 	{
 		if (empty_line && map_flag == 1)
-			exit_error_parser(game, game->map, "Empty line in map!");
+			exit_error_parser(game, game->map, ERR_MSG_MAP_EMPTY_LINE);
 		process_line(game, *line, &map_flag);
 		empty_line = false;
 	}
@@ -87,7 +87,7 @@ void	open_read_file(t_game *game, char *file_name)
 	line = get_next_line(file);
 	if (!line)
 	{
-		printf("The file is empty!\n");
+		printf("%s\n", ERR_MSG_FILE_EMPTY);
 		close(file);
 		return ;
 	}

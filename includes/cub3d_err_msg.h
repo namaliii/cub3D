@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 10:38:59 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 10:41:57 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 10:53:42 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,8 @@
 # define ERR_MSG_MAP_NOT_ENCLOSED "Map is not surrounded by the walls!"
 # define ERR_MSG_MAP_INVALID "Map is invalid!"
 # define ERR_MSG_LOADING_TEXTURE "Texture loading error"
+# define ERR_MSG_FILE_EMPTY "The file is empty!"
+# define ERR_MSG_MAP_EMPTY_LINE "Empty line in map!"
+# define ERR_MSG_FAILED_OPENING_FILE "Failed to open the file"
 
 #endif
