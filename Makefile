@@ -38,7 +38,8 @@ UTILS_FILES			= get_next_line/get_next_line.c \
 						debug_print.c \
 						cub3d_math.c \
 						list.c \
-						parse_utils.c
+						parse_utils.c \
+						print_usage.c
 
 GRAPHICS_SRCS		= $(addprefix src/graphics/, $(GRAPHICS_FILES))
 MAP_SRCS			= $(addprefix src/map/, $(MAP_FILES))

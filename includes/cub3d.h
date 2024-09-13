@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 10:42:23 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 10:50:19 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ void			free_2d_array(char **array, int height);
 int				ft_isspace(char c);
 int				valid_extension(char *file_name);
 int				ft_isnumber(char *str);
+void			print_usage(int argc, char **argv);
 
 // Conversions
 float			deg2rad(float angle_degree);

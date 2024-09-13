@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:25 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 10:27:35 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 10:50:27 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int	parse(int argc, char **argv, t_game *game)
 	if (argc != 2)
 	{
 		printf("%s\n", ERR_MSG_INVALID_ARGC);
+		print_usage(argc, argv);
 		return (EXIT_FAILURE);
 	}
 	if (valid_extension(argv[1]) == 1)
