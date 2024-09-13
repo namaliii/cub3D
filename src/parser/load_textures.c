@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 14:37:49 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/13 10:38:22 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 15:46:51 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,3 @@ mlx_texture_t	*load_image(char *path, t_game *game)
 	}
 	return (texture);
 }
-

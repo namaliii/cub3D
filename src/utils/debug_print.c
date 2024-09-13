@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 17:34:55 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 12:30:56 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 15:46:25 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,24 +43,31 @@ void	debug_print(t_game *game)
 
 void	debug_parse(t_game *game)
 {
-	printf("color ceiling: r:%d, g:%d, b:%d, a:%d\n", game->color_ceiling.r, game->color_ceiling.g, game->color_ceiling.b, game->color_ceiling.a);
-	printf("color floor: r:%d, g:%d, b:%d, a:%d\n", game->color_floor.r, game->color_floor.g, game->color_floor.b, game->color_floor.a);
+	int	i;
+
+	printf("color ceiling: r:%d, g:%d, b:%d, a:%d\n", game->color_ceiling.r, \
+game->color_ceiling.g, game->color_ceiling.b, game->color_ceiling.a);
+	printf("color floor: r:%d, g:%d, b:%d, a:%d\n", game->color_floor.r, \
+game->color_floor.g, game->color_floor.b, game->color_floor.a);
 	if (game->map == NULL)
 	{
 		printf("Map is NULL\n");
 		return ;
 	}
-	for (int i = 0; i < game->map_height; i++)
+	i = 0;
+	while (i < game->map_height)
 	{
 		if (game->map[i] != NULL)
 			printf("%d: %s", i, game->map[i]);
 		else
 			printf("Line %d is NULL\n", i);
 		printf("%s", "\n");
+		++i;
 	}
 	printf("Map height: %d\n", game->map_height);
 	printf("Map width: %d\n", game->map_width);
-	printf("Player px: %f, py: %f, p_angle: %f\n", game->px, game->py, game->p_angle_rad);
+	printf("Player px: %f, py: %f, p_angle: %f\n", game->px, game->py, \
+game->p_angle_rad);
 }
 
 void	print_string_arr(char **str_arr)
