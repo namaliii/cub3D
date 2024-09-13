@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 15:43:24 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 20:01:05 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 20:20:01 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ void	handle_movement(t_game *game)
 		|| mlx_is_key_down(game->window, MLX_KEY_LEFT))
 		game->p_angle_rad += TURN_ANGLE;
 	get_movement_direction(game, &pos_change);
-	vec2d_multiply_by_scalar(&pos_change, WALK_SPEED);
 	if (is_walkable(game, &pos_change))
 	{
+		vec2d_mult_by_scalar(&pos_change, WALK_SPEED);
 		game->px += pos_change.x;
 		game->py += pos_change.y;
 	}

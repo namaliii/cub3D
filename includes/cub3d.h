@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 20:02:15 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 20:19:59 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,7 @@ void			debug_parse(t_game *game);
 
 // Math
 void			vec2d_normalize(t_vec2d *v);
-void			vec2d_multiply_by_scalar(t_vec2d *v, float scalar);
+t_vec2d			*vec2d_mult_by_scalar(t_vec2d *v, float scalar);
 int				min2(int a, int b);
 int				max2(int a, int b);
 
