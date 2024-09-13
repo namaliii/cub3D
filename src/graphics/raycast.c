@@ -6,28 +6,23 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:38:28 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 09:26:07 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 09:36:25 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_ray_hit	*new_ray_hit()
+void	init_ray_hit(t_ray_hit *p_ray_hit)
 {
-	t_ray_hit	*result;
-
-	result = safe_calloc(1, sizeof(t_ray_hit));
-	result->side = -1;
-	result->dist = 0.0;
-	result->wall_start_px = 0;
-	result->wall_end_px = 0;
-	result->wall_height = 0;
-	return (result);
+	p_ray_hit->side = -1;
+	p_ray_hit->dist = 0.0;
+	p_ray_hit->wall_start_px = 0;
+	p_ray_hit->wall_end_px = 0;
+	p_ray_hit->wall_height = 0;
 }
 
-static t_ray_hit	*find_dist(float angle, t_game *game)
+void	find_dist(float angle, t_game *game, t_ray_hit *p_ray_hit)
 {
-	t_ray_hit	*ray_hit = new_ray_hit();
 	float ray_dir_x = sin(angle);
 	float ray_dir_y = cos(angle);
 	
@@ -72,31 +67,31 @@ static t_ray_hit	*find_dist(float angle, t_game *game)
 		perp_wall_dist = (map_x - game->px + (1 - step_x) / 2) / ray_dir_x;
 	else if (side == 1)
 		perp_wall_dist = (map_y - game->py + (1 - step_y) / 2) / ray_dir_y;
-	ray_hit->side = side;
-	ray_hit->dist = perp_wall_dist;
-	return ray_hit;
+	p_ray_hit->side = side;
+	p_ray_hit->dist = perp_wall_dist;
 }
 
 static void	raycast_column(int x, t_game *game)
 {
-	t_ray_hit	*hit_info;
+	t_ray_hit	hit_info;
 	float		angle_rad;
 	float		dist;
 	int			ceiling_end_px;
 	int			floor_start_px;
 
+	init_ray_hit(&hit_info);
 	angle_rad = (game->p_angle_rad + game->fov_rad / 2) - ((double) x / (double) game->scr_width) * game->fov_rad;
-	hit_info = find_dist(angle_rad, game);
-	dist = hit_info->dist * cos(angle_rad - game->p_angle_rad);
+	find_dist(angle_rad, game, &hit_info);
+	dist = hit_info.dist * cos(angle_rad - game->p_angle_rad);
 	ceiling_end_px = (game->scr_height / 2.0) - (double) game->scr_height / dist;
 	floor_start_px = game->scr_height - ceiling_end_px;
-	hit_info->wall_start_px = ceiling_end_px;
-	hit_info->wall_end_px = floor_start_px;
-	hit_info->wall_height = floor_start_px - ceiling_end_px;
+	hit_info.wall_start_px = ceiling_end_px;
+	hit_info.wall_end_px = floor_start_px;
+	hit_info.wall_height = floor_start_px - ceiling_end_px;
 	//                   x, y             , xlen, ylen                             , color
 	draw_safe_rect(game, x, 0             , 1   , ceiling_end_px                   , game->color_ceiling);
 	// draw_safe_rect(game, x, ceiling_end_px, 1   , floor_start_px - ceiling_end_px  , (t_rgba) {200, 200, 200, 255});
-	draw_textured_wall(game, x, angle_rad, hit_info);
+	draw_textured_wall(game, x, angle_rad, &hit_info);
 	draw_safe_rect(game, x, floor_start_px, 1   , game->scr_height - floor_start_px, game->color_floor);
 }
 
