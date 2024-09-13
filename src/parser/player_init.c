@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 16:33:32 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 10:43:26 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 10:57:42 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	player_assign(t_game *game, int *player, int i, int j)
 	}
 }
 
-void	player_check(t_game *game)
+void	init_player(t_game *game)
 {
 	int		player;
 	int		i;
@@ -57,10 +57,4 @@ void	player_check(t_game *game)
 	}
 	if (player == 0)
 		exit_error_parser(game, game->map, ERR_MSG_NO_PLAYERS);
-}
-
-void	init_player(t_game *game)
-{
-	player_check(game);
-	game->game_over = false;
 }

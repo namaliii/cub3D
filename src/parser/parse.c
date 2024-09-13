@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:25 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 10:50:27 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 10:57:01 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int	parse(int argc, char **argv, t_game *game)
 	}
 	if (valid_extension(argv[1]) == 1)
 		return (EXIT_FAILURE);
+	game->game_over = false;
 	game->map_height = 0;
 	game->map = NULL;
 	open_read_file(game, argv[1]);
