@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 13:34:00 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 14:57:23 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@
 # define DOOR_CLOSED_CHAR 'D'
 # define DOOR_OPENED_CHAR 'd'
 # define DIRECTION_OFFSET_COUNT 8
+
+# define HIT_VERTICAL_WALL 0
+# define HIT_HORIZONTAL_WALL 1
 
 typedef struct s_ray_hit
 {
@@ -85,12 +88,30 @@ typedef struct s_game
 	float			fov_rad;
 }	t_game;
 
+typedef struct s_dda_vars
+{
+	float	ray_dir_x;
+	float	ray_dir_y;
+	float	delta_dist_x;
+	float	delta_dist_y;
+	int		step_x;
+	int		step_y;
+	int		map_x;
+	int		map_y;
+	float	side_dist_x;
+	float	side_dist_y;
+	int		hit ;
+	int		side;
+	float	perp_wall_dist;
+}	t_dda_vars;
+
 // Main
 void			game_loop(void *param);
 
 // Graphics
 void			render_frame(t_game *game);
 void			raycast(t_game *game);
+void			find_dist(float angle, t_game *game, t_ray_hit *p_ray_hit);
 void			draw_minimap(t_game *game);
 void			draw_rect(t_game *game, int pos_x, int pos_y,
 					int len_x, int len_y, t_rgba color);
