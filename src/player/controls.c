@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 15:43:24 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 20:45:47 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 21:38:32 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,24 @@ void	handle_movement(t_game *game)
 		|| mlx_is_key_down(game->window, MLX_KEY_LEFT))
 		game->p_angle_rad += TURN_ANGLE;
 	get_movement_direction(game, &pos_change);
-	if (is_walkable(game, pos_change))
-	{
-		vec2d_mult_by_scalar(&pos_change, WALK_SPEED);
-		game->px += pos_change.x;
-		game->py += pos_change.y;
-	}
+	vec2d_mult_by_scalar(&pos_change, WALK_SPEED);
+	
+	float newx = game->px + pos_change.x;
+	float newy = game->py + pos_change.y;
+
+	float multiplier = 10;
+
+	float checkx = game->px + pos_change.x * multiplier;
+	float checky = game->py + pos_change.y * multiplier;
+	if (!is_wall(game, checkx, game->py))
+		game->px = newx;
+	if (!is_wall(game, game->px, checky))
+		game->py = newy;
+	// if (is_walkable(game, pos_change))
+	// {
+	// 	game->px += pos_change.x;
+	// 	game->py += pos_change.y;
+	// }
 }
 
 static void	handle_door(t_game *game)
