@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   controls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 15:43:24 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/16 19:13:28 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 14:18:58 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void	handle_door(t_game *game)
 	int				check_x;
 	int				check_y;
 	int				i;
-	
+
 	i = 0;
 	while (i < DIRECTION_OFFSET_COUNT)
 	{
@@ -92,4 +92,16 @@ void	keyboard_hook(mlx_key_data_t key, void *param)
 	game = (t_game *) param;
 	if (key.key == MLX_KEY_SPACE && key.action == MLX_PRESS)
 		handle_door(game);
+}
+
+void	mouse_move_hook(double x, double y, void *param)
+{
+	t_game	*game;
+	double	center_x;
+
+	(void)y;
+	game = (t_game *)param;
+	center_x = game->scr_width / 2.0;
+	game->p_angle_rad += (x - center_x) * MOUSE_SENSITIVITY;
+	mlx_set_mouse_pos(game->window, center_x, game->scr_height / 2);
 }
