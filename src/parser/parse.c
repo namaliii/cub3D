@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:25 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 11:04:13 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 11:37:26 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,47 +26,6 @@ void	assign_textures(t_game *game, mlx_texture_t **tex_img, char *line)
 	ft_strlcpy(texture_path, line + start, i - start + 1);
 	*tex_img = load_image(texture_path, game);
 	free(texture_path);
-}
-
-void	invalid_chars_check(t_game *game, char *ptr)
-{
-	int	i;
-
-	i = 0;
-	while (ptr[i])
-	{
-		if (!ft_isdigit(ptr[i]) && !ft_isspace(ptr[i]) && ptr[i] != ',')
-			exit_error_parser(game, game->map, ERR_MSG_INVALID_CHAR_IN_COLOR);
-		i++;
-	}
-}
-
-void	assign_color(t_game *game, char *line, t_rgba *color)
-{
-	char			*ptr;
-	unsigned int	r;
-	unsigned int	g;
-	unsigned int	b;
-
-	ptr = line + 2;
-	invalid_chars_check(game, ptr);
-	r = (unsigned int)ft_atoi(ptr);
-	while (*ptr && *ptr != ',')
-		ptr++;
-	if (*ptr == ',')
-		ptr++;
-	g = (unsigned int)ft_atoi(ptr);
-	while (*ptr && *ptr != ',')
-		ptr++;
-	if (*ptr == ',')
-		ptr++;
-	b = (unsigned int)ft_atoi(ptr);
-	if (r > 255|| g > 255|| b > 255)
-		exit_error_parser(game, game->map, ERR_MSG_INVALID_COLORS);
-	color->r = r;
-	color->g = g;
-	color->b = b;
-	color->a = 255;
 }
 
 int	parse(int argc, char **argv, t_game *game)

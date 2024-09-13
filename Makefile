@@ -25,7 +25,8 @@ PARSER_FILES		= parse.c \
 						parse_map.c \
 						map_validity.c \
 						path_validity.c \
-						load_textures.c
+						load_textures.c \
+						parse_colors.c
 
 PLAYER_FILES		= controls.c
 
@@ -39,7 +40,9 @@ UTILS_FILES			= get_next_line/get_next_line.c \
 						cub3d_math.c \
 						list.c \
 						parse_utils.c \
-						print_usage.c
+						print_usage.c \
+						ft_split_e.c \
+						str_is_numeric.c
 
 GRAPHICS_SRCS		= $(addprefix src/graphics/, $(GRAPHICS_FILES))
 MAP_SRCS			= $(addprefix src/map/, $(MAP_FILES))

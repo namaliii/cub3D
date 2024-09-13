@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 10:50:19 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 11:42:45 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ bool			is_out_of_bounds(t_game *game, int x, int y);
 bool			is_wall(t_game *game, int x, int y);
 
 // Parser
-void			assign_color(t_game *game, char *line, t_rgba *color);
+void			parse_rgb(t_game *game, char *line, t_rgba *color);
 void			assign_textures(
 					t_game *game, mlx_texture_t **tex_img, char *line);
 int				parse(int argc, char **argv, t_game *game);
@@ -132,10 +132,13 @@ void			exit_error_mlx(t_game *game, const char *msg);
 void			exit_error_parser(t_game *game, char **map, const char *msg);
 void			*safe_calloc(size_t elems_count, size_t elem_size);
 void			free_2d_array(char **array, int height);
+int				find_splits_length(char **splits);
 int				ft_isspace(char c);
 int				valid_extension(char *file_name);
 int				ft_isnumber(char *str);
 void			print_usage(int argc, char **argv);
+char			**ft_split_e(char const *str, char separator);
+int				str_is_numeric(char *s);
 
 // Conversions
 float			deg2rad(float angle_degree);
