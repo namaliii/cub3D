@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:25 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 11:37:26 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 17:30:57 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,14 @@ void	assign_textures(t_game *game, mlx_texture_t **tex_img, char *line)
 	start = i;
 	while (line[i] && !ft_isspace(line[i]))
 		i++;
-	texture_path = safe_calloc(i - start + 1, sizeof(char));
+	texture_path = ft_calloc(i - start + 1, sizeof(char));
+	if (texture_path == NULL)
+	{
+		free(line);
+		exit_error(ERR_MSG_ALLOC);
+	}
 	ft_strlcpy(texture_path, line + start, i - start + 1);
-	*tex_img = load_image(texture_path, game);
+	*tex_img = load_image(texture_path, game, line);
 	free(texture_path);
 }
 

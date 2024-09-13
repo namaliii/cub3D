@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_operations.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:54:22 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/13 14:58:24 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 17:26:16 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,10 @@ void	check_and_process(t_game *game, char **line, int *file)
 	else
 	{
 		if (empty_line && map_flag == 1)
+		{
+			free(*line);
 			exit_error_parser(game, game->map, ERR_MSG_MAP_EMPTY_LINE);
+		}
 		process_line(game, *line, &map_flag);
 		empty_line = false;
 	}

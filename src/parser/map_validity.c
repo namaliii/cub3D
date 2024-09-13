@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validity.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 17:31:17 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/13 10:37:53 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 16:53:27 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,8 @@ void	surrounded_by_walls(t_game *game)
 	int	i;
 
 	i = 0;
+	if (!game->map)
+		exit_error(ERR_MSG_MAP_INVALID);
 	top_bottom_check(game, &i);
 	i = game->map_height - 1;
 	top_bottom_check(game, &i);

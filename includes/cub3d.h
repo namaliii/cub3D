@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 15:02:03 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 17:03:17 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ int				file_opening(t_game *game, char *file_name);
 void			process_line(t_game *game, char *line, int *map_flag);
 void			open_read_file(t_game *game, char *file_name);
 void			add_line_to_map(t_game *game, char *line);
-mlx_texture_t	*load_image(char *path, t_game *game);
+mlx_texture_t	*load_image(char *path, t_game *game, char *line);
 void			add_padding(t_game *game);
 int				get_map_width(t_game *game);
 void			valid_characters(t_game *game);
