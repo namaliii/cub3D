@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 20:19:59 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 20:45:29 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ void			init_player(t_game *game);
 void			handle_movement(t_game *game);
 void			keyboard_hook(mlx_key_data_t key, void *param);
 void			mouse_move_hook(double xpos, double ypos, void *param);
-int				is_walkable(t_game *game, t_vec2d *pos_change);
+int				is_walkable(t_game *game, t_vec2d pos_change);
 
 // Utils
 void			exit_error(const char *msg);
@@ -163,6 +163,7 @@ int				valid_extension(char *file_name);
 int				ft_isnumber(char *str);
 void			print_usage(int argc, char **argv);
 void			print_string_arr(char **str_arr);
+void			print_vec2d(t_vec2d *v);
 char			**ft_split_e(char const *str, char separator);
 int				str_is_numeric(char *s);
 
