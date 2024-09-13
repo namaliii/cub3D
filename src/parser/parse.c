@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:25 by tunsal            #+#    #+#             */
-/*   Updated: 2024/08/27 18:39:24 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/11 17:57:57 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,5 @@ int	parse(int argc, char **argv, t_game *game)
 	surrounded_by_walls(game);
 	valid_path(game);
 	init_player(game);
-	debug_parse(game);
 	return (0);
 }

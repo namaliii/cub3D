@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:56:33 by anamieta          #+#    #+#             */
-/*   Updated: 2024/08/21 20:47:32 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/09 20:01:42 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	add_line_to_map(t_game *game, char *line)
 	int		i;
 
 	i = 0;
-	if (line_is_empty(line) == 1)
-		exit_error_parser(game, game->map, "Empty line in map!");
 	if (ft_strlen(line) > 0 && line[ft_strlen(line) - 1] == '\n')
 		line[ft_strlen(line) - 1] = '\0';
 	new_map = (char **)safe_calloc(game->map_height + 1, sizeof(char *));
@@ -68,7 +66,6 @@ void	add_padding(t_game *game)
 	int		line_length;
 
 	space_line = (char *)safe_calloc(game->map_width + 1, sizeof(char));
-
 	i = 0;
 	while (i < game->map_height)
 	{

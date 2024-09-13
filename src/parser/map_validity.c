@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 17:31:17 by anamieta          #+#    #+#             */
-/*   Updated: 2024/08/28 20:17:15 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/09 17:49:05 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	first_last_column(t_game *game)
 			j++;
 		if (game->map[i][j] != '1')
 			exit_error_parser(game, game->map,
-				"Map is not surrounded by the walls!");
+				"Map is invalid!");
 		i++;
 	}
 	i = 0;
