@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 10:38:59 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 10:53:42 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 11:02:25 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@
 # define ERR_MSG_FILE_EMPTY "The file is empty!"
 # define ERR_MSG_MAP_EMPTY_LINE "Empty line in map!"
 # define ERR_MSG_FAILED_OPENING_FILE "Failed to open the file"
+# define ERR_MSG_MAP_EXT_INVALID "Map extension invalid"
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 19:24:11 by anamieta          #+#    #+#             */
-/*   Updated: 2024/08/27 18:25:04 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/13 11:03:02 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,17 @@ int	valid_extension(char *file_name)
 {
 	int		length;
 
-	length = ft_strlen(file_name) - 1;
-	if (file_name[length - 3] != '.' || file_name[length - 2] != 'c'
-		|| file_name[length - 1] != 'u' || file_name[length] != 'b')
+	length = ft_strlen(file_name);
+	if (length < 4)
 	{
-		printf("%s", "Map extension invalid");
-		return (1);
+		printf("%s\n", ERR_MSG_MAP_EXT_INVALID);
+		return (EXIT_FAILURE);
+	}
+	if (file_name[length - 4] != '.' || file_name[length - 3] != 'c'
+		|| file_name[length - 2] != 'u' || file_name[length - 1] != 'b')
+	{
+		printf("%s\n", ERR_MSG_MAP_EXT_INVALID);
+		return (EXIT_FAILURE);
 	}
 	return (0);
 }
