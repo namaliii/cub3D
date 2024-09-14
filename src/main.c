@@ -23,14 +23,6 @@ void	game_loop(void *param)
 
 static void	init(t_game *game)
 {
-	int	i;
-
-	i = 0;
-	while (i < 6)
-	{
-		game->identifiers[i] = false;
-		i++;
-	}
 	game->scr_width = SCREEN_WIDTH;
 	game->scr_height = SCREEN_HEIGHT;
 	game->fov_rad = deg2rad(FOV);
