@@ -36,10 +36,12 @@ static void	raycast_column(int x, t_game *game)
 	dist = hit_info.dist * cos(angle_rad - game->p_angle_rad);
 	ceiling_end_px = (game->scr_height / 2.0) - (double) game->scr_height / dist;
 	floor_start_px = game->scr_height - ceiling_end_px;
+	// The "mess above"
 	hit_info.wall_start_px = ceiling_end_px;
 	hit_info.wall_end_px = floor_start_px;
 	hit_info.wall_height = floor_start_px - ceiling_end_px;
 	draw_safe_rect(game, x, 0, 1, ceiling_end_px, game->color_ceiling);
+	// TODO: Pass `ceiling_end_px` and `floor_start_px` in an array instead of creating the mess above
 	draw_textured_wall(game, x, angle_rad, &hit_info);
 	draw_safe_rect(game, x, floor_start_px, 1, game->scr_height - floor_start_px, game->color_floor);
 }
