@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 19:39:23 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/14 14:08:39 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ void			assign_textures(
 int				parse(int argc, char **argv, t_game *game);
 void			process_line(t_game *game, char *line, int *map_flag);
 void			parse_file(t_game *game, int map_fd);
+int				all_identifiers_exist(t_game *game);
 void			add_line_to_map(t_game *game, char *line);
 mlx_texture_t	*load_image(char *path, t_game *game, char *line);
 void			add_padding(t_game *game);
