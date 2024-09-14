@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 18:49:05 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/14 14:09:45 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/14 17:47:25 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,6 @@ void	process_line(t_game *game, char *line, int *map_flag)
 		*map_flag = 1;
 		add_line_to_map(game, line);
 	}
+	if (!game->tex_door)
+		game->tex_door = load_image(DOOR_TEX_PATH, game, line);
 }

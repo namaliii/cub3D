@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 20:17:10 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/12 15:39:47 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/14 18:10:38 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ static mlx_texture_t	*return_texture(t_game *game,
 	mlx_texture_t	*texture;
 
 	texture = NULL;
-	if (hit_info->side == 0)
+	if (hit_info->is_door)
+		texture = game->tex_door;
+	else if (hit_info->side == 0)
 	{
 		if (sin(ray_angle) > 0)
 			texture = game->tex_ea;

@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/14 14:08:39 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/14 17:46:59 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define SOLID_ELEMENTS "1D"
 # define DOOR_CLOSED_CHAR 'D'
 # define DOOR_OPENED_CHAR 'd'
+# define DOOR_TEX_PATH "./img/door.png"
 # define DIRECTION_OFFSET_COUNT 8
 
 # define HIT_VERTICAL_WALL 0
@@ -52,6 +53,7 @@ typedef struct s_ray_hit
 	int		wall_start_px;
 	int		wall_end_px;
 	int		wall_height;
+	int		is_door;
 }	t_ray_hit;
 
 typedef struct s_rgba
@@ -79,6 +81,7 @@ typedef struct s_game
 	mlx_texture_t	*tex_so;
 	mlx_texture_t	*tex_we;
 	mlx_texture_t	*tex_ea;
+	mlx_texture_t	*tex_door;
 	float			px;
 	float			py;
 	float			p_angle_rad;
