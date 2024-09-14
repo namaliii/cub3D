@@ -32,6 +32,7 @@ static void	raycast_column(int x, t_game *game)
 	init_ray_hit(&hit_info);
 	angle_rad = (game->p_angle_rad + game->fov_rad / 2) - ((double) x / (double) game->scr_width) * game->fov_rad;
 	find_dist(angle_rad, game, &hit_info);
+	// TODO: We are correcting fisheye for only this calculation, we don't update the actual damn thing that is used in other places
 	dist = hit_info.dist * cos(angle_rad - game->p_angle_rad);
 	ceiling_end_px = (game->scr_height / 2.0) - (double) game->scr_height / dist;
 	floor_start_px = game->scr_height - ceiling_end_px;
