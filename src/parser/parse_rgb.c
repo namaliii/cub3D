@@ -13,8 +13,8 @@
 #include "cub3d.h"
 
 // Must be numeric, may have spaces in either side.
-// If `newline_allowed` is true, it can have a single newline at the end.
-static int	is_valid_channel_str(char *s, int newline_allowed)
+// If `allow_newline` is true, it can have a single newline at the end.
+static int	is_valid_channel_str(char *s, int allow_newline)
 {
 	size_t	i;
 	char	*trimmed;
@@ -25,7 +25,7 @@ static int	is_valid_channel_str(char *s, int newline_allowed)
 	i = 0;
 	while (trimmed[i] != '\0')
 	{
-		if (!ft_isdigit(trimmed[i]) || (newline_allowed && trimmed[i] != '\n'))
+		if (!ft_isdigit(trimmed[i]) || (allow_newline && trimmed[i] != '\n'))
 		{
 			free(trimmed);
 			return (0);
@@ -35,19 +35,19 @@ static int	is_valid_channel_str(char *s, int newline_allowed)
 		++i;
 	}
 	free(trimmed);
-	if (newline_allowed && (nl_count > 1 || s[i - 1] != '\n'))
+	if (allow_newline && (nl_count > 1 || s[i - 1] != '\n'))
 		return (0);
 	return (1);
 }
 
 // Set the value in `val` into `channel` and return 0.
 // Upon error, print error message and return -1.
-static int	set_color_channel(\
-char *val, unsigned int *channel, int newline_allowed)
+static int	\
+set_color_channel(char *val, unsigned int *channel, int allow_newline)
 {
 	int		channel_val;
 
-	if (!is_valid_channel_str(val, nl_allowed))
+	if (!is_valid_channel_str(val, allow_newline))
 	{
 		printf("%s\n", ERR_MSG_INVALID_CHAR_IN_COLOR);
 		return (-1);
@@ -63,11 +63,11 @@ char *val, unsigned int *channel, int newline_allowed)
 }
 
 // Handles errors occured in the scope of this file, freeing respective allocs
-static void	error_handler(t_game *g, char *msg, char **color_strs, char *line)
+static void	error_handler(t_game *g, char *msg, char **channels, char *line)
 {
 	free(line - 2);
-	if (color_strs)
-		free_2d_array(color_strs, find_splits_length(color_strs));
+	if (channels)
+		free_2d_array(channels, find_splits_length(channels));
 	exit_error_parser(g, g->map, msg);
 }
 
@@ -101,5 +101,5 @@ void	parse_rgb(t_game *game, char *line, t_rgba *color)
 		error_handler(game, ERR_MSG_COLOR_INVALID_NUM_CHNLS, channels, line);
 	}
 	color->a = 255;
-	free_2d_array(channels, find_splits_length(channels));
+	free_2d_array(channels, 3);
 }
