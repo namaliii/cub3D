@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-float	calculate_wall_hit_x(float ray_angle, float player_x,
+static float	calculate_wall_hit_x(float ray_angle, float player_x,
 	float player_y, t_ray_hit *hit_info)
 {
 	float	wall_hit_x;
@@ -24,7 +24,7 @@ float	calculate_wall_hit_x(float ray_angle, float player_x,
 	return (wall_hit_x - floor(wall_hit_x));
 }
 
-mlx_texture_t	*return_texture(t_game *game,
+static mlx_texture_t	*return_texture(t_game *game,
 	float ray_angle, t_ray_hit *hit_info)
 {
 	mlx_texture_t	*texture;
@@ -47,7 +47,7 @@ mlx_texture_t	*return_texture(t_game *game,
 	return (texture);
 }
 
-int	get_texture_color(mlx_texture_t *tex, t_ray_hit *hit_info,
+static int	get_texture_color(mlx_texture_t *tex, t_ray_hit *hit_info,
 	float wall_hit_x, int y)
 {
 	int		tex_x_offset;
