@@ -25,7 +25,7 @@ static int	is_valid_channel_str(char *s, int allow_newline)
 	i = 0;
 	while (trimmed[i] != '\0')
 	{
-		if (!ft_isdigit(trimmed[i]) || (allow_newline && trimmed[i] != '\n'))
+		if (!ft_isdigit(trimmed[i]) && (allow_newline && trimmed[i] != '\n'))
 		{
 			free(trimmed);
 			return (0);
