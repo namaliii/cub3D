@@ -63,13 +63,12 @@ char *val, unsigned int *channel, int newline_allowed)
 }
 
 // Handles errors occured in the scope of this file, freeing respective allocs
-static void	error_handler(\
-t_game *game, char *msg, char **color_strs, char *line)
+static void	error_handler(t_game *g, char *msg, char **color_strs, char *line)
 {
 	free(line - 2);
 	if (color_strs)
 		free_2d_array(color_strs, find_splits_length(color_strs));
-	exit_error_parser(game, game->map, msg);
+	exit_error_parser(g, g->map, msg);
 }
 
 // Skips the inital identifier characters such as "F " part in the map file line
