@@ -127,9 +127,7 @@ void	check_and_process(t_game *game, char **line)
 void	parse_file(t_game *game, int map_fd)
 {
 	char	*line;
-	int		i;
 
-	i = 0;
 	line = get_next_line(map_fd);
 	if (!line)
 	{
