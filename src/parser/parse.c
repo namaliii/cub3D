@@ -12,28 +12,6 @@
 
 #include "cub3d.h"
 
-// TODO: move to proper place
-void	assign_textures(t_game *game, mlx_texture_t **tex_img, char *line)
-{
-	int		i;
-	int		start;
-	char	*texture_path;
-
-	i = 3;
-	start = i;
-	while (line[i] && !ft_isspace(line[i]))
-		i++;
-	texture_path = ft_calloc(i - start + 1, sizeof(char));
-	if (texture_path == NULL)
-	{
-		free(line);
-		exit_error(ERR_MSG_ALLOC);
-	}
-	ft_strlcpy(texture_path, line + start, i - start + 1);
-	*tex_img = load_image(texture_path, game, line);
-	free(texture_path);
-}
-
 static int	open_file(t_game *game, char *file_name)
 {
 	int	file;

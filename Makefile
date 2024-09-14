@@ -26,7 +26,7 @@ PARSER_FILES		= parse.c \
 						parse_map.c \
 						map_validity.c \
 						path_validity.c \
-						load_textures.c \
+						textures.c \
 						parse_rgb.c
 
 PLAYER_FILES		= controls.c

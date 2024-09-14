@@ -43,8 +43,10 @@ int	is_valid_extension(char *file_name)
 		printf("%s\n", ERR_MSG_MAP_EXT_INVALID);
 		return (0);
 	}
-	if (file_name[length - 4] != '.' || file_name[length - 3] != 'c'
-		|| file_name[length - 2] != 'u' || file_name[length - 1] != 'b')
+	if (file_name[length - 4] != '.'
+		|| file_name[length - 3] != 'c'
+		|| file_name[length - 2] != 'u'
+		|| file_name[length - 1] != 'b')
 	{
 		printf("%s\n", ERR_MSG_MAP_EXT_INVALID);
 		return (0);
