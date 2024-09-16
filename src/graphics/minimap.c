@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:44:59 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 16:13:00 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/16 23:55:32 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,10 @@ void	draw_minimap(t_game *game)
 {
 	t_minimap	mmap;
 	
-	mmap.scale_horiz = (game->scr_width / 3) / game->map_width;
-	mmap.scale_vert = (game->scr_height / 3) / game->map_height;
+	mmap.scale_horiz = (game->scr_width / 3.0) / game->map_width;
+	mmap.scale_vert = (game->scr_height / 3.0) / game->map_height;
 	draw_background(game, mmap.scale_horiz, mmap.scale_vert);
-	draw_map_tiles(game, 1 * mmap.scale_horiz, 1 * mmap.scale_vert);
+	draw_map_tiles(game, 1.0 * mmap.scale_horiz, 1.0 * mmap.scale_vert);
 	if (game->px < game->map_width && game->py < game->map_height)
 		draw_player(game, mmap.scale_horiz, mmap.scale_vert);
 	mmap.line_len = 1;
