@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/17 00:04:45 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/17 00:46:18 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@
 
 # define MAX_MAP_WIDTH 270
 # define MAX_MAP_HEIGHT 270
+
+# define PARSING_STATE_IDENTIFIERS 1000
+# define PARSING_STATE_WAITING_MAP 1001
+# define PARSING_STATE_MAP 1002
 
 # define MOCK_MAP_HEIGHT 10
 # define MOCK_MAP_WIDTH 10
@@ -137,17 +141,16 @@ bool			is_out_of_bounds(t_game *game, int x, int y);
 bool			is_wall(t_game *game, int x, int y);
 
 // Parser
+int				parse(int argc, char **argv, t_game *game);
+void 			parse_map_line(t_game *game, char *line);
+void			parse_identifier_line(t_game *game, char *line);
 void			parse_rgb(t_game *game, char *line, t_rgba *color);
 void			assign_textures(
 					t_game *game, mlx_texture_t **tex_img, char *line);
-int				parse(int argc, char **argv, t_game *game);
-void			process_line(t_game *game, char *line, int *map_flag);
-int				all_identifiers_exist(t_game *game);
-void			add_line_to_map(t_game *game, char *line);
 mlx_texture_t	*load_image(char *path, t_game *game, char *line);
-void			add_padding(t_game *game);
+void			add_padding_to_map(t_game *game);
 int				get_map_width(t_game *game);
-void			valid_characters(t_game *game);
+void			validate_map_characters(t_game *game);
 void			surrounded_by_walls(t_game *game);
 void			valid_path(t_game *game);
 

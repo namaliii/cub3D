@@ -6,29 +6,12 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 18:49:05 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/16 23:37:30 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/17 00:43:35 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	all_identifiers_exist(t_game *game)
-{
-	int	i;
-
-	i = 0;
-	while (i < 6)
-	{
-		if (!game->identifiers[i])
-		{
-			return (0);
-		}
-		i++;
-	}
-	return (1);
-}
-
-// Return if identifier is already set before
 static int	identifier_already_exists(t_game *game, char *line)
 {
 	if (ft_strncmp(line, "NO ", 3) == 0 && game->identifiers[0] == true)
@@ -62,7 +45,7 @@ static void	mark_identifier(t_game *game, char *line)
 		game->identifiers[5] = true;
 }
 
-void	process_line(t_game *game, char *line, int *map_flag)
+void	parse_identifier_line(t_game *game, char *line)
 {
 	if (identifier_already_exists(game, line))
 	{
@@ -82,9 +65,11 @@ void	process_line(t_game *game, char *line, int *map_flag)
 		parse_rgb(game, line, &(game->color_floor));
 	else if (ft_strncmp(line, "C ", 2) == 0)
 		parse_rgb(game, line, &(game->color_ceiling));
+	else if (is_line_empty(line))
+		;
 	else
 	{
-		*map_flag = 1;
-		add_line_to_map(game, line);
+		free(line);
+		exit_error_parser(game, game->map, ERR_MSG_INVALID_IDENTIFIER);
 	}
 }
