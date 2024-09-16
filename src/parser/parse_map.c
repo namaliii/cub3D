@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:56:33 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/16 23:38:19 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/16 23:43:58 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	add_line_to_map(t_game *game, char *line)
 {
 	if (ft_strlen(line) > 0 && line[ft_strlen(line) - 1] == '\n')
 		line[ft_strlen(line) - 1] = '\0';
-	game->map = ft_realloc(game->map, sizeof(char *) * game->map_height, 
-		sizeof(char *) * (game->map_height + 1));
+	game->map = ft_realloc(game->map, sizeof(char *) * game->map_height,
+			sizeof(char *) * (game->map_height + 1));
 	if (game->map == NULL)
 	{
 		free(line);
