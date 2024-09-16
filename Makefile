@@ -102,3 +102,5 @@ fclean: 			clean
 					@echo " DONE"
 
 re:		 			clean all
+
+bonus:				all
