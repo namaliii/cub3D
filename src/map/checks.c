@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 17:37:35 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 15:44:31 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/16 19:09:00 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ bool	is_wall(t_game *game, int x, int y)
 	int			lim;
 	int			i;
 
+	if (x < 0 || y < 0 || y >= game->map_height || x >= game->map_width)
+		return (false);
 	lim = ft_strlen(solid_elements);
 	i = 0;
 	while (i < lim)

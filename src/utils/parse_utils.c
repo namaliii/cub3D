@@ -6,11 +6,35 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 19:24:11 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/13 19:04:27 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/16 18:19:05 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	*ft_realloc(void *ptr, size_t original_size, size_t new_size)
+{
+	void	*new_ptr;
+	size_t	min_size;
+
+	if (new_size == 0)
+	{
+		free(ptr);
+		return (NULL);
+	}
+	new_ptr = malloc(new_size);
+	if (!new_ptr)
+		return (NULL);
+	if (!ptr)
+		return (new_ptr);
+	min_size = original_size;
+	if (new_size < original_size)
+		min_size = new_size;
+	if (min_size > 0)
+		ft_memcpy(new_ptr, ptr, min_size);
+	free(ptr);
+	return (new_ptr);
+}
 
 int	ft_isnumber(char *str)
 {

@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:56:33 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/13 16:56:21 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/16 18:27:56 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,23 @@
 void	add_line_to_map(t_game *game, char *line)
 {
 	char	**new_map;
-	int		i;
 
-	i = 0;
 	if (ft_strlen(line) > 0 && line[ft_strlen(line) - 1] == '\n')
 		line[ft_strlen(line) - 1] = '\0';
-	new_map = (char **)safe_calloc(game->map_height + 1, sizeof(char *));
-	while (i < game->map_height)
+	new_map = ft_realloc(game->map, sizeof(char *) * game->map_height,
+			sizeof(char *) * (game->map_height + 1));
+	if (!new_map)
 	{
-		new_map[i] = (game->map)[i];
-		i++;
+		free(line);
+		exit_error_parser(game, game->map, ERR_MSG_FAILED_TO_REALLOC_MAP);
 	}
 	new_map[game->map_height] = ft_strdup(line);
 	if (!new_map[game->map_height])
 	{
 		free(line);
-		perror(ERR_MSG_FAILED_TO_DUP_LINE);
-		exit(EXIT_FAILURE);
+		free_2d_array(new_map, game->map_height);
+		exit_error_parser(game, new_map, ERR_MSG_FAILED_TO_DUP_LINE);
 	}
-	if (game->map != NULL)
-		free(game->map);
 	game->map = new_map;
 	game->map_height++;
 }

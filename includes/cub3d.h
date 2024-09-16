@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/14 14:08:39 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/16 18:19:33 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,7 @@ int				ft_isnumber(char *str);
 void			print_usage(int argc, char **argv);
 void			print_string_arr(char **str_arr);
 char			**ft_split_e(char const *str, char separator);
+void			*ft_realloc(void *ptr, size_t original_size, size_t new_size);
 
 // Conversions
 float			deg2rad(float angle_degree);

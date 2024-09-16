@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 10:38:59 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 19:38:32 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/16 18:24:26 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@
 # define ERR_MSG_MAP_INVALID "Error\nMap is invalid!"
 # define ERR_MSG_MAP_EMPTY_LINE "Error\nEmpty line in map!"
 # define ERR_MSG_MAP_EXT_INVALID "Error\nMap extension invalid"
+# define ERR_MSG_FAILED_TO_REALLOC_MAP \
+	"Error\nFailed to reallocate the map for adding a new line while parsing"
 
 // Parsing player
 # define ERR_MSG_INVALID_NUM_OF_PLAYERS \

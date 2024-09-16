@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:20:17 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 16:54:49 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/16 18:03:40 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,18 @@
 void	exit_error_parser(t_game *game, char **map, const char *msg)
 {
 	free_2d_array(map, game->map_height);
-	exit_error_mlx(game, msg);
+	exit_error(msg);
 }
 
 void	exit_error_mlx(t_game *game, const char *msg)
 {
 	if (game->window)
 	{
-		// TODO: does this actually free the game->img?
+		if (game->img != NULL)
+		{
+			mlx_delete_image(game->window, game->img);
+			game->img = NULL;
+		}
 		mlx_close_window(game->window);
 		mlx_terminate(game->window);
 	}
