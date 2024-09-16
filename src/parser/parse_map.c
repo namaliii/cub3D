@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:56:33 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/17 00:42:29 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/17 00:55:57 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static void	add_line_to_map(t_game *game, char *line)
 	game->map_height++;
 }
 
-void parse_map_line(t_game *game, char *line)
+void	parse_map_line(t_game *game, char *line)
 {
 	if (is_line_empty(line))
 	{
