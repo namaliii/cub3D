@@ -63,11 +63,6 @@ void	handle_movement(t_game *game)
 		game->px = game->px + pos_change.x;
 	if (!is_wall(game, game->px, game->py + COLLISION_DIST * pos_change.y))
 		game->py = game->py + pos_change.y;
-	// if (is_walkable(game, pos_change))
-	// {
-	// 	game->px += pos_change.x;
-	// 	game->py += pos_change.y;
-	// }
 }
 
 static void	handle_door(t_game *game)

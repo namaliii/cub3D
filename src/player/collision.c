@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-static int	is_pos_walkable(t_game *game, t_vec2d *pos_change, int angle_offset)
+static int	is_pos_walkble(t_game *game, t_vec2d *pos_change, int angle_offset)
 {
 	vec2d_rot_ccw(pos_change, angle_offset);
 	if (is_wall(game, game->px + pos_change->x, game->py + pos_change->y))
@@ -23,11 +23,11 @@ static int	is_pos_walkable(t_game *game, t_vec2d *pos_change, int angle_offset)
 // Check if the direction of `mv_dir` unit vector walkable
 int	is_walkable(t_game *g, t_vec2d mv_dir)
 {
-	const float multiplier = 1;
+	const float d = COLLISION_DIST;
 
-	if (is_pos_walkable(g, vec2d_mult_by_scalar(&mv_dir, multiplier * WALK_SPEED), 0)
-		// && is_pos_walkable(g, vec2d_mult_by_scalar(&mv_dir, multiplier * WALK_SPEED), 55)
-		// && is_pos_walkable(g, vec2d_mult_by_scalar(&mv_dir, multiplier * WALK_SPEED), -55)
+	if (is_pos_walkble(g, vec2d_mult_by_scalar(&mv_dir, d * WALK_SPEED), 0)
+		&& is_pos_walkble(g, vec2d_mult_by_scalar(&mv_dir, d * WALK_SPEED), 55)
+		&& is_pos_walkble(g, vec2d_mult_by_scalar(&mv_dir, d * WALK_SPEED), -55)
 	)
 		return (1);
 	return (0);

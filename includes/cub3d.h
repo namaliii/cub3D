@@ -34,7 +34,7 @@
 # define FOV 60
 # define TURN_ANGLE 0.075
 # define WALK_SPEED 0.1
-# define COLLISION_DIST 10
+# define COLLISION_DIST 7
 
 # define SOLID_ELEMENTS "1D"
 # define DOOR_CLOSED_CHAR 'D'
