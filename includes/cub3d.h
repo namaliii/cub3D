@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/16 18:19:33 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/17 00:04:45 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,6 @@ void			assign_textures(
 					t_game *game, mlx_texture_t **tex_img, char *line);
 int				parse(int argc, char **argv, t_game *game);
 void			process_line(t_game *game, char *line, int *map_flag);
-void			parse_file(t_game *game, int map_fd);
 int				all_identifiers_exist(t_game *game);
 void			add_line_to_map(t_game *game, char *line);
 mlx_texture_t	*load_image(char *path, t_game *game, char *line);
@@ -165,13 +164,16 @@ void			exit_error_parser(t_game *game, char **map, const char *msg);
 void			*safe_calloc(size_t elems_count, size_t elem_size);
 void			free_2d_array(char **array, int height);
 int				find_splits_length(char **splits);
-int				ft_isspace(char c);
-int				is_valid_extension(char *file_name);
-int				ft_isnumber(char *str);
 void			print_usage(int argc, char **argv);
 void			print_string_arr(char **str_arr);
 char			**ft_split_e(char const *str, char separator);
 void			*ft_realloc(void *ptr, size_t original_size, size_t new_size);
+
+// Parser
+int				ft_isspace(char c);
+int				is_line_empty(char *line);
+int				is_valid_extension(char *file_name);
+int				ft_isnumber(char *str);
 
 // Conversions
 float			deg2rad(float angle_degree);

@@ -3,14 +3,61 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:25 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/14 14:10:39 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/17 00:07:07 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static void	parse_line(t_game *game, char **line)
+{
+	static int	map_flag = 0;
+	static bool	empty_line = false;
+
+	if (is_line_empty(*line))
+	{
+		if (map_flag == 1)
+			empty_line = true;
+	}
+	else
+	{
+		if (empty_line && map_flag == 1)
+		{
+			free(*line);
+			exit_error_parser(game, game->map, ERR_MSG_MAP_EMPTY_LINE);
+		}
+		process_line(game, *line, &map_flag);
+		empty_line = false;
+	}
+}
+
+static void	parse_file(t_game *game, int map_fd)
+{
+	char	*line;
+
+	line = get_next_line(map_fd);
+	if (!line)
+	{
+		printf("%s\n", ERR_MSG_FILE_EMPTY);
+		close(map_fd);
+		return ;
+	}
+	while (line != NULL)
+	{
+		parse_line(game, &line);
+		free(line);
+		line = get_next_line(map_fd);
+	}
+	if (!all_identifiers_exist(game))
+	{
+		free(line);
+		close(map_fd);
+		exit_error_parser(game, game->map, ERR_MSG_MISSING_IDENTIFIERS);
+	}
+}
 
 static int	open_file(t_game *game, char *file_name)
 {

@@ -22,7 +22,6 @@ MAP_FILES			= checks.c
 
 PARSER_FILES		= parse.c \
 						player_init.c \
-						file_operations.c \
 						parse_map.c \
 						map_validity.c \
 						path_validity.c \
@@ -43,7 +42,8 @@ UTILS_FILES			= get_next_line/get_next_line.c \
 						list.c \
 						parse_utils.c \
 						print_usage.c \
-						ft_split_e.c
+						ft_split_e.c \
+						ft_realloc.c
 
 GRAPHICS_SRCS		= $(addprefix src/graphics/, $(GRAPHICS_FILES))
 MAP_SRCS			= $(addprefix src/map/, $(MAP_FILES))
