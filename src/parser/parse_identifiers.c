@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_identifiers.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 18:49:05 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/14 14:09:45 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/16 23:37:30 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,10 @@ static void	mark_identifier(t_game *game, char *line)
 void	process_line(t_game *game, char *line, int *map_flag)
 {
 	if (identifier_already_exists(game, line))
+	{
+		free(line);
 		exit_error_parser(game, game->map, ERR_MSG_MULTIPLE_IDENTIFIERS);
+	}
 	mark_identifier(game, line);
 	if (ft_strncmp(line, "NO ", 3) == 0)
 		assign_textures(game, &(game->tex_no), line);
