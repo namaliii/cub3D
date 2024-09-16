@@ -1,8 +1,17 @@
+# Development
 .vscode/
 local/
 obj/
 *.o
-*.a
-.DS_Store
+
+# UNIX Outputs
 a.out
 cub3D
+*.a
+
+# MacOS
+.DS_Store
+
+# Windows Helpers & Outputs (Forbidden by Norm)
+*.bat
+cub3D.exe
