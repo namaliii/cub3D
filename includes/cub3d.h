@@ -68,6 +68,15 @@ typedef struct s_vec2d
 	float	y;
 }	t_vec2d;
 
+typedef struct	s_minimap
+{
+	float			scale_horiz;
+	float			scale_vert;
+	float			line_len;
+	float			line_thick;
+	t_rgba			line_color;
+}	t_minimap;
+
 typedef struct s_game
 {
 	int				map_width;
