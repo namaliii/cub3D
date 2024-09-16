@@ -22,6 +22,7 @@ void	exit_error_mlx(t_game *game, const char *msg)
 {
 	if (game->window)
 	{
+		// TODO: does this actually free the game->img?
 		mlx_close_window(game->window);
 		mlx_terminate(game->window);
 	}
