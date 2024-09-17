@@ -17,11 +17,6 @@ void	print_vec2d(t_vec2d *v)
 	printf("vec = <%f, %f>\n", v->x, v->y);
 }
 
-static void	print_player(t_game *game)
-{
-	printf("px = %f py = %f pa = %f\n", game->px, game->py, game->p_angle_rad);
-}
-
 void	print_map(t_game *game)
 {
 	int	y;
@@ -39,6 +34,11 @@ void	print_map(t_game *game)
 		printf("\n");
 		++y;
 	}
+}
+
+void	debug_print(t_game *game)
+{
+	printf("px = %f py = %f pa = %f\n", game->px, game->py, game->p_angle_rad);
 }
 
 void	debug_parse(t_game *game)
