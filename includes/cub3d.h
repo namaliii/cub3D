@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/17 00:46:18 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/17 05:18:39 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,22 +172,22 @@ void			print_string_arr(char **str_arr);
 char			**ft_split_e(char const *str, char separator);
 void			*ft_realloc(void *ptr, size_t original_size, size_t new_size);
 
-// Parser
+// Parser utils
 int				ft_isspace(char c);
 int				is_line_empty(char *line);
 int				is_valid_extension(char *file_name);
 int				ft_isnumber(char *str);
 
-// Conversions
+// Conversions utils
 float			deg2rad(float angle_degree);
 uint32_t		rgba2color(t_rgba rgba);
 
-// Debug
+// Debug utils
 void			debug_print(t_game *game);
 void			print_map(t_game *game);
 void			debug_parse(t_game *game);
 
-// Math
+// Math utils
 void			normalize_vec2d(t_vec2d *v);
 int				min2(int a, int b);
 int				max2(int a, int b);
