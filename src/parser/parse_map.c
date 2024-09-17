@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:56:33 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/17 00:55:57 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/17 17:54:41 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ static void	add_line_to_map(t_game *game, char *line)
 	if (game->map[game->map_height] == NULL)
 	{
 		free(line);
-		free_2d_array(game->map, game->map_height);
 		exit_error_parser(game, game->map, ERR_MSG_FAILED_TO_DUP_LINE);
 	}
 	game->map_height++;
