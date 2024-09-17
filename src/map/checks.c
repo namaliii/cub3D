@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 17:37:35 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/17 01:33:24 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/17 04:19:58 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ bool	is_wall(t_game *game, int x, int y)
 	int			i;
 
 	if (is_out_of_bounds(game, x, y))
-		return (false);
+		return (true);
 	lim = ft_strlen(solid_elements);
 	i = 0;
 	while (i < lim)
