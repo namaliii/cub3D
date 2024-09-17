@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:30:16 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/13 10:30:09 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/17 01:03:14 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,16 @@ char	**copy_map(char **original, int height, int width)
 	return (copy);
 }
 
-void	fill(char **array, int height, int width, int x, int y)
+void	fill(char **array, int height_width[2], int x, int y)
 {
-	if (x < 0 || y < 0 || y >= height || x >= width
+	if (x < 0 || y < 0 || y >= height_width[0] || x >= height_width[1]
 		|| array[y][x] == 'Q' || ft_isspace(array[y][x]))
 		return ;
-
 	array[y][x] = 'Q';
-	fill(array, height, width, x + 1, y);
-	fill(array, height, width, x - 1, y);
-	fill(array, height, width, x, y + 1);
-	fill(array, height, width, x, y - 1);
+	fill(array, height_width, x + 1, y);
+	fill(array, height_width, x - 1, y);
+	fill(array, height_width, x, y + 1);
+	fill(array, height_width, x, y - 1);
 }
 
 void	flood_fill(char **map_copy, int height, int width)
@@ -63,25 +62,25 @@ void	flood_fill(char **map_copy, int height, int width)
 			break ;
 		i++;
 	}
-	fill(map_copy, height, width, j, i);
+	fill(map_copy, (int []){height, width}, j, i);
 }
 
-void	check_the_path(t_game *game, char **map_copy, int height)
+void	check_the_path(t_game *g, char **map_copy, int height)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	(void)height;
-	while (i < game->map_height)
+	while (i < g->map_height)
 	{
 		if (map_copy[i] != NULL)
 		{
 			j = 0;
-			while (j < game->map_width)
+			while (j < g->map_width)
 			{
 				if (map_copy[i][j] != 'Q' && !ft_isspace(map_copy[i][j]))
-					exit_error_parser(game, game->map, ERR_MSG_MAP_NOT_ONE_PIECE);
+					exit_error_parser(g, g->map, ERR_MSG_MAP_NOT_ONE_PIECE);
 				j++;
 			}
 		}

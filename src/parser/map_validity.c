@@ -6,13 +6,13 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 17:31:17 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/13 10:37:53 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/17 00:33:45 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	valid_characters(t_game *game)
+void	validate_map_characters(t_game *game)
 {
 	char	*valid_chars;
 	int		i;
@@ -112,6 +112,11 @@ void	surrounded_by_walls(t_game *game)
 	int	i;
 
 	i = 0;
+	// TODO: is this the place that it segfaults when map.cub doesnt have the map section?
+	// If so, it's much more rebust to move this check right after we have done file parsing in parse()
+	// It will prevent segfaults in future refactoring
+	if (!game->map)
+		exit_error(ERR_MSG_MAP_INVALID);
 	top_bottom_check(game, &i);
 	i = game->map_height - 1;
 	top_bottom_check(game, &i);
