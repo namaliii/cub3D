@@ -189,7 +189,6 @@ void			debug_parse(t_game *game);
 // Math utils
 void			vec2d_normalize(t_vec2d *v);
 t_vec2d			*vec2d_mult_by_scalar(t_vec2d *v, float scalar);
-void			vec2d_rot_ccw(t_vec2d *v, float angle);
 int				min2(int a, int b);
 int				max2(int a, int b);
 

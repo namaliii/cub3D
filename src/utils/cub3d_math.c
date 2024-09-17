@@ -32,18 +32,6 @@ t_vec2d	*vec2d_mult_by_scalar(t_vec2d *v, float scalar)
 	return (v);
 }
 
-// Rotate vector `v` counter clockwise direction by `angle`
-void	vec2d_rot_ccw(t_vec2d *v, float angle)
-{
-	float	new_x;
-	float	new_y;
-
-	new_x = v->x * cos(angle) - v->y * sin(angle);
-	new_y = v->x * sin(angle) - v->y * cos(angle);
-	v->x = new_x;
-	v->y = new_y;
-}
-
 int	min2(int a, int b)
 {
 	if (a < b)
