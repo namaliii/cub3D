@@ -41,11 +41,6 @@ void	print_map(t_game *game)
 	}
 }
 
-void	debug_print(t_game *game)
-{
-	print_player(game);
-}
-
 void	debug_parse(t_game *game)
 {
 	int	i;
