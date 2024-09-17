@@ -122,9 +122,6 @@ typedef struct s_dda_vars
 	float	perp_wall_dist;
 }	t_dda_vars;
 
-// Main
-void			game_loop(void *param);
-
 // Graphics
 void			render_frame(t_game *game);
 void			raycast(t_game *game);
@@ -154,6 +151,7 @@ int				get_map_width(t_game *game);
 void			validate_map_characters(t_game *game);
 void			surrounded_by_walls(t_game *game);
 void			valid_path(t_game *game);
+void			init_player(t_game *game);
 
 // Player
 void			handle_movement(t_game *game);
@@ -190,6 +188,8 @@ void			debug_parse(t_game *game);
 
 // Math utils
 void			vec2d_normalize(t_vec2d *v);
+t_vec2d			*vec2d_mult_by_scalar(t_vec2d *v, float scalar);
+void			vec2d_rot_ccw(t_vec2d *v, float angle);
 int				min2(int a, int b);
 int				max2(int a, int b);
 
