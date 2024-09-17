@@ -28,12 +28,12 @@ static void	init(t_game *game)
 	game->fov_rad = deg2rad(FOV);
 	game->window = mlx_init(game->scr_width, game->scr_height, "cub3d", false);
 	if (game->window == NULL)
-		exit_error(mlx_strerror(mlx_errno)); // TODO: mlx_close_window()
+		exit_error(mlx_strerror(mlx_errno));
 	game->img = mlx_new_image(game->window, game->scr_width, game->scr_height);
 	if (game->img == NULL)
-		exit_error(mlx_strerror(mlx_errno)); // TODO: mlx_close_window()
+		exit_error_mlx(game, mlx_strerror(mlx_errno));
 	if (mlx_image_to_window(game->window, game->img, 0, 0) == -1)
-		exit_error(mlx_strerror(mlx_errno)); // TODO: mlx_close_window()
+		exit_error_mlx(game, mlx_strerror(mlx_errno));
 }
 
 int	main(int argc, char *argv[])

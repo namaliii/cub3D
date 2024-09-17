@@ -6,21 +6,20 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:44:59 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 16:13:00 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/16 23:55:32 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// TODO: You can put scale_horiz and scale_vert in the game struct as minimap variables
-// TODO: You can create a minimap_line struct to pack length, thickness, color
-static void	draw_line_from_player(t_game *game, float scale_horiz, float scale_vert, float angle_offset, float length, int thickness, t_rgba color)
+static void 
+	draw_line_from_player(t_game *game, float angle_offset, t_minimap *mmap)
 {
 	float	front_dist;
 	float	front_x;
 	float	front_y;
 
-	front_dist = length;
+	front_dist = mmap->line_len;
 	while (front_dist > 0)
 	{
 		front_x = game->px + front_dist * sin(game->p_angle_rad + angle_offset);
@@ -30,7 +29,7 @@ static void	draw_line_from_player(t_game *game, float scale_horiz, float scale_v
 			front_dist -= 0.05;
 			continue ;
 		}
-		draw_safe_rect(game, front_x * scale_horiz - thickness / 2, front_y * scale_vert - thickness / 2, thickness, thickness, color);
+		draw_safe_rect(game, front_x * mmap->scale_horiz - mmap->line_thick / 2, front_y * mmap->scale_vert - mmap->line_thick / 2, mmap->line_thick, mmap->line_thick, mmap->line_color);
 		front_dist -= 0.05;
 	}
 }
@@ -75,16 +74,21 @@ static void draw_player(t_game *game, float scale_horizontal, float scale_vertic
 
 void	draw_minimap(t_game *game)
 {
-	float	scale_horizontal;
-	float	scale_vertical;
-
-	scale_horizontal = (game->scr_width / 3) / game->map_width;
-	scale_vertical = (game->scr_height / 3) / game->map_height;
-	draw_background(game, scale_horizontal, scale_vertical);
-	draw_map_tiles(game, 1 * scale_horizontal, 1 * scale_vertical);
+	t_minimap	mmap;
+	
+	mmap.scale_horiz = (game->scr_width / 3.0) / game->map_width;
+	mmap.scale_vert = (game->scr_height / 3.0) / game->map_height;
+	draw_background(game, mmap.scale_horiz, mmap.scale_vert);
+	draw_map_tiles(game, 1.0 * mmap.scale_horiz, 1.0 * mmap.scale_vert);
 	if (game->px < game->map_width && game->py < game->map_height)
-		draw_player(game, scale_horizontal, scale_vertical);
-	draw_line_from_player(game, scale_horizontal, scale_vertical, 0, 1, 2, (t_rgba){225, 50, 50, 255});
-	draw_line_from_player(game, scale_horizontal, scale_vertical, -game->fov_rad / 2, 6, 1, (t_rgba){50, 50, 125, 255});
-	draw_line_from_player(game, scale_horizontal, scale_vertical, +game->fov_rad / 2, 6, 1, (t_rgba){50, 50, 125, 255});
+		draw_player(game, mmap.scale_horiz, mmap.scale_vert);
+	mmap.line_len = 1;
+	mmap.line_thick = 2;
+	mmap.line_color = (t_rgba){225, 50, 50, 255};
+	draw_line_from_player(game, 0, &mmap);
+	mmap.line_len = 6;
+	mmap.line_thick = 1;
+	mmap.line_color = (t_rgba){50, 50, 125, 255};
+	draw_line_from_player(game, -game->fov_rad / 2, &mmap);
+	draw_line_from_player(game, +game->fov_rad / 2, &mmap);
 }

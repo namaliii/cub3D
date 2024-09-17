@@ -6,38 +6,11 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:56:33 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/13 16:56:21 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/17 17:54:41 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	add_line_to_map(t_game *game, char *line)
-{
-	char	**new_map;
-	int		i;
-
-	i = 0;
-	if (ft_strlen(line) > 0 && line[ft_strlen(line) - 1] == '\n')
-		line[ft_strlen(line) - 1] = '\0';
-	new_map = (char **)safe_calloc(game->map_height + 1, sizeof(char *));
-	while (i < game->map_height)
-	{
-		new_map[i] = (game->map)[i];
-		i++;
-	}
-	new_map[game->map_height] = ft_strdup(line);
-	if (!new_map[game->map_height])
-	{
-		free(line);
-		perror(ERR_MSG_FAILED_TO_DUP_LINE);
-		exit(EXIT_FAILURE);
-	}
-	if (game->map != NULL)
-		free(game->map);
-	game->map = new_map;
-	game->map_height++;
-}
 
 int	get_map_width(t_game *game)
 {
@@ -60,7 +33,7 @@ int	get_map_width(t_game *game)
 	return (max_width);
 }
 
-void	add_padding(t_game *game)
+void	add_padding_to_map(t_game *game)
 {
 	int		i;
 	char	*space_line;
@@ -83,4 +56,34 @@ void	add_padding(t_game *game)
 		i++;
 	}
 	free(space_line);
+}
+
+static void	add_line_to_map(t_game *game, char *line)
+{
+	if (ft_strlen(line) > 0 && line[ft_strlen(line) - 1] == '\n')
+		line[ft_strlen(line) - 1] = '\0';
+	game->map = ft_realloc(game->map, sizeof(char *) * game->map_height,
+			sizeof(char *) * (game->map_height + 1));
+	if (game->map == NULL)
+	{
+		free(line);
+		exit_error_parser(game, game->map, ERR_MSG_FAILED_TO_REALLOC_MAP);
+	}
+	game->map[game->map_height] = ft_strdup(line);
+	if (game->map[game->map_height] == NULL)
+	{
+		free(line);
+		exit_error_parser(game, game->map, ERR_MSG_FAILED_TO_DUP_LINE);
+	}
+	game->map_height++;
+}
+
+void	parse_map_line(t_game *game, char *line)
+{
+	if (is_line_empty(line))
+	{
+		free(line);
+		exit_error_parser(game, game->map, ERR_MSG_MAP_EMPTY_LINE);
+	}
+	add_line_to_map(game, line);
 }

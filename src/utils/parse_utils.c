@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 19:24:11 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/13 19:04:27 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/17 00:05:05 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,20 @@ int	is_valid_extension(char *file_name)
 	{
 		printf("%s\n", ERR_MSG_MAP_EXT_INVALID);
 		return (0);
+	}
+	return (1);
+}
+
+int	is_line_empty(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (!ft_isspace(line[i]))
+			return (0);
+		i++;
 	}
 	return (1);
 }

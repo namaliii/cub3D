@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/14 17:46:59 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/17 19:05:20 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@
 
 # define MAX_MAP_WIDTH 270
 # define MAX_MAP_HEIGHT 270
+
+# define PARSING_STATE_IDENTIFIERS 1000
+# define PARSING_STATE_WAITING_MAP 1001
+# define PARSING_STATE_MAP 1002
 
 # define MOCK_MAP_HEIGHT 10
 # define MOCK_MAP_WIDTH 10
@@ -69,6 +73,15 @@ typedef struct s_vec2d
 	float	x;
 	float	y;
 }	t_vec2d;
+
+typedef struct	s_minimap
+{
+	float			scale_horiz;
+	float			scale_vert;
+	float			line_len;
+	float			line_thick;
+	t_rgba			line_color;
+}	t_minimap;
 
 typedef struct s_game
 {
@@ -131,18 +144,16 @@ bool			is_out_of_bounds(t_game *game, int x, int y);
 bool			is_wall(t_game *game, int x, int y);
 
 // Parser
+int				parse(int argc, char **argv, t_game *game);
+void 			parse_map_line(t_game *game, char *line);
+void			parse_identifier_line(t_game *game, char *line);
 void			parse_rgb(t_game *game, char *line, t_rgba *color);
 void			assign_textures(
 					t_game *game, mlx_texture_t **tex_img, char *line);
-int				parse(int argc, char **argv, t_game *game);
-void			process_line(t_game *game, char *line, int *map_flag);
-void			parse_file(t_game *game, int map_fd);
-int				all_identifiers_exist(t_game *game);
-void			add_line_to_map(t_game *game, char *line);
 mlx_texture_t	*load_image(char *path, t_game *game, char *line);
-void			add_padding(t_game *game);
+void			add_padding_to_map(t_game *game);
 int				get_map_width(t_game *game);
-void			valid_characters(t_game *game);
+void			validate_map_characters(t_game *game);
 void			surrounded_by_walls(t_game *game);
 void			valid_path(t_game *game);
 
@@ -159,23 +170,27 @@ void			exit_error_parser(t_game *game, char **map, const char *msg);
 void			*safe_calloc(size_t elems_count, size_t elem_size);
 void			free_2d_array(char **array, int height);
 int				find_splits_length(char **splits);
-int				ft_isspace(char c);
-int				is_valid_extension(char *file_name);
-int				ft_isnumber(char *str);
 void			print_usage(int argc, char **argv);
 void			print_string_arr(char **str_arr);
 char			**ft_split_e(char const *str, char separator);
+void			*ft_realloc(void *ptr, size_t original_size, size_t new_size);
 
-// Conversions
+// Parser utils
+int				ft_isspace(char c);
+int				is_line_empty(char *line);
+int				is_valid_extension(char *file_name);
+int				ft_isnumber(char *str);
+
+// Conversions utils
 float			deg2rad(float angle_degree);
 uint32_t		rgba2color(t_rgba rgba);
 
-// Debug
+// Debug utils
 void			debug_print(t_game *game);
 void			print_map(t_game *game);
 void			debug_parse(t_game *game);
 
-// Math
+// Math utils
 void			normalize_vec2d(t_vec2d *v);
 int				min2(int a, int b);
 int				max2(int a, int b);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_colors.c                                     :+:      :+:    :+:   */
+/*   parse_rgb.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:25:58 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 15:20:28 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/17 00:56:28 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ static int	is_valid_channel_str(char *s, int allow_newline)
 
 // Set the value in `val` into `channel` and return 0.
 // Upon error, print error message and return -1.
-static int	\
-set_color_channel(char *val, unsigned int *channel, int allow_newline)
+static int	set_color_channel(\
+char *val, unsigned int *channel, int allow_newline)
 {
 	int		channel_val;
 
