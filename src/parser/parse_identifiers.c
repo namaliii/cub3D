@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_identifiers.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 18:49:05 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/17 00:43:35 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/17 19:18:39 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,6 @@ void	parse_identifier_line(t_game *game, char *line)
 		free(line);
 		exit_error_parser(game, game->map, ERR_MSG_INVALID_IDENTIFIER);
 	}
+	if (!game->tex_door)
+		game->tex_door = load_image(DOOR_TEX_PATH, game, line);
 }

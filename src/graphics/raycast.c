@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:38:28 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 09:59:53 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/17 19:20:09 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void	init_ray_hit(t_ray_hit *p_ray_hit)
 	p_ray_hit->wall_start_px = 0;
 	p_ray_hit->wall_end_px = 0;
 	p_ray_hit->wall_height = 0;
+	p_ray_hit->is_door = 0;
 }
 
 static void	raycast_column(int x, t_game *game)
