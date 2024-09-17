@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 21:54:26 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/17 04:25:31 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,14 +143,12 @@ int				get_map_width(t_game *game);
 void			valid_characters(t_game *game);
 void			surrounded_by_walls(t_game *game);
 void			valid_path(t_game *game);
-void			player_check(t_game *game);
+void			init_player(t_game *game);
 
 // Player
-void			init_player(t_game *game);
 void			handle_movement(t_game *game);
 void			keyboard_hook(mlx_key_data_t key, void *param);
 void			mouse_move_hook(double xpos, double ypos, void *param);
-int				is_walkable(t_game *game, t_vec2d pos_change);
 
 // Utils
 void			exit_error(const char *msg);
