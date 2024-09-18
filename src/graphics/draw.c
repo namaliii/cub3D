@@ -15,10 +15,10 @@
 // Draw a rectangle ignoring out of screen sections
 void	draw_safe_rect(t_game *game, int pos_x, int pos_y, int len_x, int len_y, t_rgba color)
 {
-	int x;
-	int y;
-	int xlim;
-	int ylim;
+	int	x;
+	int	y;
+	int	xlim;
+	int	ylim;
 
 	xlim = min2(pos_x + len_x, game->scr_width);
 	ylim = min2(pos_y + len_y, game->scr_height);
@@ -42,8 +42,8 @@ void	draw_rect(t_game *game, int pos_x, int pos_y, int len_x, int len_y, t_rgba 
 {
 	int	x;
 	int	y;
-	int lim_x;
-	int lim_y;
+	int	lim_x;
+	int	lim_y;
 
 	lim_x = pos_x + len_x;
 	lim_y = pos_y + len_y;

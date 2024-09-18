@@ -12,8 +12,8 @@
 
 #include "cub3d.h"
 
-static void 
-	draw_line_from_player(t_game *game, float angle_offset, t_minimap *mmap)
+static void	draw_line_from_player(\
+t_game *game, float angle_offset, t_minimap *mmap)
 {
 	float	front_dist;
 	float	front_x;
@@ -67,7 +67,7 @@ static void	draw_background(t_game *game, float scale_horizontal, float scale_ve
 	draw_safe_rect(game, 0, 0, scale_horizontal * game->map_width, scale_vertical * game->map_height, (t_rgba){50, 50, 50, 255});
 }
 
-static void draw_player(t_game *game, float scale_horizontal, float scale_vertical)
+static void	draw_player(t_game *game, float scale_horizontal, float scale_vertical)
 {
 	draw_safe_rect(game, game->px * scale_horizontal - 4, game->py * scale_vertical - 4, 10, 10, (t_rgba){255, 127, 0, 255});
 }
@@ -75,7 +75,7 @@ static void draw_player(t_game *game, float scale_horizontal, float scale_vertic
 void	draw_minimap(t_game *game)
 {
 	t_minimap	mmap;
-	
+
 	mmap.scale_horiz = (game->scr_width / 3.0) / game->map_width;
 	mmap.scale_vert = (game->scr_height / 3.0) / game->map_height;
 	draw_background(game, mmap.scale_horiz, mmap.scale_vert);
