@@ -14,8 +14,8 @@
 
 static void	set_hit_info(t_ray_hit *info, int ceil_end_px, int floor_start_px)
 {
-	info->wall_start_px = ceil_end_px;
-	info->wall_end_px = floor_start_px;
+	info->ceil_end_px = ceil_end_px;
+	info->floor_start_px = floor_start_px;
 	info->wall_height = floor_start_px - ceil_end_px;
 }
 
@@ -23,8 +23,8 @@ static void	init_ray_hit(t_ray_hit *p_ray_hit)
 {
 	p_ray_hit->side = 0;
 	p_ray_hit->dist = 0.0;
-	p_ray_hit->wall_start_px = 0;
-	p_ray_hit->wall_end_px = 0;
+	p_ray_hit->ceil_end_px = 0;
+	p_ray_hit->floor_start_px = 0;
 	p_ray_hit->wall_height = 0;
 }
 

@@ -53,8 +53,8 @@ typedef struct s_ray_hit
 {
 	int		side;
 	float	dist;
-	int		wall_start_px;
-	int		wall_end_px;
+	int		ceil_end_px;
+	int		floor_start_px;
 	int		wall_height;
 }	t_ray_hit;
 
@@ -191,5 +191,6 @@ void			vec2d_normalize(t_vec2d *v);
 t_vec2d			*vec2d_mult_by_scalar(t_vec2d *v, float scalar);
 int				min2(int a, int b);
 int				max2(int a, int b);
+void			clamp(int *val, int min, int max);
 
 #endif

@@ -59,9 +59,9 @@ void	handle_movement(t_game *game)
 		game->p_angle_rad += TURN_ANGLE;
 	get_movement_direction(game, &pos_change);
 	vec2d_mult_by_scalar(&pos_change, WALK_SPEED);
-	if (!is_wall(game, game->px + COLLISION_DIST * pos_change.x, game->py))
+	// if (!is_wall(game, game->px + COLLISION_DIST * pos_change.x, game->py))
 		game->px = game->px + pos_change.x;
-	if (!is_wall(game, game->px, game->py + COLLISION_DIST * pos_change.y))
+	// if (!is_wall(game, game->px, game->py + COLLISION_DIST * pos_change.y))
 		game->py = game->py + pos_change.y;
 }
 

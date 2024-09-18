@@ -59,8 +59,8 @@ static int	get_texture_color(mlx_texture_t *tex, t_ray_hit *hit_info,
 
 	tex_x_offset = (int)(wall_hit_x * tex->width) % tex->width;
 	step = (double)tex->height / hit_info->wall_height;
-	tex_y = (int)((y - hit_info->wall_start_px) * step);
-	tex_y = min2(max2(tex_y, 0), tex->height - 1);
+	tex_y = (int)((y - hit_info->ceil_end_px) * step);
+	clamp(&tex_y, 0, tex->height - 1);
 	color = (tex->pixels[(tex_y * tex->width + tex_x_offset) * 4] << 24)
 		| (tex->pixels[(tex_y * tex->width + tex_x_offset) * 4 + 1] << 16)
 		| (tex->pixels[(tex_y * tex->width + tex_x_offset) * 4 + 2] << 8)
@@ -73,17 +73,20 @@ void	draw_textured_wall(t_game *game, int x, float ray_angle,
 {
 	mlx_texture_t	*texture;
 	int				y;
-	int				color;
+	int				y_lim;
 	float			wall_hit_x;
 
 	texture = return_texture(game, ray_angle, hit_info);
-	y = hit_info->wall_start_px;
 	wall_hit_x = calculate_wall_hit_x(ray_angle, game->px, game->py, hit_info);
-	while (y < hit_info->wall_end_px)
+	y = game->scr_height / 2 - hit_info->wall_height / 2;
+	y_lim = game->scr_height / 2 + hit_info->wall_height / 2;
+	if (y < 0)
+		y = 0;
+	if (y_lim >= game->scr_height)
+		y_lim = game->scr_height - 1;
+	while (y < y_lim)
 	{
-		color = get_texture_color(texture, hit_info, wall_hit_x, y);
-		if (x >= 0 && x < game->scr_width && y >= 0 && y < game->scr_height)
-			mlx_put_pixel(game->img, x, y, color);
+		mlx_put_pixel(game->img, x, y, get_texture_color(texture, hit_info, wall_hit_x, y));
 		y++;
 	}
 }
