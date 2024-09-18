@@ -38,6 +38,7 @@
 # define FOV 60
 # define TURN_ANGLE 0.075
 # define WALK_SPEED 0.1
+# define COLLISION_DIST 7
 
 # define SOLID_ELEMENTS "1D"
 # define DOOR_CLOSED_CHAR 'D'
@@ -121,9 +122,6 @@ typedef struct s_dda_vars
 	float	perp_wall_dist;
 }	t_dda_vars;
 
-// Main
-void			game_loop(void *param);
-
 // Graphics
 void			render_frame(t_game *game);
 void			raycast(t_game *game);
@@ -153,9 +151,9 @@ int				get_map_width(t_game *game);
 void			validate_map_characters(t_game *game);
 void			surrounded_by_walls(t_game *game);
 void			valid_path(t_game *game);
+void			init_player(t_game *game);
 
 // Player
-void			init_player(t_game *game);
 void			handle_movement(t_game *game);
 void			keyboard_hook(mlx_key_data_t key, void *param);
 void			mouse_move_hook(double xpos, double ypos, void *param);
@@ -169,6 +167,7 @@ void			free_2d_array(char **array, int height);
 int				find_splits_length(char **splits);
 void			print_usage(int argc, char **argv);
 void			print_string_arr(char **str_arr);
+void			print_vec2d(t_vec2d *v);
 char			**ft_split_e(char const *str, char separator);
 void			*ft_realloc(void *ptr, size_t original_size, size_t new_size);
 
@@ -188,7 +187,8 @@ void			print_map(t_game *game);
 void			debug_parse(t_game *game);
 
 // Math utils
-void			normalize_vec2d(t_vec2d *v);
+void			vec2d_normalize(t_vec2d *v);
+t_vec2d			*vec2d_mult_by_scalar(t_vec2d *v, float scalar);
 int				min2(int a, int b);
 int				max2(int a, int b);
 

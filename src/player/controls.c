@@ -6,13 +6,15 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 15:43:24 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 16:28:15 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/13 22:00:13 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	handle_movement_keys(t_game *game, t_vec2d *pos_change)
+// Get a unit vector towards movement direction.
+// `pos_change` will be set as the result.
+static void	get_movement_direction(t_game *game, t_vec2d *pos_change)
 {
 	if (mlx_is_key_down(game->window, MLX_KEY_W))
 	{
@@ -34,13 +36,14 @@ static void	handle_movement_keys(t_game *game, t_vec2d *pos_change)
 		pos_change->x += sin(game->p_angle_rad - deg2rad(90.0));
 		pos_change->y += cos(game->p_angle_rad - deg2rad(90.0));
 	}
+	vec2d_normalize(pos_change);
 }
 
 void	handle_movement(t_game *game)
 {
 	t_vec2d	pos_change;
 
-	pos_change = (t_vec2d) {0, 0};
+	pos_change = (t_vec2d){0, 0};
 	if (mlx_is_key_down(game->window, MLX_KEY_ESCAPE))
 	{
 		mlx_delete_image(game->window, game->img);
@@ -54,16 +57,18 @@ void	handle_movement(t_game *game)
 	if (mlx_is_key_down(game->window, MLX_KEY_Q)
 		|| mlx_is_key_down(game->window, MLX_KEY_LEFT))
 		game->p_angle_rad += TURN_ANGLE;
-	handle_movement_keys(game, &pos_change);
-	normalize_vec2d(&pos_change);
-	game->px += pos_change.x * WALK_SPEED;
-	game->py += pos_change.y * WALK_SPEED;
+	get_movement_direction(game, &pos_change);
+	vec2d_mult_by_scalar(&pos_change, WALK_SPEED);
+	if (!is_wall(game, game->px + COLLISION_DIST * pos_change.x, game->py))
+		game->px = game->px + pos_change.x;
+	if (!is_wall(game, game->px, game->py + COLLISION_DIST * pos_change.y))
+		game->py = game->py + pos_change.y;
 }
 
 static void	handle_door(t_game *game)
 {
 	const t_vec2d	direction_offsets[DIRECTION_OFFSET_COUNT] = \
-{{1,0}, {0, 1}, {1, 1}, {-1, 0}, {-1, 1}, {-1, -1}, {0, -1}, {1, -1}};
+	{{1, 0}, {0, 1}, {1, 1}, {-1, 0}, {-1, 1}, {-1, -1}, {0, -1}, {1, -1}};
 	int				check_x;
 	int				check_y;
 	int				i;
