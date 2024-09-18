@@ -72,6 +72,4 @@ void	parse_identifier_line(t_game *game, char *line)
 		free(line);
 		exit_error_parser(game, game->map, ERR_MSG_INVALID_IDENTIFIER);
 	}
-	if (!game->tex_door)
-		game->tex_door = load_image(DOOR_TEX_PATH, game, line);
 }
