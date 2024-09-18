@@ -15,6 +15,9 @@
 
 # define ERR_MSG_ALLOC "Error\nAllocation failed."
 # define ERR_MSG_INVALID_ARGC "Error\nWrong number of arguments!"
+# define ERR_MSG_INVALID_WALK_SPEED "Error\nCompiled with walking speed too big"
+# define ERR_MSG_INVALID_COL_DIST \
+	"Error\nCompiled with collision distance too big"
 
 # define ERR_MSG_FAILED_TO_DUP_LINE "Error\nFailed to duplicate line"
 # define ERR_MSG_FAILED_OPENING_FILE "Error\nFailed to open the file"

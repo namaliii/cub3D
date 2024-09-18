@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-void	game_loop(void *param)
+static void	game_loop(void *param)
 {
 	t_game	*game;
 
@@ -23,6 +23,10 @@ void	game_loop(void *param)
 
 static void	init(t_game *game)
 {
+	if (WALK_SPEED >= 1.0)
+		exit_error_parser(game, game->map, ERR_MSG_INVALID_WALK_SPEED);
+	if (COLLISION_DIST * WALK_SPEED >= 1.0)
+		exit_error_parser(game, game->map, ERR_MSG_INVALID_COL_DIST);
 	game->scr_width = SCREEN_WIDTH;
 	game->scr_height = SCREEN_HEIGHT;
 	game->fov_rad = deg2rad(FOV);
