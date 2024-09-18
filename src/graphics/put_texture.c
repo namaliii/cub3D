@@ -12,15 +12,14 @@
 
 #include "cub3d.h"
 
-static float	calculate_wall_hit_x(float ray_angle, float player_x,
-	float player_y, t_ray_hit *hit_info)
+static float	calculate_wall_hit_x(t_game *game, float ray_angle, t_ray_hit *hit_info)
 {
 	float	wall_hit_x;
 
 	if (hit_info->side == HIT_VERTICAL_WALL)
-		wall_hit_x = player_y + cos(ray_angle) * hit_info->dist;
+		wall_hit_x = game->py + cos(ray_angle) * hit_info->dist;
 	else
-		wall_hit_x = player_x + sin(ray_angle) * hit_info->dist;
+		wall_hit_x = game->px + sin(ray_angle) * hit_info->dist;
 	return (wall_hit_x - floor(wall_hit_x));
 }
 
@@ -77,7 +76,7 @@ void	draw_textured_wall(t_game *game, int x, float ray_angle,
 	float			wall_hit_x;
 
 	texture = return_texture(game, ray_angle, hit_info);
-	wall_hit_x = calculate_wall_hit_x(ray_angle, game->px, game->py, hit_info);
+	wall_hit_x = calculate_wall_hit_x(game, ray_angle, hit_info);
 	y = game->scr_height / 2 - hit_info->wall_height / 2;
 	y_lim = game->scr_height / 2 + hit_info->wall_height / 2;
 	if (y < 0)
