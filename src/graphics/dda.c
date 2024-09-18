@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 09:42:26 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 10:06:02 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/17 19:17:51 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,14 @@ void	find_dist(float angle, t_game *game, t_ray_hit *p_ray_hit)
 
 	setup_vars(angle, game, &v);
 	find_distance(game, &v);
-	if (v.side == 0)
+	if (v.side == HIT_VERTICAL_WALL)
 		v.perp_wall_dist = (v.map_x - game->px + (1 - v.step_x) / 2) / \
 v.ray_dir_x;
-	else if (v.side == 1)
+	else if (v.side == HIT_HORIZONTAL_WALL)
 		v.perp_wall_dist = (v.map_y - game->py + (1 - v.step_y) / 2) / \
 v.ray_dir_y;
+	if (game->map[v.map_y][v.map_x] == DOOR_CLOSED_CHAR)
+		v.side = HIT_DOOR;
 	p_ray_hit->side = v.side;
 	p_ray_hit->dist = v.perp_wall_dist;
 }

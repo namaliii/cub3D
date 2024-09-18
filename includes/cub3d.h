@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/17 05:18:39 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/17 19:15:06 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,23 @@
 # define PARSING_STATE_WAITING_MAP 1001
 # define PARSING_STATE_MAP 1002
 
-# define MOCK_MAP_HEIGHT 10
-# define MOCK_MAP_WIDTH 10
-
 # define PI 3.141592
 # define FOV 60
 # define TURN_ANGLE 0.075
 # define WALK_SPEED 0.1
+# define MOUSE_SENSITIVITY 0.005
 # define COLLISION_DIST 7
 
 # define SOLID_ELEMENTS "1D"
 # define DOOR_CLOSED_CHAR 'D'
 # define DOOR_OPENED_CHAR 'd'
+# define DOOR_TEX_PATH "./img/door.png"
 # define DIRECTION_OFFSET_COUNT 8
 
-# define HIT_VERTICAL_WALL 0
-# define HIT_HORIZONTAL_WALL 1
-
-# define MOUSE_SENSITIVITY 0.005
+# define HIT_NONE 0
+# define HIT_VERTICAL_WALL 1
+# define HIT_HORIZONTAL_WALL 2
+# define HIT_DOOR 3
 
 typedef struct s_ray_hit
 {
@@ -93,6 +92,7 @@ typedef struct s_game
 	mlx_texture_t	*tex_so;
 	mlx_texture_t	*tex_we;
 	mlx_texture_t	*tex_ea;
+	mlx_texture_t	*tex_door;
 	float			px;
 	float			py;
 	float			p_angle_rad;

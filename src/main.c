@@ -38,6 +38,8 @@ static void	init(t_game *game)
 		exit_error_mlx(game, mlx_strerror(mlx_errno));
 	if (mlx_image_to_window(game->window, game->img, 0, 0) == -1)
 		exit_error_mlx(game, mlx_strerror(mlx_errno));
+	if (game->tex_door == NULL)
+		game->tex_door = load_image(DOOR_TEX_PATH, game, NULL);
 }
 
 int	main(int argc, char *argv[])

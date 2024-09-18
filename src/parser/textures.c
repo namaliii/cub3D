@@ -40,7 +40,8 @@ mlx_texture_t	*load_image(char *path, t_game *game, char *line)
 	texture = mlx_load_png(path);
 	if (!texture)
 	{
-		free(line);
+		if (line != NULL)
+			free(line);
 		exit_error_parser(game, game->map, ERR_MSG_LOADING_TEXTURE);
 	}
 	return (texture);
