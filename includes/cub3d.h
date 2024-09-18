@@ -31,13 +31,11 @@
 # define PARSING_STATE_WAITING_MAP 1001
 # define PARSING_STATE_MAP 1002
 
-# define MOCK_MAP_HEIGHT 10
-# define MOCK_MAP_WIDTH 10
-
 # define PI 3.141592
 # define FOV 60
 # define TURN_ANGLE 0.075
 # define WALK_SPEED 0.1
+# define MOUSE_SENSITIVITY 0.005
 # define COLLISION_DIST 7
 
 # define SOLID_ELEMENTS "1D"
@@ -50,8 +48,6 @@
 # define HIT_VERTICAL_WALL 1
 # define HIT_HORIZONTAL_WALL 2
 # define HIT_DOOR 3
-
-# define MOUSE_SENSITIVITY 0.005
 
 typedef struct s_ray_hit
 {
