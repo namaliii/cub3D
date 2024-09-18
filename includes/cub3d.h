@@ -46,8 +46,10 @@
 # define DOOR_TEX_PATH "./img/door.png"
 # define DIRECTION_OFFSET_COUNT 8
 
-# define HIT_VERTICAL_WALL 0
-# define HIT_HORIZONTAL_WALL 1
+# define HIT_NONE 0
+# define HIT_VERTICAL_WALL 1
+# define HIT_HORIZONTAL_WALL 2
+# define HIT_DOOR 3
 
 # define MOUSE_SENSITIVITY 0.005
 
@@ -58,7 +60,6 @@ typedef struct s_ray_hit
 	int		wall_start_px;
 	int		wall_end_px;
 	int		wall_height;
-	int		is_door;
 }	t_ray_hit;
 
 typedef struct s_rgba

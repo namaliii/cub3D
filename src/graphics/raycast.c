@@ -21,12 +21,11 @@ static void	set_hit_info(t_ray_hit *info, int ceil_end_px, int floor_start_px)
 
 static void	init_ray_hit(t_ray_hit *p_ray_hit)
 {
-	p_ray_hit->side = -1;
+	p_ray_hit->side = 0;
 	p_ray_hit->dist = 0.0;
 	p_ray_hit->wall_start_px = 0;
 	p_ray_hit->wall_end_px = 0;
 	p_ray_hit->wall_height = 0;
-	p_ray_hit->is_door = 0;
 }
 
 static void	raycast_column(int x, t_game *game)

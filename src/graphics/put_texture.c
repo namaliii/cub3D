@@ -17,7 +17,7 @@ static float	calculate_wall_hit_x(float ray_angle, float player_x,
 {
 	float	wall_hit_x;
 
-	if (hit_info->side == 0)
+	if (hit_info->side == HIT_VERTICAL_WALL)
 		wall_hit_x = player_y + cos(ray_angle) * hit_info->dist;
 	else
 		wall_hit_x = player_x + sin(ray_angle) * hit_info->dist;
@@ -30,22 +30,22 @@ static mlx_texture_t	*return_texture(t_game *game,
 	mlx_texture_t	*texture;
 
 	texture = NULL;
-	if (hit_info->is_door)
-		texture = game->tex_door;
-	else if (hit_info->side == 0)
+	if (hit_info->side == HIT_VERTICAL_WALL)
 	{
 		if (sin(ray_angle) > 0)
 			texture = game->tex_ea;
 		else
 			texture = game->tex_we;
 	}
-	else
+	else if (hit_info->side == HIT_HORIZONTAL_WALL)
 	{
 		if (cos(ray_angle) > 0)
 			texture = game->tex_so;
 		else
 			texture = game->tex_no;
 	}
+	else
+		texture = game->tex_door;
 	return (texture);
 }
 

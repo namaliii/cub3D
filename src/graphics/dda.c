@@ -56,7 +56,7 @@ static void	setup_vars(float angle, t_game *game, t_dda_vars *v)
 		v->side_dist_y = (game->py - v->map_y) * v->delta_dist_y;
 }
 
-static void	find_distance(t_game *game, t_dda_vars *v, t_ray_hit *p_ray_hit)
+static void	find_distance(t_game *game, t_dda_vars *v)
 {
 	while (v->hit == 0)
 	{
@@ -73,10 +73,7 @@ static void	find_distance(t_game *game, t_dda_vars *v, t_ray_hit *p_ray_hit)
 			v->side = HIT_HORIZONTAL_WALL;
 		}
 		if (is_wall(game, v->map_x, v->map_y))
-		{
 			v->hit = 1;
-			p_ray_hit->is_door = (game->map[v->map_y][v->map_x] == 'D');
-		}
 	}
 }
 
@@ -85,13 +82,15 @@ void	find_dist(float angle, t_game *game, t_ray_hit *p_ray_hit)
 	t_dda_vars	v;
 
 	setup_vars(angle, game, &v);
-	find_distance(game, &v, p_ray_hit);
-	if (v.side == 0)
+	find_distance(game, &v);
+	if (v.side == HIT_VERTICAL_WALL)
 		v.perp_wall_dist = (v.map_x - game->px + (1 - v.step_x) / 2) / \
 v.ray_dir_x;
-	else if (v.side == 1)
+	else if (v.side == HIT_HORIZONTAL_WALL)
 		v.perp_wall_dist = (v.map_y - game->py + (1 - v.step_y) / 2) / \
 v.ray_dir_y;
+	if (game->map[v.map_y][v.map_x] == 'D')
+		v.side = HIT_DOOR;
 	p_ray_hit->side = v.side;
 	p_ray_hit->dist = v.perp_wall_dist;
 }
