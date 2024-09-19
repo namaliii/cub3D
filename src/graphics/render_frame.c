@@ -16,7 +16,8 @@ void	render_frame(t_game *game)
 {
 	mlx_delete_image(game->window, game->img);
 	game->img = mlx_new_image(game->window, game->scr_width, game->scr_height);
-	mlx_image_to_window(game->window, game->img, 0, 0);
+	if (mlx_image_to_window(game->window, game->img, 0, 0) == -1)
+		exit_error_mlx(game, mlx_strerror(mlx_errno));
 	raycast(game);
 	draw_minimap(game);
 }
