@@ -1,6 +1,7 @@
 # Development
 .vscode/
 local/
+venv/
 obj/
 *.o
 

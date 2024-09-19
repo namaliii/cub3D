@@ -27,15 +27,11 @@
 # define MAX_MAP_WIDTH 270
 # define MAX_MAP_HEIGHT 270
 
-# define PARSING_STATE_IDENTIFIERS 1000
-# define PARSING_STATE_WAITING_MAP 1001
-# define PARSING_STATE_MAP 1002
-
 # define PI 3.141592
 # define FOV 60
 # define TURN_ANGLE 0.075
 # define WALK_SPEED 0.1
-# define MOUSE_SENSITIVITY 0.005
+# define MOUSE_SENSITIVITY 0.001
 # define COLLISION_DIST 7
 
 # define SOLID_ELEMENTS "1D"
@@ -44,17 +40,26 @@
 # define DOOR_TEX_PATH "./img/door.png"
 # define DIRECTION_OFFSET_COUNT 8
 
-# define HIT_NONE 0
-# define HIT_VERTICAL_WALL 1
-# define HIT_HORIZONTAL_WALL 2
-# define HIT_DOOR 3
+enum e_parsing_state
+{
+	PARSING_STATE_IDENTIFIERS,
+	PARSING_STATE_WAITING_MAP,
+	PARSING_STATE_MAP
+};
+
+enum	e_hit_direction
+{
+	HIT_VERTICAL_WALL,
+	HIT_HORIZONTAL_WALL,
+	HIT_DOOR
+};
 
 typedef struct s_ray_hit
 {
 	int		side;
 	float	dist;
-	int		wall_start_px;
-	int		wall_end_px;
+	int		ceil_end_px;
+	int		floor_start_px;
 	int		wall_height;
 }	t_ray_hit;
 
@@ -72,7 +77,16 @@ typedef struct s_vec2d
 	float	y;
 }	t_vec2d;
 
-typedef struct	s_minimap
+typedef struct s_rect
+{
+	int		posx;
+	int		posy;
+	int		lenx;
+	int		leny;
+	t_rgba	color;
+}	t_rect;
+
+typedef struct s_minimap
 {
 	float			scale_horiz;
 	float			scale_vert;
@@ -107,16 +121,16 @@ typedef struct s_game
 
 typedef struct s_dda_vars
 {
-	float	ray_dir_x;
-	float	ray_dir_y;
-	float	delta_dist_x;
-	float	delta_dist_y;
-	int		step_x;
-	int		step_y;
+	float	step_x;
+	float	step_y;
+	float	dist_intersect_x;
+	float	dist_intersect_y;
+	int		dir_x;
+	int		dir_y;
 	int		map_x;
 	int		map_y;
-	float	side_dist_x;
-	float	side_dist_y;
+	float	init_side_dist_x;
+	float	init_side_dist_y;
 	int		hit ;
 	int		side;
 	float	perp_wall_dist;
@@ -127,10 +141,8 @@ void			render_frame(t_game *game);
 void			raycast(t_game *game);
 void			find_dist(float angle, t_game *game, t_ray_hit *p_ray_hit);
 void			draw_minimap(t_game *game);
-void			draw_rect(t_game *game, int pos_x, int pos_y,
-					int len_x, int len_y, t_rgba color);
-void			draw_safe_rect(t_game *game, int pos_x, int pos_y,
-					int len_x, int len_y, t_rgba color);
+void			draw_rect(t_game *game, t_rect r);
+void			draw_safe_rect(t_game *game, t_rect r);
 void			draw_textured_wall(t_game *game, int x, float ray_angle,
 					t_ray_hit *hit_info);
 
@@ -140,7 +152,7 @@ bool			is_wall(t_game *game, int x, int y);
 
 // Parser
 int				parse(int argc, char **argv, t_game *game);
-void 			parse_map_line(t_game *game, char *line);
+void			parse_map_line(t_game *game, char *line);
 void			parse_identifier_line(t_game *game, char *line);
 void			parse_rgb(t_game *game, char *line, t_rgba *color);
 void			assign_textures(
@@ -191,5 +203,6 @@ void			vec2d_normalize(t_vec2d *v);
 t_vec2d			*vec2d_mult_by_scalar(t_vec2d *v, float scalar);
 int				min2(int a, int b);
 int				max2(int a, int b);
+void			clamp(int *val, int min, int max);
 
 #endif
