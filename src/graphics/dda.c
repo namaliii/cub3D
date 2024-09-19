@@ -6,7 +6,7 @@
 /*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 09:42:26 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/17 19:17:51 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/19 20:47:59 by anamieta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,12 @@ v.step_x;
 	else if (v.side == HIT_HORIZONTAL_WALL)
 		v.perp_wall_dist = (v.map_y - game->py + (1 - v.dir_y) / 2) / \
 v.step_y;
-	if (game->map[v.map_y][v.map_x] == DOOR_CLOSED_CHAR)
-		v.side = HIT_DOOR;
+	if (v.map_y >= 0 && v.map_y < game->map_height
+		&& v.map_x >= 0 && v.map_x < game->map_width)
+	{
+		if (game->map[v.map_y][v.map_x] == DOOR_CLOSED_CHAR)
+			v.side = HIT_DOOR;
+	}
 	p_ray_hit->side = v.side;
 	p_ray_hit->dist = v.perp_wall_dist;
 }
