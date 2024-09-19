@@ -27,10 +27,6 @@
 # define MAX_MAP_WIDTH 270
 # define MAX_MAP_HEIGHT 270
 
-# define PARSING_STATE_IDENTIFIERS 1000
-# define PARSING_STATE_WAITING_MAP 1001
-# define PARSING_STATE_MAP 1002
-
 # define PI 3.141592
 # define FOV 60
 # define TURN_ANGLE 0.075
@@ -44,10 +40,19 @@
 # define DOOR_TEX_PATH "./img/door.png"
 # define DIRECTION_OFFSET_COUNT 8
 
-# define HIT_NONE 0
-# define HIT_VERTICAL_WALL 1
-# define HIT_HORIZONTAL_WALL 2
-# define HIT_DOOR 3
+enum e_parsing_state
+{
+	PARSING_STATE_IDENTIFIERS,
+	PARSING_STATE_WAITING_MAP,
+	PARSING_STATE_MAP
+};
+
+enum	e_hit_direction
+{
+	HIT_VERTICAL_WALL,
+	HIT_HORIZONTAL_WALL,
+	HIT_DOOR
+};
 
 typedef struct s_ray_hit
 {
@@ -116,16 +121,16 @@ typedef struct s_game
 
 typedef struct s_dda_vars
 {
-	float	ray_dir_x;
-	float	ray_dir_y;
-	float	delta_dist_x;
-	float	delta_dist_y;
-	int		step_x;
-	int		step_y;
+	float	step_x;
+	float	step_y;
+	float	dist_intersect_x;
+	float	dist_intersect_y;
+	int		dir_x;
+	int		dir_y;
 	int		map_x;
 	int		map_y;
-	float	side_dist_x;
-	float	side_dist_y;
+	float	init_side_dist_x;
+	float	init_side_dist_y;
 	int		hit ;
 	int		side;
 	float	perp_wall_dist;
