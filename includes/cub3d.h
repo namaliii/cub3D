@@ -72,7 +72,16 @@ typedef struct s_vec2d
 	float	y;
 }	t_vec2d;
 
-typedef struct	s_minimap
+typedef struct s_rect
+{
+	int		posx;
+	int		posy;
+	int		lenx;
+	int		leny;
+	t_rgba	color;
+}	t_rect;
+
+typedef struct s_minimap
 {
 	float			scale_horiz;
 	float			scale_vert;
@@ -127,10 +136,8 @@ void			render_frame(t_game *game);
 void			raycast(t_game *game);
 void			find_dist(float angle, t_game *game, t_ray_hit *p_ray_hit);
 void			draw_minimap(t_game *game);
-void			draw_rect(t_game *game, int pos_x, int pos_y,
-					int len_x, int len_y, t_rgba color);
-void			draw_safe_rect(t_game *game, int pos_x, int pos_y,
-					int len_x, int len_y, t_rgba color);
+void			draw_rect(t_game *game, t_rect r);
+void			draw_safe_rect(t_game *game, t_rect r);
 void			draw_textured_wall(t_game *game, int x, float ray_angle,
 					t_ray_hit *hit_info);
 
@@ -140,7 +147,7 @@ bool			is_wall(t_game *game, int x, int y);
 
 // Parser
 int				parse(int argc, char **argv, t_game *game);
-void 			parse_map_line(t_game *game, char *line);
+void			parse_map_line(t_game *game, char *line);
 void			parse_identifier_line(t_game *game, char *line);
 void			parse_rgb(t_game *game, char *line, t_rgba *color);
 void			assign_textures(

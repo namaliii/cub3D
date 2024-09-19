@@ -12,7 +12,9 @@
 
 #include "cub3d.h"
 
-static float	get_fisheye_adjusted_dist(\
+// Processes angles and returns a fisheye adjusted distance.
+// Original distance parameter remains the same.
+static float	fisheye_adj(\
 t_game *game, t_ray_hit *hit_info, float ray_angle)
 {
 	return (hit_info->dist * cos(ray_angle - game->p_angle_rad));
@@ -38,19 +40,21 @@ static void	raycast_column(int x, t_game *game)
 {
 	t_ray_hit	hit_info;
 	float		angle_rad;
-	int			ceiling_end_px;
+	int			ceilng_end_px;
 	int			floor_start_px;
 
 	init_ray_hit(&hit_info);
-	angle_rad = (game->p_angle_rad + game->fov_rad / 2) - ((double) x / (double) game->scr_width) * game->fov_rad;
+	angle_rad = (game->p_angle_rad + game->fov_rad / 2)
+		- ((float) x / game->scr_width) * game->fov_rad;
 	find_dist(angle_rad, game, &hit_info);
-	ceiling_end_px = (game->scr_height / 2.0) - (double) game->scr_height / get_fisheye_adjusted_dist(game, &hit_info, angle_rad);
-	floor_start_px = game->scr_height - ceiling_end_px;
-	// TODO: Struct t_rect: x, y, xlen, ylen, color?
-	draw_safe_rect(game, x, 0, 1, ceiling_end_px, game->color_ceiling);
-	set_hit_info(&hit_info, ceiling_end_px, floor_start_px);
+	ceilng_end_px = (game->scr_height / 2.0)
+		- (double) game->scr_height / fisheye_adj(game, &hit_info, angle_rad);
+	floor_start_px = game->scr_height - ceilng_end_px;
+	draw_safe_rect(game, (t_rect){x, 0, 1, ceilng_end_px, game->color_ceiling});
+	set_hit_info(&hit_info, ceilng_end_px, floor_start_px);
 	draw_textured_wall(game, x, angle_rad, &hit_info);
-	draw_safe_rect(game, x, floor_start_px, 1, game->scr_height - floor_start_px, game->color_floor);
+	draw_safe_rect(game, (t_rect){x, floor_start_px,
+		1, game->scr_height - floor_start_px, game->color_floor});
 }
 
 void	raycast(t_game *game)

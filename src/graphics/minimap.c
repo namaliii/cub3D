@@ -29,7 +29,12 @@ t_game *game, float angle_offset, t_minimap *mmap)
 			front_dist -= 0.05;
 			continue ;
 		}
-		draw_safe_rect(game, front_x * mmap->scale_horiz - mmap->line_thick / 2, front_y * mmap->scale_vert - mmap->line_thick / 2, mmap->line_thick, mmap->line_thick, mmap->line_color);
+		draw_safe_rect(game, (t_rect){
+			front_x * mmap->scale_horiz - mmap->line_thick / 2,
+			front_y * mmap->scale_vert - mmap->line_thick / 2,
+			mmap->line_thick,
+			mmap->line_thick,
+			mmap->line_color});
 		front_dist -= 0.05;
 	}
 }
@@ -54,22 +59,32 @@ static void	draw_map_tiles(t_game *game, int tile_width, int tile_height)
 				tile_color = (t_rgba){175, 175, 175, 255};
 			else
 				tile_color = (t_rgba){0, 0, 0, 255};
-			draw_safe_rect(game, map_x * tile_width, map_y * tile_height, \
-tile_width - 1, tile_height - 1, tile_color);
+			draw_safe_rect(game, (t_rect){map_x * tile_width, \
+map_y * tile_height, tile_width - 1, tile_height - 1, tile_color});
 			++map_x;
 		}
 		++map_y;
 	}
 }
 
-static void	draw_background(t_game *game, float scale_horizontal, float scale_vertical)
+static void	draw_background(t_game *game, float scale_horiz, float scale_vert)
 {
-	draw_safe_rect(game, 0, 0, scale_horizontal * game->map_width, scale_vertical * game->map_height, (t_rgba){50, 50, 50, 255});
+	draw_safe_rect(game, (t_rect){
+		0,
+		0,
+		scale_horiz * game->map_width,
+		scale_vert * game->map_height,
+		(t_rgba){50, 50, 50, 255}});
 }
 
-static void	draw_player(t_game *game, float scale_horizontal, float scale_vertical)
+static void	draw_player(t_game *game, float scale_horiz, float scale_vert)
 {
-	draw_safe_rect(game, game->px * scale_horizontal - 4, game->py * scale_vertical - 4, 10, 10, (t_rgba){255, 127, 0, 255});
+	draw_safe_rect(game, (t_rect){
+		game->px * scale_horiz - 4,
+		game->py * scale_vert - 4,
+		10,
+		10,
+		(t_rgba){255, 127, 0, 255}});
 }
 
 void	draw_minimap(t_game *game)
