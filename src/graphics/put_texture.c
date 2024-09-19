@@ -12,7 +12,8 @@
 
 #include "cub3d.h"
 
-static float	calculate_wall_hit_x(t_game *game, float ray_angle, t_ray_hit *hit_info)
+static float	calculate_wall_hit_x(\
+t_game *game, float ray_angle, t_ray_hit *hit_info)
 {
 	float	wall_hit_x;
 
@@ -23,8 +24,8 @@ static float	calculate_wall_hit_x(t_game *game, float ray_angle, t_ray_hit *hit_
 	return (wall_hit_x - floor(wall_hit_x));
 }
 
-static mlx_texture_t	*return_texture(t_game *game,
-	float ray_angle, t_ray_hit *hit_info)
+static mlx_texture_t	*return_texture(\
+t_game *game, float ray_angle, t_ray_hit *hit_info)
 {
 	mlx_texture_t	*texture;
 
@@ -85,7 +86,8 @@ void	draw_textured_wall(t_game *game, int x, float ray_angle,
 		y_lim = game->scr_height - 1;
 	while (y < y_lim)
 	{
-		mlx_put_pixel(game->img, x, y, get_texture_color(texture, hit_info, wall_hit_x, y));
+		mlx_put_pixel(game->img, x, y,
+			get_texture_color(texture, hit_info, wall_hit_x, y));
 		y++;
 	}
 }
