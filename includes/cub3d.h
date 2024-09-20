@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/20 19:13:33 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/20 19:18:13 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,20 +205,20 @@ void			keyboard_hook(mlx_key_data_t key, void *param);
 void			mouse_move_hook(double xpos, double ypos, void *param);
 
 // Utils
-void			exit_error(const char *msg);
-void			exit_error_mlx(t_game *game, const char *msg);
-void			exit_error_parser(t_game *game, const char *msg);
-void			exit_error_cleanup_textures(t_game *game, const char *msg);
 void			*safe_calloc(size_t elems_count, size_t elem_size);
-void			free_2d_array(char **array, int height);
 int				find_splits_length(char **splits);
 void			print_usage(int argc, char **argv);
-void			print_string_arr(char **str_arr);
-void			print_vec2d(t_vec2d *v);
 char			**ft_split_e(char const *str, char separator);
 void			*ft_realloc(void *ptr, size_t original_size, size_t new_size);
 mlx_texture_t	*load_image(char *path, 
 					t_game *game, char *parser_line, int loading_stage);
+
+// Exit utils
+void			exit_error(const char *msg);
+void			exit_error_mlx(t_game *game, const char *msg);
+void			exit_error_parser(t_game *game, const char *msg);
+void			exit_error_cleanup_textures(t_game *game, const char *msg);
+void			free_2d_array(char **array, int height);
 
 // Parser utils
 int				ft_isspace(char c);
@@ -236,6 +236,8 @@ bool			is_fully_transparent(uint32_t color);
 void			debug_print(t_game *game);
 void			print_map(t_game *game);
 void			debug_parse(t_game *game);
+void			print_string_arr(char **str_arr);
+void			print_vec2d(t_vec2d *v);
 
 // Math utils
 void			vec2d_normalize(t_vec2d *v);
