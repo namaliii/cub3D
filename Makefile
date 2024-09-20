@@ -19,7 +19,8 @@ GRAPHICS_FILES		= render_frame.c \
 						dda.c \
 						sprite.c
 
-MAP_FILES			= checks.c
+MAP_FILES			= checks.c \
+						door.c
 
 PARSER_FILES		= parse.c \
 						player_init.c \
