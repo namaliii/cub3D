@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:20:17 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/16 23:46:31 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/20 17:51:27 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,34 @@ void	exit_error(const char *msg)
 	exit(EXIT_FAILURE);
 }
 
-void	exit_error_parser(t_game *game, char **map, const char *msg)
+void	exit_error_parser(t_game *game, const char *msg)
 {
-	free_2d_array(map, game->map_height);
+	if (game->tex_no != NULL)
+		mlx_delete_texture(game->tex_no);
+	if (game->tex_so != NULL)
+		mlx_delete_texture(game->tex_so);
+	if (game->tex_we != NULL)
+		mlx_delete_texture(game->tex_we);
+	if (game->tex_ea != NULL)
+		mlx_delete_texture(game->tex_ea);
+	free_2d_array(game->map, game->map_height);
 	exit_error(msg);
+}
+
+void	exit_error_cleanup_textures(t_game *game, const char *msg)
+{
+	int	i;
+
+	if (game->tex_door != NULL)
+		mlx_delete_texture(game->tex_door);
+	i = 0;
+	while (i < SPRITE_FRAMES)
+	{
+		if (game->sprite.frames[i] != NULL)
+			mlx_delete_texture(game->sprite.frames[i]);
+		++i;
+	}
+	exit_error_parser(game, msg);
 }
 
 void	exit_error_mlx(t_game *game, const char *msg)
@@ -37,5 +61,5 @@ void	exit_error_mlx(t_game *game, const char *msg)
 		mlx_close_window(game->window);
 		mlx_terminate(game->window);
 	}
-	exit_error_parser(game, game->map, msg);
+	exit_error_cleanup_textures(game, msg);
 }

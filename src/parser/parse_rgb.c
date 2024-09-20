@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:25:58 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/17 00:56:28 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/20 17:50:38 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void	error_handler(t_game *g, char *msg, char **channels, char *line)
 	free(line - 2);
 	if (channels)
 		free_2d_array(channels, find_splits_length(channels));
-	exit_error_parser(g, g->map, msg);
+	exit_error_parser(g, msg);
 }
 
 // Skips the inital identifier characters such as "F " part in the map file line

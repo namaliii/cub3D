@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:25 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/17 00:48:08 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/20 17:49:59 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static int	open_file(t_game *game, char *file_name)
 
 	file = open(file_name, O_RDONLY);
 	if (file < 0)
-		exit_error_parser(game, game->map, ERR_MSG_FAILED_OPENING_FILE);
+		exit_error_parser(game, ERR_MSG_FAILED_OPENING_FILE);
 	return (file);
 }
 
@@ -102,7 +102,7 @@ int	parse(int argc, char **argv, t_game *game)
 	game->map_width = get_map_width(game);
 	add_padding_to_map(game);
 	if (game->map_width > MAX_MAP_WIDTH || game->map_height > MAX_MAP_HEIGHT)
-		exit_error_parser(game, game->map, ERR_MSG_INVALID_MAP_SIZE);
+		exit_error_parser(game, ERR_MSG_INVALID_MAP_SIZE);
 	validate_map_characters(game);
 	surrounded_by_walls(game);
 	valid_path(game);

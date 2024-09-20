@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:56:33 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/17 17:54:41 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/20 17:49:59 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,13 @@ static void	add_line_to_map(t_game *game, char *line)
 	if (game->map == NULL)
 	{
 		free(line);
-		exit_error_parser(game, game->map, ERR_MSG_FAILED_TO_REALLOC_MAP);
+		exit_error_parser(game, ERR_MSG_FAILED_TO_REALLOC_MAP);
 	}
 	game->map[game->map_height] = ft_strdup(line);
 	if (game->map[game->map_height] == NULL)
 	{
 		free(line);
-		exit_error_parser(game, game->map, ERR_MSG_FAILED_TO_DUP_LINE);
+		exit_error_parser(game, ERR_MSG_FAILED_TO_DUP_LINE);
 	}
 	game->map_height++;
 }
@@ -83,7 +83,7 @@ void	parse_map_line(t_game *game, char *line)
 	if (is_line_empty(line))
 	{
 		free(line);
-		exit_error_parser(game, game->map, ERR_MSG_MAP_EMPTY_LINE);
+		exit_error_parser(game, ERR_MSG_MAP_EMPTY_LINE);
 	}
 	add_line_to_map(game, line);
 }

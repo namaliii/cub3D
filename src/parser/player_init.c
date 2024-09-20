@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 16:33:32 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 10:57:42 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/20 18:27:47 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,11 @@ void	init_player(t_game *game)
 		{
 			player_assign(game, &player, i, j);
 			if (player > 1)
-				exit_error_parser(game, game->map,
-					ERR_MSG_INVALID_NUM_OF_PLAYERS);
+				exit_error_parser(game, ERR_MSG_INVALID_NUM_OF_PLAYERS);
 			j++;
 		}
 		i++;
 	}
 	if (player == 0)
-		exit_error_parser(game, game->map, ERR_MSG_NO_PLAYERS);
+		exit_error_parser(game, ERR_MSG_NO_PLAYERS);
 }
