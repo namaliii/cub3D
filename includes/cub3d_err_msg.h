@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 10:38:59 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/17 00:13:50 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/20 11:22:48 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,14 @@
 
 # define ERR_MSG_ALLOC "Error\nAllocation failed."
 # define ERR_MSG_INVALID_ARGC "Error\nWrong number of arguments!"
-# define ERR_MSG_INVALID_WALK_SPEED "Error\nCompiled with walking speed too big"
-# define ERR_MSG_INVALID_COL_DIST \
-	"Error\nCompiled with collision distance too big"
+# define ERR_MSG_INVALID_WALK_SPEED \
+	"Error\nCompiled with walking speed too big."
+# define ERR_MSG_INVALID_COL_DIST_TOO_SMALL \
+	"Error\nCollision distance multiplier cannot be smaller than 1."
+# define ERR_MSG_INVALID_COL_DIST_WALK_SPEED \
+	"Error\nCollision distance times walking speed cannot exceed 1."
+# define ERR_MSG_INVALID_OUT_OF_BOUNDS_TILE \
+	"Error\nOut of bounds tile must be a solid type."
 
 # define ERR_MSG_FAILED_TO_DUP_LINE "Error\nFailed to duplicate line"
 # define ERR_MSG_FAILED_OPENING_FILE "Error\nFailed to open the file"

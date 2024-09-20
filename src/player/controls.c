@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 15:43:24 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/13 22:00:13 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/20 11:35:53 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,11 @@ void	handle_movement(t_game *game)
 		game->p_angle_rad += TURN_ANGLE;
 	get_movement_direction(game, &pos_change);
 	vec2d_mult_by_scalar(&pos_change, WALK_SPEED);
-	if (!is_wall(game, game->px + COLLISION_DIST * pos_change.x, game->py))
+	if (!is_map_tile_solid(game,
+			game->px + COLLISION_DIST_MULTIPLIER * pos_change.x, game->py))
 		game->px = game->px + pos_change.x;
-	if (!is_wall(game, game->px, game->py + COLLISION_DIST * pos_change.y))
+	if (!is_map_tile_solid(game,
+			game->px, game->py + COLLISION_DIST_MULTIPLIER * pos_change.y))
 		game->py = game->py + pos_change.y;
 }
 
@@ -69,23 +71,15 @@ static void	handle_door(t_game *game)
 {
 	const t_vec2d	direction_offsets[DIRECTION_OFFSET_COUNT] = \
 	{{1, 0}, {0, 1}, {1, 1}, {-1, 0}, {-1, 1}, {-1, -1}, {0, -1}, {1, -1}};
-	int				check_x;
-	int				check_y;
 	int				i;
 
 	i = 0;
 	while (i < DIRECTION_OFFSET_COUNT)
 	{
-		check_x = game->px + direction_offsets[i].x;
-		check_y = game->py + direction_offsets[i].y;
-		if (check_x >= 0 && check_x < game->map_width
-			&& check_y >= 0 && check_y < game->map_height)
-		{
-			if (game->map[check_y][check_x] == DOOR_OPENED_CHAR)
-				game->map[check_y][check_x] = DOOR_CLOSED_CHAR;
-			else if (game->map[check_y][check_x] == DOOR_CLOSED_CHAR)
-				game->map[check_y][check_x] = DOOR_OPENED_CHAR;
-		}
+		toggle_door_safe(
+			game,
+			game->px + direction_offsets[i].x,
+			game->py + direction_offsets[i].y);
 		++i;
 	}
 }

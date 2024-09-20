@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_texture.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 20:17:10 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/17 19:15:58 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/20 11:41:53 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,22 @@ t_game *game, float ray_angle, t_ray_hit *hit_info)
 	mlx_texture_t	*texture;
 
 	texture = NULL;
-	if (hit_info->side == HIT_VERTICAL_WALL)
+	if (hit_info->hit_tile_type == TILE_DOOR_CLOSED_CHAR)
+		texture = game->tex_door;
+	else if (hit_info->side == HIT_VERTICAL_WALL)
 	{
 		if (sin(ray_angle) > 0)
 			texture = game->tex_ea;
 		else
 			texture = game->tex_we;
 	}
-	else if (hit_info->side == HIT_HORIZONTAL_WALL)
+	else
 	{
 		if (cos(ray_angle) > 0)
 			texture = game->tex_so;
 		else
 			texture = game->tex_no;
 	}
-	else
-		texture = game->tex_door;
 	return (texture);
 }
 
