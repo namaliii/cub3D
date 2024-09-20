@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 10:38:59 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/20 11:22:48 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/20 13:05:02 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@
 	"Error\nColors are beyond the proper scope, please adjust to 0 - 255"
 # define ERR_MSG_COLOR_INVALID_NUM_CHNLS \
 	"Error\nColors have invalid number of channels"
-# define ERR_MSG_INVALID_CHAR_IN_COLOR "Error\nInvalid character in color"
+# define ERR_MSG_INV_CHAR_IN_COLR "Error\nInvalid character in color"
+# define ERR_MSG_COLOR_EXPECTS_MORE_LINES "Error\nColor expects new lines after"
+# define ERR_MSG_EMPTY_COLOR "Error\nColor value is empty"
 
 // Parsing map
 # define ERR_MSG_INVALID_MAP_SIZE \
