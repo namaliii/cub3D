@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 17:31:17 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/20 15:49:24 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/20 19:08:03 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	validate_map_characters(t_game *game)
 		while (game->map[i][j])
 		{
 			if (!ft_strchr(valid_chars, game->map[i][j]))
-				exit_error_parser(game, game->map, ERR_MSG_MAP_INVALID_CHARS);
+				exit_error_parser(game, ERR_MSG_MAP_INVALID_CHARS);
 			j++;
 		}
 		i++;
@@ -46,7 +46,7 @@ void	top_bottom_check(t_game *game, int *i)
 		while (j < curr_line_width)
 		{
 			if (game->map[*i][j] != '1' && !ft_isspace(game->map[*i][j]))
-				exit_error_parser(game, game->map, ERR_MSG_MAP_NOT_ENCLOSED);
+				exit_error_parser(game, ERR_MSG_MAP_NOT_ENCLOSED);
 			j++;
 		}
 	}
@@ -71,7 +71,7 @@ void	interior_check(t_game *game, int *i)
 					|| (j < width - 1
 					&& ft_isspace(game->map[*i][j + 1])))
 				{
-					exit_error_parser(game, game->map,
+					exit_error_parser(game,
 						ERR_MSG_MAP_NOT_ENCLOSED);
 				}
 			}
@@ -92,7 +92,7 @@ void	first_last_column(t_game *game)
 		while (ft_isspace(game->map[i][j]))
 			j++;
 		if (game->map[i][j] != '1')
-			exit_error_parser(game, game->map, ERR_MSG_MAP_INVALID);
+			exit_error_parser(game, ERR_MSG_MAP_INVALID);
 		i++;
 	}
 	i = 0;
@@ -102,7 +102,7 @@ void	first_last_column(t_game *game)
 		while (!game->map[i][j] || (j > 0 && ft_isspace(game->map[i][j])))
 			j--;
 		if (j >= 0 && game->map[i][j] != '1' && game->map[i][j] != '\0')
-			exit_error_parser(game, game->map, ERR_MSG_MAP_NOT_ENCLOSED);
+			exit_error_parser(game, ERR_MSG_MAP_NOT_ENCLOSED);
 		i++;
 	}
 }

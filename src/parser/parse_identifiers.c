@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_identifiers.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 18:49:05 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/17 19:18:39 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/20 17:49:59 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	parse_identifier_line(t_game *game, char *line)
 	if (identifier_already_exists(game, line))
 	{
 		free(line);
-		exit_error_parser(game, game->map, ERR_MSG_MULTIPLE_IDENTIFIERS);
+		exit_error_parser(game, ERR_MSG_MULTIPLE_IDENTIFIERS);
 	}
 	mark_identifier(game, line);
 	if (ft_strncmp(line, "NO ", 3) == 0)
@@ -70,6 +70,6 @@ void	parse_identifier_line(t_game *game, char *line)
 	else
 	{
 		free(line);
-		exit_error_parser(game, game->map, ERR_MSG_INVALID_IDENTIFIER);
+		exit_error_parser(game, ERR_MSG_INVALID_IDENTIFIER);
 	}
 }
