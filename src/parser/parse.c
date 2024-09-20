@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:25 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/20 08:27:00 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/20 15:43:18 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ int	parse(int argc, char **argv, t_game *game)
 {
 	int	map_fd;
 
-	ft_bzero(game, sizeof(t_game));
 	if (argc != 2)
 	{
 		printf("%s\n", ERR_MSG_INVALID_ARGC);
