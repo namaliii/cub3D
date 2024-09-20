@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:25 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/20 12:43:26 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/20 15:48:41 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	all_identifiers_exist(t_game *game)
 	int	i;
 
 	i = 0;
-	while (i < 6)
+	while (i < IDENTIFIER_COUNT)
 	{
 		if (!game->identifiers[i])
 		{
@@ -98,6 +98,8 @@ int	parse(int argc, char **argv, t_game *game)
 	map_fd = open_file(game, argv[1]);
 	parse_file(game, map_fd);
 	close(map_fd);
+	if (game->map == NULL)
+		exit_error(ERR_MSG_MAP_INVALID);
 	game->map_width = get_map_width(game);
 	add_padding_to_map(game);
 	if (game->map_width > MAX_MAP_WIDTH || game->map_height > MAX_MAP_HEIGHT)

@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 20:17:10 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/20 11:41:53 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/20 15:44:45 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,23 +49,18 @@ t_game *game, float ray_angle, t_ray_hit *hit_info)
 	return (texture);
 }
 
-static int	get_texture_color(mlx_texture_t *tex, t_ray_hit *hit_info,
+static uint32_t	get_texture_color(mlx_texture_t *tex, t_ray_hit *hit_info,
 	float wall_hit_x, int y)
 {
-	int		tex_x_offset;
+	int		tex_x;
 	double	step;
 	int		tex_y;
-	int		color;
 
-	tex_x_offset = (int)(wall_hit_x * tex->width) % tex->width;
 	step = (double)tex->height / hit_info->wall_height;
+	tex_x = (int)(wall_hit_x * tex->width) % tex->width;
 	tex_y = (int)((y - hit_info->ceil_end_px) * step);
 	clamp(&tex_y, 0, tex->height - 1);
-	color = (tex->pixels[(tex_y * tex->width + tex_x_offset) * 4] << 24)
-		| (tex->pixels[(tex_y * tex->width + tex_x_offset) * 4 + 1] << 16)
-		| (tex->pixels[(tex_y * tex->width + tex_x_offset) * 4 + 2] << 8)
-		| (tex->pixels[(tex_y * tex->width + tex_x_offset) * 4 + 3]);
-	return (color);
+	return (get_mlx_texture_pixel(tex, tex_x, tex_y));
 }
 
 void	draw_textured_wall(t_game *game, int x, float ray_angle,
