@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:25:58 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/17 00:56:28 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/20 09:44:28 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ static void	error_handler(t_game *g, char *msg, char **channels, char *line)
 // Skips the inital identifier characters such as "F " part in the map file line
 static void	skip_to_rgb_str(char **p_line)
 {
+	// TODO: if file ends here, line is now \0, what will happen in ft_split_e?
 	*p_line += 2;
 }
 

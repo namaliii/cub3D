@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:25 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/17 00:48:08 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/20 08:27:00 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	all_identifiers_exist(t_game *game)
 	int	i;
 
 	i = 0;
-	while (i < 6)
+	while (i < IDENTIFIER_COUNT)
 	{
 		if (!game->identifiers[i])
 		{

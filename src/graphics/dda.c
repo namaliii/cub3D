@@ -3,37 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 09:42:26 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/17 19:17:51 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/20 08:37:31 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	init_dda_vars(t_dda_vars *v)
+static void	setup_vars(float angle_rad, t_game *game, t_dda_vars *v)
 {
-	v->step_x = 0;
-	v->step_y = 0;
-	v->dist_intersect_x = 0;
-	v->dist_intersect_y = 0;
-	v->dir_x = 0;
-	v->dir_y = 0;
-	v->map_x = 0;
-	v->map_y = 0;
-	v->init_side_dist_x = 0;
-	v->init_side_dist_y = 0;
-	v->hit = 0;
-	v->side = 0;
-	v->perp_wall_dist = 0;
-}
-
-static void	setup_vars(float angle, t_game *game, t_dda_vars *v)
-{
-	init_dda_vars(v);
-	v->step_x = sin(angle);
-	v->step_y = cos(angle);
+	ft_bzero(v, sizeof(t_dda_vars));
+	v->step_x = sin(angle_rad);
+	v->step_y = cos(angle_rad);
 	v->dist_intersect_x = sqrt(1 + pow((v->step_y / v->step_x), 2));
 	v->dist_intersect_y = sqrt(1 + pow((v->step_x / v->step_y), 2));
 	if (v->step_x > 0)
@@ -77,11 +60,11 @@ static void	find_distance(t_game *game, t_dda_vars *v)
 	}
 }
 
-void	find_dist(float angle, t_game *game, t_ray_hit *p_ray_hit)
+void	find_dist(float angle_rad, t_game *game, t_ray_hit *p_ray_hit)
 {
 	t_dda_vars	v;
 
-	setup_vars(angle, game, &v);
+	setup_vars(angle_rad, game, &v);
 	find_distance(game, &v);
 	if (v.side == HIT_VERTICAL_WALL)
 		v.perp_wall_dist = (v.map_x - game->px + (1 - v.dir_x) / 2) / \

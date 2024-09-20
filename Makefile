@@ -35,7 +35,7 @@ UTILS_FILES			= get_next_line/get_next_line.c \
 						get_next_line/get_next_line_utils.c \
 						exit_error.c \
 						safe_calloc.c \
-						rgba2color.c \
+						color.c \
 						deg2rad.c \
 						debug_print.c \
 						cub3d_math.c \

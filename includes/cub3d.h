@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/17 19:15:06 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/20 08:33:41 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 # define DOOR_OPENED_CHAR 'd'
 # define DOOR_TEX_PATH "./img/door.png"
 # define DIRECTION_OFFSET_COUNT 8
+# define IDENTIFIER_COUNT 6
 
 enum e_parsing_state
 {
@@ -47,7 +48,7 @@ enum e_parsing_state
 	PARSING_STATE_MAP
 };
 
-enum	e_hit_direction
+enum e_hit_direction
 {
 	HIT_VERTICAL_WALL,
 	HIT_HORIZONTAL_WALL,
@@ -116,7 +117,7 @@ typedef struct s_game
 	int				scr_width;
 	int				scr_height;
 	float			fov_rad;
-	bool			identifiers[6];
+	bool			identifiers[IDENTIFIER_COUNT];
 }	t_game;
 
 typedef struct s_dda_vars
@@ -192,6 +193,7 @@ int				ft_isnumber(char *str);
 // Conversions utils
 float			deg2rad(float angle_degree);
 uint32_t		rgba2color(t_rgba rgba);
+uint32_t		get_mlx_texture_pixel(mlx_texture_t *tex, int x, int y);
 
 // Debug utils
 void			debug_print(t_game *game);
