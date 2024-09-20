@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/17 19:15:06 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/20 18:20:20 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,16 @@
 # define DOOR_TEX_PATH "./img/door.png"
 # define DIRECTION_OFFSET_COUNT 8
 
+# define SPRITE_FRAME_RATE 10
+# define SPRITE_FRAMES 8
+# define SPRITE_BASE_PATH "./img/sprite/torch"
+# define SPRITE_FILE_PATH_LEN 25
+
+# define COLOR_ALPHA_CHANNEL_MASK 0xFF000000
+
+# define IMG_LOADING_STAGE_PARSER 1001
+# define IMG_LOADING_STAGE_INIT 1002
+
 enum e_parsing_state
 {
 	PARSING_STATE_IDENTIFIERS,
@@ -53,6 +63,15 @@ enum	e_hit_direction
 	HIT_HORIZONTAL_WALL,
 	HIT_DOOR
 };
+
+typedef struct s_sprite
+{
+	mlx_texture_t	*frames[SPRITE_FRAMES];
+	int				current_frame;
+	double			sway_offset;
+	double			time_accumulator_sec;
+	int				direction;
+}	t_sprite;
 
 typedef struct s_ray_hit
 {
@@ -117,6 +136,9 @@ typedef struct s_game
 	int				scr_height;
 	float			fov_rad;
 	bool			identifiers[6];
+	t_sprite		sprite;
+	double			last_time_sec;
+	double			delta_time_sec;
 }	t_game;
 
 typedef struct s_dda_vars
@@ -136,6 +158,10 @@ typedef struct s_dda_vars
 	float	perp_wall_dist;
 }	t_dda_vars;
 
+// Main
+void			init_game(t_game *game);
+void			load_textures(t_game *game);
+
 // Graphics
 void			render_frame(t_game *game);
 void			raycast(t_game *game);
@@ -145,6 +171,7 @@ void			draw_rect(t_game *game, t_rect r);
 void			draw_safe_rect(t_game *game, t_rect r);
 void			draw_textured_wall(t_game *game, int x, float ray_angle,
 					t_ray_hit *hit_info);
+void			handle_sprite_animation(t_game *game);
 
 // Map
 bool			is_out_of_bounds(t_game *game, int x, int y);
@@ -157,7 +184,6 @@ void			parse_identifier_line(t_game *game, char *line);
 void			parse_rgb(t_game *game, char *line, t_rgba *color);
 void			assign_textures(
 					t_game *game, mlx_texture_t **tex_img, char *line);
-mlx_texture_t	*load_image(char *path, t_game *game, char *line);
 void			add_padding_to_map(t_game *game);
 int				get_map_width(t_game *game);
 void			validate_map_characters(t_game *game);
@@ -173,7 +199,8 @@ void			mouse_move_hook(double xpos, double ypos, void *param);
 // Utils
 void			exit_error(const char *msg);
 void			exit_error_mlx(t_game *game, const char *msg);
-void			exit_error_parser(t_game *game, char **map, const char *msg);
+void			exit_error_parser(t_game *game, const char *msg);
+void			exit_error_cleanup_textures(t_game *game, const char *msg);
 void			*safe_calloc(size_t elems_count, size_t elem_size);
 void			free_2d_array(char **array, int height);
 int				find_splits_length(char **splits);
@@ -182,6 +209,8 @@ void			print_string_arr(char **str_arr);
 void			print_vec2d(t_vec2d *v);
 char			**ft_split_e(char const *str, char separator);
 void			*ft_realloc(void *ptr, size_t original_size, size_t new_size);
+mlx_texture_t	*load_image(char *path, 
+					t_game *game, char *parser_line, int loading_stage);
 
 // Parser utils
 int				ft_isspace(char c);
@@ -192,6 +221,8 @@ int				ft_isnumber(char *str);
 // Conversions utils
 float			deg2rad(float angle_degree);
 uint32_t		rgba2color(t_rgba rgba);
+uint32_t		get_mlx_texture_pixel(mlx_texture_t *tex, int x, int y);
+bool			is_fully_transparent(uint32_t color);
 
 // Debug utils
 void			debug_print(t_game *game);
