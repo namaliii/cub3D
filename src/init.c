@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 22:17:25 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/20 18:11:56 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/20 19:11:39 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,6 @@ void	load_textures(t_game *game)
 
 void	init_game(t_game *game)
 {
-	if (WALK_SPEED >= 1.0)
-		exit_error_parser(game, ERR_MSG_INVALID_WALK_SPEED);
-	if (COLLISION_DIST * WALK_SPEED >= 1.0)
-		exit_error_parser(game, ERR_MSG_INVALID_COL_DIST);
 	game->scr_width = SCREEN_WIDTH;
 	game->scr_height = SCREEN_HEIGHT;
 	game->fov_rad = deg2rad(FOV);

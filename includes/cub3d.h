@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/20 19:10:01 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/20 19:13:33 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 # define TILE_DOOR_CLOSED_CHAR 'D'
 # define TILE_DOOR_OPENED_CHAR 'd'
 # define TILE_SPACE ' '
-# define TILE_OUT_OF_BOUNDS TILE_WALL
+# define TILE_OUT_OF_BOUNDS TILE_DOOR_CLOSED_CHAR
 # define DOOR_TEX_PATH "./img/door.png"
 # define DIRECTION_OFFSET_COUNT 8
 # define IDENTIFIER_COUNT 6
