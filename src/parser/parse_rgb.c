@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:25:58 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/17 00:56:28 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/20 12:17:41 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	parse_rgb(t_game *game, char *line, t_rgba *color)
 		|| set_color_channel(channels[1], &color->g, 0)
 		|| set_color_channel(channels[2], &color->b, 1))
 	{
-		error_handler(game, ERR_MSG_COLOR_INVALID_NUM_CHNLS, channels, line);
+		error_handler(game, NULL, channels, line);
 	}
 	color->a = 255;
 	free_2d_array(channels, 3);
