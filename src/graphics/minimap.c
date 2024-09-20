@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:44:59 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/16 23:55:32 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/20 11:00:20 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ static void	draw_map_tiles(t_game *game, int tile_width, int tile_height)
 		map_x = 0;
 		while (map_x < game->map_width)
 		{
-			if (game->map[map_y][map_x] == DOOR_CLOSED_CHAR)
+			if (game->map[map_y][map_x] == TILE_DOOR_CLOSED_CHAR)
 				tile_color = (t_rgba){20, 20, 175, 255};
-			else if (game->map[map_y][map_x] == DOOR_OPENED_CHAR)
+			else if (game->map[map_y][map_x] == TILE_DOOR_OPENED_CHAR)
 				tile_color = (t_rgba){20, 20, 100, 255};
-			else if (is_wall(game, map_x, map_y))
+			else if (is_tile_solid(game->map[map_y][map_x]))
 				tile_color = (t_rgba){175, 175, 175, 255};
 			else
 				tile_color = (t_rgba){0, 0, 0, 255};

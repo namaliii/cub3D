@@ -6,52 +6,50 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:25:58 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/17 00:56:28 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/20 13:08:52 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 // Must be numeric, may have spaces in either side.
-// If `allow_newline` is true, it can have a single newline at the end.
-static int	is_valid_channel_str(char *s, int allow_newline)
+// If `require_newline` is true, it must have a single newline at the end.
+static int	is_valid_channel_str(char *s, int require_newline)
 {
+	size_t	s_len;
 	size_t	i;
 	char	*trimmed;
-	int		nl_count;
 
-	nl_count = 0;
+	if (require_newline)
+	{
+		s_len = ft_strlen(s);
+		if (s_len > 0 && s[s_len - 1] != '\n')
+			return (printf("%s\n", ERR_MSG_COLOR_EXPECTS_MORE_LINES), 0);
+		s[s_len - 1] = '\0';
+	}
 	trimmed = ft_strtrim(s, " ");
+	if (ft_strlen(trimmed) == 0)
+		return (free(trimmed), printf("%s\n", ERR_MSG_EMPTY_COLOR), 0);
 	i = 0;
 	while (trimmed[i] != '\0')
 	{
-		if (!ft_isdigit(trimmed[i]) && (allow_newline && trimmed[i] != '\n'))
-		{
-			free(trimmed);
-			return (0);
-		}
-		if (trimmed[i] == '\n')
-			nl_count++;
+		if (!ft_isdigit(trimmed[i]))
+			return (free(trimmed), printf("%s\n", ERR_MSG_INV_CHAR_IN_COLR), 0);
 		++i;
 	}
 	free(trimmed);
-	if (allow_newline && (nl_count > 1 || s[i - 1] != '\n'))
-		return (0);
 	return (1);
 }
 
 // Set the value in `val` into `channel` and return 0.
 // Upon error, print error message and return -1.
 static int	set_color_channel(\
-char *val, unsigned int *channel, int allow_newline)
+char *val, unsigned int *channel, int require_newline)
 {
 	int		channel_val;
 
-	if (!is_valid_channel_str(val, allow_newline))
-	{
-		printf("%s\n", ERR_MSG_INVALID_CHAR_IN_COLOR);
+	if (!is_valid_channel_str(val, require_newline))
 		return (-1);
-	}
 	channel_val = ft_atoi(val);
 	if (channel_val < 0 || channel_val > 255)
 	{
@@ -98,7 +96,7 @@ void	parse_rgb(t_game *game, char *line, t_rgba *color)
 		|| set_color_channel(channels[1], &color->g, 0)
 		|| set_color_channel(channels[2], &color->b, 1))
 	{
-		error_handler(game, ERR_MSG_COLOR_INVALID_NUM_CHNLS, channels, line);
+		error_handler(game, NULL, channels, line);
 	}
 	color->a = 255;
 	free_2d_array(channels, 3);

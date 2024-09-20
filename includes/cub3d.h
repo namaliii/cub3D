@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anamieta <anamieta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/17 19:15:06 by anamieta         ###   ########.fr       */
+/*   Updated: 2024/09/20 11:35:21 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,13 @@
 # define TURN_ANGLE 0.075
 # define WALK_SPEED 0.1
 # define MOUSE_SENSITIVITY 0.001
-# define COLLISION_DIST 7
+# define COLLISION_DIST_MULTIPLIER 2
 
-# define SOLID_ELEMENTS "1D"
-# define DOOR_CLOSED_CHAR 'D'
-# define DOOR_OPENED_CHAR 'd'
+# define TILE_WALL '1'
+# define TILE_DOOR_CLOSED_CHAR 'D'
+# define TILE_DOOR_OPENED_CHAR 'd'
+# define TILE_SPACE ' '
+# define TILE_OUT_OF_BOUNDS TILE_WALL
 # define DOOR_TEX_PATH "./img/door.png"
 # define DIRECTION_OFFSET_COUNT 8
 
@@ -57,6 +59,7 @@ enum	e_hit_direction
 typedef struct s_ray_hit
 {
 	int		side;
+	char	hit_tile_type;
 	float	dist;
 	int		ceil_end_px;
 	int		floor_start_px;
@@ -147,8 +150,12 @@ void			draw_textured_wall(t_game *game, int x, float ray_angle,
 					t_ray_hit *hit_info);
 
 // Map
+bool			is_map_tile_solid(t_game *game, int x, int y);
+char			get_map_tile(t_game *game, int x, int y);
 bool			is_out_of_bounds(t_game *game, int x, int y);
-bool			is_wall(t_game *game, int x, int y);
+bool			is_tile_solid(char tile);
+void			toggle_door(t_game *game, int door_x, int door_y);
+void			toggle_door_safe(t_game *game, int door_x, int door_y);
 
 // Parser
 int				parse(int argc, char **argv, t_game *game);
