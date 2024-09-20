@@ -16,7 +16,8 @@ GRAPHICS_FILES		= render_frame.c \
 						minimap.c \
 						draw.c \
 						put_texture.c \
-						dda.c
+						dda.c \
+						sprite.c
 
 MAP_FILES			= checks.c
 
@@ -35,7 +36,7 @@ UTILS_FILES			= get_next_line/get_next_line.c \
 						get_next_line/get_next_line_utils.c \
 						exit_error.c \
 						safe_calloc.c \
-						rgba2color.c \
+						color.c \
 						deg2rad.c \
 						debug_print.c \
 						cub3d_math.c \
@@ -43,7 +44,8 @@ UTILS_FILES			= get_next_line/get_next_line.c \
 						parse_utils.c \
 						print_usage.c \
 						ft_split_e.c \
-						ft_realloc.c
+						ft_realloc.c \
+						load_image.c
 
 GRAPHICS_SRCS		= $(addprefix src/graphics/, $(GRAPHICS_FILES))
 MAP_SRCS			= $(addprefix src/map/, $(MAP_FILES))
@@ -51,7 +53,7 @@ PARSER_SRCS			= $(addprefix src/parser/, $(PARSER_FILES))
 PLAYER_SRCS			= $(addprefix src/player/, $(PLAYER_FILES))
 UTILS_SRCS			= $(addprefix src/utils/, $(UTILS_FILES))
 
-SRCS_NO_MAIN		= $(GRAPHICS_SRCS) $(MAP_SRCS) $(PARSER_SRCS) $(PLAYER_SRCS) $(UTILS_SRCS)
+SRCS_NO_MAIN		= src/init.c $(GRAPHICS_SRCS) $(MAP_SRCS) $(PARSER_SRCS) $(PLAYER_SRCS) $(UTILS_SRCS)
 SRCS				= src/main.c $(SRCS_NO_MAIN)
 
 # Includes
