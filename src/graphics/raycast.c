@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:38:28 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/20 09:37:07 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/20 09:48:46 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	raycast_column(int x, t_game *game)
 	int			floor_start_px;
 
 	ft_bzero(&hit_info, sizeof(t_ray_hit));
-	angle_rad = (game->p_angle_rad + game->fov_rad / 2) 
+	angle_rad = (game->p_angle_rad + game->fov_rad / 2)
 		- ((float) x / game->scr_width) * game->fov_rad;
 	find_dist(angle_rad, game, &hit_info);
 	ceilng_end_px = (game->scr_height / 2.0)
