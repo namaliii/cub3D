@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/20 19:18:13 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/21 14:38:22 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,13 @@
 
 # define PI 3.141592
 # define FOV 60
-# define TURN_ANGLE 0.075
-# define WALK_SPEED 0.1
+# define TURN_ANGLE 4.6875
+# define WALK_SPEED 6.25
+# define MAX_WALK_SPEED 0.95
 # define MOUSE_SENSITIVITY 0.001
 # define COLLISION_DIST_MULTIPLIER 2
+# define FPS_UNLIMITED 0
+# define FPS_STR_SIZE 12
 
 # define TILE_WALL '1'
 # define TILE_DOOR_CLOSED_CHAR 'D'
@@ -46,12 +49,9 @@
 # define SPRITE_FRAME_RATE 10
 # define SPRITE_FRAMES 8
 # define SPRITE_BASE_PATH "./img/sprite/torch"
-# define SPRITE_FILE_PATH_LEN 25
+# define SPRITE_FILE_PATH_LEN 256
 
 # define COLOR_ALPHA_CHANNEL_MASK 0xFF000000
-
-# define IMG_LOADING_STAGE_PARSER 1001
-# define IMG_LOADING_STAGE_INIT 1002
 
 enum e_parsing_state
 {
@@ -143,6 +143,10 @@ typedef struct s_game
 	t_sprite		sprite;
 	double			last_time_sec;
 	double			delta_time_sec;
+	int				fps_limit;
+	double			fps_time_accumulator_sec;
+	unsigned int	fps_frame_count;
+	char			*fps_str;
 }	t_game;
 
 typedef struct s_dda_vars
@@ -176,6 +180,9 @@ void			draw_safe_rect(t_game *game, t_rect r);
 void			draw_textured_wall(t_game *game, int x, float ray_angle,
 					t_ray_hit *hit_info);
 void			handle_sprite_animation(t_game *game);
+uint32_t		rgba2color(t_rgba rgba);
+uint32_t		get_mlx_texture_pixel(mlx_texture_t *tex, int x, int y);
+bool			is_fully_transparent(uint32_t color);
 
 // Map
 bool			is_map_tile_solid(t_game *game, int x, int y);
@@ -210,8 +217,12 @@ int				find_splits_length(char **splits);
 void			print_usage(int argc, char **argv);
 char			**ft_split_e(char const *str, char separator);
 void			*ft_realloc(void *ptr, size_t original_size, size_t new_size);
-mlx_texture_t	*load_image(char *path, 
-					t_game *game, char *parser_line, int loading_stage);
+
+// Cleanup utils
+void			cleanup_parser(t_game *game);
+void			cleanup_textures(t_game *game);
+void			cleanup_mlx(t_game *game);
+void			total_cleanup(t_game *game);
 
 // Exit utils
 void			exit_error(const char *msg);
@@ -226,11 +237,11 @@ int				is_line_empty(char *line);
 int				is_valid_extension(char *file_name);
 int				ft_isnumber(char *str);
 
-// Conversions utils
+// Angle utils
 float			deg2rad(float angle_degree);
-uint32_t		rgba2color(t_rgba rgba);
-uint32_t		get_mlx_texture_pixel(mlx_texture_t *tex, int x, int y);
-bool			is_fully_transparent(uint32_t color);
+void			angle_bound(float *angle_rad);
+float			angle_subt(float a_rad, float b_rad);
+float			angle_add(float a_rad, float b_rad);
 
 // Debug utils
 void			debug_print(t_game *game);
@@ -243,6 +254,7 @@ void			print_vec2d(t_vec2d *v);
 void			vec2d_normalize(t_vec2d *v);
 t_vec2d			*vec2d_mult_by_scalar(t_vec2d *v, float scalar);
 int				min2(int a, int b);
+float			min2f(float a, float b);
 int				max2(int a, int b);
 void			clamp(int *val, int min, int max);
 

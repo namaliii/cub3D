@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:30:16 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/20 17:50:38 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/21 14:10:46 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,10 @@ void	check_the_path(t_game *g, char **map_copy, int height)
 			while (j < g->map_width)
 			{
 				if (map_copy[i][j] != 'Q' && !ft_isspace(map_copy[i][j]))
+				{
+					free_2d_array(map_copy, g->map_height);
 					exit_error_parser(g, ERR_MSG_MAP_NOT_ONE_PIECE);
+				}
 				j++;
 			}
 		}
