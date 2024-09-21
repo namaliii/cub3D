@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 14:37:49 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/21 14:09:49 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/21 19:51:53 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	assign_textures(t_game *game, mlx_texture_t **tex_img, char *line)
 	int		i;
 	int		start;
 	char	*texture_path;
+	
 
 	i = 3;
 	start = i;
@@ -30,7 +31,7 @@ void	assign_textures(t_game *game, mlx_texture_t **tex_img, char *line)
 	}
 	ft_strlcpy(texture_path, line + start, i - start + 1);
 	*tex_img = mlx_load_png(texture_path);
-	if (tex_img == NULL)
+	if (*tex_img == NULL)
 	{
 		printf("%s\n", texture_path);
 		if (line != NULL)
