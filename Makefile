@@ -40,7 +40,8 @@ UTILS_FILES			= get_next_line/get_next_line.c \
 						safe_calloc.c \
 						angles.c \
 						debug_print.c \
-						cub3d_math.c \
+						math_vec2d.c \
+						math_cmp.c \
 						list.c \
 						parse_utils.c \
 						ft_split_e.c \
