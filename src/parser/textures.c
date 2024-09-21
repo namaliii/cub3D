@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 14:37:49 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/21 19:51:53 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/21 19:58:17 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	assign_textures(t_game *game, mlx_texture_t **tex_img, char *line)
 	int		i;
 	int		start;
 	char	*texture_path;
-	
 
 	i = 3;
 	start = i;
