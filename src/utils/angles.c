@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:39:09 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/21 13:35:46 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/21 14:15:07 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	angle_bound(float *angle_rad)
 {
 	if (*angle_rad < 0)
 		*angle_rad += 2 * PI;
-	return (fmodf(*angle_rad, 2 * PI));
+	*angle_rad = fmodf(*angle_rad, 2 * PI);
 }
 
 float	angle_subt(float a_rad, float b_rad)
