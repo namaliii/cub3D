@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/21 13:36:03 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/21 14:14:34 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,9 @@
 # define SPRITE_FRAME_RATE 10
 # define SPRITE_FRAMES 8
 # define SPRITE_BASE_PATH "./img/sprite/torch"
-# define SPRITE_FILE_PATH_LEN 25
+# define SPRITE_FILE_PATH_LEN 256
 
 # define COLOR_ALPHA_CHANNEL_MASK 0xFF000000
-
-# define IMG_LOADING_STAGE_PARSER 1001
-# define IMG_LOADING_STAGE_INIT 1002
 
 enum e_parsing_state
 {
@@ -219,8 +216,12 @@ int				find_splits_length(char **splits);
 void			print_usage(int argc, char **argv);
 char			**ft_split_e(char const *str, char separator);
 void			*ft_realloc(void *ptr, size_t original_size, size_t new_size);
-mlx_texture_t	*load_image(char *path, 
-					t_game *game, char *parser_line, int loading_stage);
+
+// Cleanup utils
+void			cleanup_parser(t_game *game);
+void			cleanup_textures(t_game *game);
+void			cleanup_mlx(t_game *game);
+void			total_cleanup(t_game *game);
 
 // Exit utils
 void			exit_error(const char *msg);

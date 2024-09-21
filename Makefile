@@ -45,7 +45,7 @@ UTILS_FILES			= get_next_line/get_next_line.c \
 						parse_utils.c \
 						ft_split_e.c \
 						ft_realloc.c \
-						load_image.c
+						cleanup.c
 
 GRAPHICS_SRCS		= $(addprefix src/graphics/, $(GRAPHICS_FILES))
 MAP_SRCS			= $(addprefix src/map/, $(MAP_FILES))
