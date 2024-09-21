@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/21 14:14:34 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/21 14:38:22 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@
 
 # define PI 3.141592
 # define FOV 60
-# define TURN_ANGLE 0.075
-# define WALK_SPEED 0.1
+# define TURN_ANGLE 4.6875
+# define WALK_SPEED 6.25
+# define MAX_WALK_SPEED 0.95
 # define MOUSE_SENSITIVITY 0.001
 # define COLLISION_DIST_MULTIPLIER 2
 # define FPS_UNLIMITED 0
@@ -253,6 +254,7 @@ void			print_vec2d(t_vec2d *v);
 void			vec2d_normalize(t_vec2d *v);
 t_vec2d			*vec2d_mult_by_scalar(t_vec2d *v, float scalar);
 int				min2(int a, int b);
+float			min2f(float a, float b);
 int				max2(int a, int b);
 void			clamp(int *val, int min, int max);
 

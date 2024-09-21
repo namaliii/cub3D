@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 15:43:24 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/21 14:13:12 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/21 14:38:03 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,13 @@ void	handle_movement(t_game *game)
 	}
 	if (mlx_is_key_down(game->window, MLX_KEY_E)
 		|| mlx_is_key_down(game->window, MLX_KEY_RIGHT))
-		game->p_angle_rad -= TURN_ANGLE;
+		game->p_angle_rad -= TURN_ANGLE * game->delta_time_sec;
 	if (mlx_is_key_down(game->window, MLX_KEY_Q)
 		|| mlx_is_key_down(game->window, MLX_KEY_LEFT))
-		game->p_angle_rad += TURN_ANGLE;
+		game->p_angle_rad += TURN_ANGLE * game->delta_time_sec;
 	get_movement_direction(game, &pos_change);
-	vec2d_mult_by_scalar(&pos_change, WALK_SPEED);
+	vec2d_mult_by_scalar(
+		&pos_change, min2f(WALK_SPEED * game->delta_time_sec, MAX_WALK_SPEED));
 	if (!is_map_tile_solid(game,
 			game->px + COLLISION_DIST_MULTIPLIER * pos_change.x, game->py))
 		game->px = game->px + pos_change.x;
