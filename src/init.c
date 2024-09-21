@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 22:17:25 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/21 15:11:00 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/21 15:22:14 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	init_game(t_game *game)
 		exit_error_mlx(game, ERR_MSG_ALLOC);
 	game->window = mlx_init(game->scr_width, game->scr_height, "cub3d", false);
 	if (game->window == NULL)
-		exit_error(mlx_strerror(mlx_errno));
+		exit_error_mlx(game, mlx_strerror(mlx_errno));
 	game->img = mlx_new_image(game->window, game->scr_width, game->scr_height);
 	if (game->img == NULL)
 		exit_error_mlx(game, mlx_strerror(mlx_errno));
