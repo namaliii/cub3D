@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 15:43:24 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/20 12:11:27 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/21 14:13:12 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,7 @@ void	handle_movement(t_game *game)
 	pos_change = (t_vec2d){0, 0};
 	if (mlx_is_key_down(game->window, MLX_KEY_ESCAPE))
 	{
-		mlx_delete_image(game->window, game->img);
-		mlx_close_window(game->window);
-		mlx_terminate(game->window);
+		total_cleanup(game);
 		exit(EXIT_SUCCESS);
 	}
 	if (mlx_is_key_down(game->window, MLX_KEY_E)
