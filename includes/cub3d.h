@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/20 19:18:13 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/21 13:36:03 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@
 # define WALK_SPEED 0.1
 # define MOUSE_SENSITIVITY 0.001
 # define COLLISION_DIST_MULTIPLIER 2
+# define FPS_UNLIMITED 0
+# define FPS_STR_SIZE 12
 
 # define TILE_WALL '1'
 # define TILE_DOOR_CLOSED_CHAR 'D'
@@ -143,6 +145,10 @@ typedef struct s_game
 	t_sprite		sprite;
 	double			last_time_sec;
 	double			delta_time_sec;
+	int				fps_limit;
+	double			fps_time_accumulator_sec;
+	unsigned int	fps_frame_count;
+	char			*fps_str;
 }	t_game;
 
 typedef struct s_dda_vars
@@ -176,6 +182,9 @@ void			draw_safe_rect(t_game *game, t_rect r);
 void			draw_textured_wall(t_game *game, int x, float ray_angle,
 					t_ray_hit *hit_info);
 void			handle_sprite_animation(t_game *game);
+uint32_t		rgba2color(t_rgba rgba);
+uint32_t		get_mlx_texture_pixel(mlx_texture_t *tex, int x, int y);
+bool			is_fully_transparent(uint32_t color);
 
 // Map
 bool			is_map_tile_solid(t_game *game, int x, int y);
@@ -226,11 +235,11 @@ int				is_line_empty(char *line);
 int				is_valid_extension(char *file_name);
 int				ft_isnumber(char *str);
 
-// Conversions utils
+// Angle utils
 float			deg2rad(float angle_degree);
-uint32_t		rgba2color(t_rgba rgba);
-uint32_t		get_mlx_texture_pixel(mlx_texture_t *tex, int x, int y);
-bool			is_fully_transparent(uint32_t color);
+void			angle_bound(float *angle_rad);
+float			angle_subt(float a_rad, float b_rad);
+float			angle_add(float a_rad, float b_rad);
 
 // Debug utils
 void			debug_print(t_game *game);

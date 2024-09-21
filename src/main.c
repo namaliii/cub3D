@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:28 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/20 19:09:01 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/21 13:39:10 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,19 @@ static void	compilation_checks(void)
 		exit_error(ERR_MSG_INVALID_OUT_OF_BOUNDS_TILE);
 }
 
+static void	fps_checks(t_game *game)
+{
+	game->fps_frame_count++;
+	game->fps_time_accumulator_sec += game->delta_time_sec;
+	if (game->fps_time_accumulator_sec > 1.0)
+	{
+		game->fps_str = ft_itoa(game->fps_frame_count);
+		printf("FPS = %s\n", game->fps_str);
+		game->fps_frame_count = 0;
+		game->fps_time_accumulator_sec = 0;
+	}
+}
+
 static void	game_loop(void *param)
 {
 	double	current_time;
@@ -33,7 +46,9 @@ static void	game_loop(void *param)
 	current_time = mlx_get_time();
 	game->delta_time_sec = current_time - game->last_time_sec;
 	game->last_time_sec = current_time;
+	fps_checks(game);
 	handle_movement(game);
+	angle_bound(&game->p_angle_rad);
 	render_frame(game);
 }
 

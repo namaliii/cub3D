@@ -17,7 +17,8 @@ GRAPHICS_FILES		= render_frame.c \
 						draw.c \
 						put_texture.c \
 						dda.c \
-						sprite.c
+						sprite.c \
+						color.c
 
 MAP_FILES			= checks.c \
 						door.c
@@ -37,13 +38,11 @@ UTILS_FILES			= get_next_line/get_next_line.c \
 						get_next_line/get_next_line_utils.c \
 						exit_error.c \
 						safe_calloc.c \
-						color.c \
-						deg2rad.c \
+						angles.c \
 						debug_print.c \
 						cub3d_math.c \
 						list.c \
 						parse_utils.c \
-						print_usage.c \
 						ft_split_e.c \
 						ft_realloc.c \
 						load_image.c
