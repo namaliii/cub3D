@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:28 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/21 13:39:10 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/21 14:36:48 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,8 @@
 
 static void	compilation_checks(void)
 {
-	if (WALK_SPEED >= 1.0)
-		exit_error(ERR_MSG_INVALID_WALK_SPEED);
 	if (COLLISION_DIST_MULTIPLIER < 1.0)
 		exit_error(ERR_MSG_INVALID_COL_DIST_TOO_SMALL);
-	if (COLLISION_DIST_MULTIPLIER * WALK_SPEED >= 1.0)
-		exit_error(ERR_MSG_INVALID_COL_DIST_WALK_SPEED);
 	if (!is_tile_solid(TILE_OUT_OF_BOUNDS))
 		exit_error(ERR_MSG_INVALID_OUT_OF_BOUNDS_TILE);
 }
