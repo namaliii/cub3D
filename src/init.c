@@ -6,17 +6,27 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 22:17:25 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/21 14:35:16 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/21 15:11:00 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	create_sprite_filename(char *filename, int frame_number)
+static void	create_sprite_filename(t_game *game, char *filename, int frame_number)
 {
+	char *frame_number_str;
+	
+	frame_number_str = ft_itoa(frame_number);
+	if (frame_number_str == NULL)
+	{
+		printf("%s\n", filename);
+		exit_error_cleanup_textures(game, ERR_MSG_LOADING_TEXTURE);
+	}
 	ft_strlcpy(filename, SPRITE_BASE_PATH, SPRITE_FILE_PATH_LEN);
-	ft_strlcat(filename, ft_itoa(frame_number), SPRITE_FILE_PATH_LEN);
+	ft_strlcat(filename, frame_number_str, SPRITE_FILE_PATH_LEN);
 	ft_strlcat(filename, ".png", SPRITE_FILE_PATH_LEN);
+	free(frame_number_str);
+	
 }
 
 static void	init_sprite(t_game *game)
@@ -27,7 +37,7 @@ static void	init_sprite(t_game *game)
 	i = 0;
 	while (i < SPRITE_FRAMES)
 	{
-		create_sprite_filename(filename, i + 1);
+		create_sprite_filename(game, filename, i + 1);
 		game->sprite.frames[i] = mlx_load_png(filename);
 		if (game->sprite.frames[i] == NULL)
 		{
