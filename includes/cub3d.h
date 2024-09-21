@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:52 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/21 14:38:22 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/21 15:30:31 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,7 @@ typedef struct s_game
 	double			fps_time_accumulator_sec;
 	unsigned int	fps_frame_count;
 	char			*fps_str;
+	int				map_fd;
 }	t_game;
 
 typedef struct s_dda_vars

@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 13:53:07 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/21 14:02:18 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/21 16:30:08 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	cleanup_parser(t_game *game)
 {
+	if (game->map_fd >= 0)
+		close(game->map_fd);
 	if (game->tex_no != NULL)
 		mlx_delete_texture(game->tex_no);
 	if (game->tex_so != NULL)
