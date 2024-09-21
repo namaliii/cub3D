@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 19:24:11 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/17 00:05:05 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/21 12:37:36 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,10 @@ int	is_line_empty(char *line)
 		i++;
 	}
 	return (1);
+}
+
+void	print_usage(int argc, char **argv)
+{
+	if (argc >= 1)
+		printf("usage: %s <map file>\n", argv[0]);
 }
