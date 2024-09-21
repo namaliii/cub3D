@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:20:17 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/20 17:51:27 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/21 10:39:14 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,7 @@ void	exit_error_mlx(t_game *game, const char *msg)
 		mlx_close_window(game->window);
 		mlx_terminate(game->window);
 	}
+	if (game->fps_str != NULL)
+		free(game->fps_str);
 	exit_error_cleanup_textures(game, msg);
 }
