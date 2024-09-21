@@ -6,17 +6,17 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 22:17:25 by anamieta          #+#    #+#             */
-/*   Updated: 2024/09/21 15:22:14 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/21 20:00:05 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	create_sprite_filename(t_game *game, char *filename, int frame_number)
+static void	create_sprite_filename(t_game *game, char *filename, int frame_num)
 {
-	char *frame_number_str;
-	
-	frame_number_str = ft_itoa(frame_number);
+	char	*frame_number_str;
+
+	frame_number_str = ft_itoa(frame_num);
 	if (frame_number_str == NULL)
 	{
 		printf("%s\n", filename);
@@ -26,7 +26,6 @@ static void	create_sprite_filename(t_game *game, char *filename, int frame_numbe
 	ft_strlcat(filename, frame_number_str, SPRITE_FILE_PATH_LEN);
 	ft_strlcat(filename, ".png", SPRITE_FILE_PATH_LEN);
 	free(frame_number_str);
-	
 }
 
 static void	init_sprite(t_game *game)

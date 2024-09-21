@@ -6,7 +6,7 @@
 /*   By: tunsal <tunsal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 21:22:28 by tunsal            #+#    #+#             */
-/*   Updated: 2024/09/21 14:36:48 by tunsal           ###   ########.fr       */
+/*   Updated: 2024/09/21 19:53:11 by tunsal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void	fps_checks(t_game *game)
 	game->fps_time_accumulator_sec += game->delta_time_sec;
 	if (game->fps_time_accumulator_sec > 1.0)
 	{
+		free(game->fps_str);
 		game->fps_str = ft_itoa(game->fps_frame_count);
 		printf("FPS = %s\n", game->fps_str);
 		game->fps_frame_count = 0;
